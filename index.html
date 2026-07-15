@@ -70,19 +70,6 @@
             padding: 0 24px;
         }
 
-        /* ============================================================
-           ANIMATED BACKGROUND
-           ============================================================ */
-        #particles-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            pointer-events: none;
-        }
-
         .bg-glow {
             position: fixed;
             border-radius: 50%;
@@ -1219,20 +1206,6 @@
         .admin-item .item-actions .btn-delete:hover {
             transform: scale(1.05);
         }
-        .admin-item .item-actions .btn-edit {
-            padding: 4px 12px;
-            border-radius: 6px;
-            background: var(--accent-blue);
-            color: #fff;
-            border: none;
-            font-weight: 700;
-            font-size: 11px;
-            cursor: pointer;
-            transition: all var(--transition);
-        }
-        .admin-item .item-actions .btn-edit:hover {
-            transform: scale(1.05);
-        }
 
         .user-item {
             display: flex;
@@ -1623,7 +1596,7 @@
             </div>
             <div class="nav-user">
                 <span id="navUsername" class="hidden"></span>
-                <button class="logout-btn hidden" id="logoutBtn" onclick="logout()">Logout</button>
+                <button class="logout-btn hidden" id="logoutBtn" onclick="logoutUser()">Logout</button>
                 <div class="hamburger" onclick="toggleMobileNav()">
                     <span></span>
                     <span></span>
@@ -2013,88 +1986,65 @@
     </footer>
 
     <!-- ================================================================
+    FIREBASE SDK
+    ================================================================ -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js">
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js">
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js">
+    </script>
+
+    <!-- ================================================================
     JAVASCRIPT
     ================================================================ -->
     <script>
         // ============================================================
-        // DATA STORE
+        // FIREBASE CONFIG - YOUR CONFIG
         // ============================================================
-        function getData() {
-            try {
-                const raw = localStorage.getItem('boomerData');
-                if (raw) return JSON.parse(raw);
-            } catch (e) {}
-            return null;
-        }
+        const firebaseConfig = {
+            apiKey: "AIzaSyD7dUmV7Bmrc7V69mYaQA_I7iB8JG4T6f8",
+            authDomain: "sporty-arena.firebaseapp.com",
+            projectId: "sporty-arena",
+            storageBucket: "sporty-arena.firebasestorage.app",
+            messagingSenderId: "864228461780",
+            appId: "1:864228461780:web:4382bfb4c1a48bd4443f41",
+            measurementId: "G-1F0K131JFY"
+        };
 
-        function saveData(data) {
-            localStorage.setItem('boomerData', JSON.stringify(data));
-        }
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
 
-        function resetDatabase() {
-            if (confirm('This will reset all data. Are you sure?')) {
-                localStorage.removeItem('boomerData');
-                sessionStorage.removeItem('currentUser');
-                data = initData();
-                showToast('Database reset! Please login with admin1@gmail.com / admin@1234', 'success');
-                showPage('login');
-            }
-        }
+        // Enable offline persistence
+        db.enablePersistence({ synchronizeTabs: true })
+            .catch((err) => {
+                console.warn('Firebase persistence error:', err);
+            });
 
-        function initData() {
-            let data = getData();
-            if (!data) {
-                data = {
-                    users: [
-                        { username: 'Admin', email: 'admin1@gmail.com', password: 'admin@1234', isAdmin: true }
-                    ],
-                    freeCodes: [
-                        { id: 1, name: 'Arsenal vs Newcastle + 3 more', league: 'EPL', odds: '6.42', code: 'BBA-7719',
-                            active: true },
-                        { id: 2, name: 'Real Sociedad vs Villarreal + 2 more', league: 'LA LIGA', odds: '4.18',
-                            code: 'BBA-7724', active: true },
-                        { id: 3, name: 'Fiorentina vs Torino + 2 more', league: 'SERIE A', odds: '5.05',
-                            code: 'BBA-7731', active: true },
-                        { id: 4, name: 'Freiburg vs Mainz + 1 more', league: 'BUNDESLIGA', odds: '3.10',
-                            code: 'BBA-7738', active: true }
-                    ],
-                    vipCodes: [
-                        { id: 1, name: 'Barcelona vs Real Madrid + 4 more', league: 'LA LIGA · UCL', odds: '11.80',
-                            code: 'VIP-2024-001', price: '₦5,000', active: true },
-                        { id: 2, name: 'Bayern vs Dortmund + 3 more', league: 'BUNDESLIGA', odds: '8.65',
-                            code: 'VIP-2024-002', price: '₦3,500', active: true },
-                        { id: 3, name: 'AC Milan vs Inter + 3 more', league: 'SERIE A', odds: '9.20',
-                            code: 'VIP-2024-003', price: '₦4,200', active: true }
-                    ],
-                    transactions: [],
-                    paymentInfo: {
-                        bankName: 'Testing Bank',
-                        accountNumber: 'Testing',
-                        accountName: 'Testing Account'
-                    },
-                    nextId: 10
-                };
-                saveData(data);
-            }
-            return data;
-        }
+        console.log('🔥 Firebase initialized successfully!');
 
-        let data = initData();
+        // ============================================================
+        // COLLECTION REFERENCES
+        // ============================================================
+        const USERS_COLLECTION = 'users';
+        const FREE_CODES_COLLECTION = 'freeCodes';
+        const VIP_CODES_COLLECTION = 'vipCodes';
+        const TRANSACTIONS_COLLECTION = 'transactions';
+        const PAYMENT_INFO_DOC = 'paymentInfo';
 
-        function generateId() { return data.nextId++; }
-
-        function save() { saveData(data); }
-
-        function getCurrentUser() {
-            const email = sessionStorage.getItem('currentUser');
-            if (!email) return null;
-            return data.users.find(u => u.email === email) || null;
-        }
-
-        function isAdmin() {
-            const user = getCurrentUser();
-            return user && user.isAdmin === true;
-        }
+        // ============================================================
+        // DATA STATE
+        // ============================================================
+        window.appData = {
+            freeCodes: [],
+            vipCodes: [],
+            transactions: [],
+            users: [],
+            paymentInfo: null,
+            currentUser: null
+        };
 
         // ============================================================
         // TOAST SYSTEM
@@ -2113,6 +2063,479 @@
         }
 
         // ============================================================
+        // AUTH FUNCTIONS
+        // ============================================================
+        async function handleSignup() {
+            const username = document.getElementById('signupUsername').value.trim();
+            const email = document.getElementById('signupEmail').value.trim();
+            const password = document.getElementById('signupPassword').value.trim();
+            const errorEl = document.getElementById('signupError');
+
+            if (!username || !email || !password) {
+                errorEl.textContent = 'All fields are required';
+                errorEl.style.display = 'block';
+                return;
+            }
+
+            errorEl.style.display = 'none';
+            const btn = document.getElementById('signupBtn');
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating...';
+            btn.disabled = true;
+
+            try {
+                // Create auth user
+                const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+                const uid = userCredential.user.uid;
+
+                // Create user document
+                await db.collection(USERS_COLLECTION).doc(uid).set({
+                    username,
+                    email,
+                    isAdmin: false,
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+
+                btn.innerHTML = '<i class="fas fa-user-plus"></i> Create Account';
+                btn.disabled = false;
+                showToast('Account created successfully! 🎉', 'success');
+                // Auth state listener will handle navigation
+
+            } catch (error) {
+                errorEl.textContent = error.message;
+                errorEl.style.display = 'block';
+                btn.innerHTML = '<i class="fas fa-user-plus"></i> Create Account';
+                btn.disabled = false;
+            }
+        }
+
+        async function handleLogin() {
+            const email = document.getElementById('loginEmail').value.trim();
+            const password = document.getElementById('loginPassword').value.trim();
+            const errorEl = document.getElementById('loginError');
+
+            if (!email || !password) {
+                errorEl.textContent = 'All fields are required';
+                errorEl.style.display = 'block';
+                return;
+            }
+
+            errorEl.style.display = 'none';
+            const btn = document.getElementById('loginBtn');
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Logging in...';
+            btn.disabled = true;
+
+            try {
+                await auth.signInWithEmailAndPassword(email, password);
+                btn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Login';
+                btn.disabled = false;
+                // Auth state listener will handle navigation
+            } catch (error) {
+                errorEl.textContent = 'Invalid email or password';
+                errorEl.style.display = 'block';
+                btn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Login';
+                btn.disabled = false;
+            }
+        }
+
+        async function logoutUser() {
+            try {
+                await auth.signOut();
+                showToast('Logged out successfully', 'info');
+                showPage('landing');
+            } catch (error) {
+                showToast('Error logging out', 'error');
+            }
+        }
+
+        // ============================================================
+        // GET CURRENT USER DATA
+        // ============================================================
+        async function getCurrentUserData() {
+            const user = auth.currentUser;
+            if (!user) return null;
+
+            try {
+                const doc = await db.collection(USERS_COLLECTION).doc(user.uid).get();
+                if (doc.exists) {
+                    return { ...doc.data(), uid: user.uid };
+                }
+                return null;
+            } catch (error) {
+                console.error('Error getting user data:', error);
+                return null;
+            }
+        }
+
+        // ============================================================
+        // INITIALIZE DATA (First time setup)
+        // ============================================================
+        async function initializeFirebaseData() {
+            try {
+                // Check if free codes exist
+                const freeCodesSnap = await db.collection(FREE_CODES_COLLECTION).limit(1).get();
+                if (freeCodesSnap.empty) {
+                    console.log('📝 Seeding initial data...');
+
+                    // Seed free codes
+                    const freeCodes = [
+                        { name: 'Arsenal vs Newcastle + 3 more', league: 'EPL', odds: '6.42', code: 'BBA-7719',
+                            active: true, createdAt: firebase.firestore.FieldValue.serverTimestamp() },
+                        { name: 'Real Sociedad vs Villarreal + 2 more', league: 'LA LIGA', odds: '4.18',
+                            code: 'BBA-7724', active: true, createdAt: firebase.firestore.FieldValue
+                            .serverTimestamp() },
+                        { name: 'Fiorentina vs Torino + 2 more', league: 'SERIE A', odds: '5.05', code: 'BBA-7731',
+                            active: true, createdAt: firebase.firestore.FieldValue.serverTimestamp() },
+                        { name: 'Freiburg vs Mainz + 1 more', league: 'BUNDESLIGA', odds: '3.10', code: 'BBA-7738',
+                            active: true, createdAt: firebase.firestore.FieldValue.serverTimestamp() }
+                    ];
+
+                    for (const code of freeCodes) {
+                        await db.collection(FREE_CODES_COLLECTION).add(code);
+                    }
+
+                    // Seed VIP codes
+                    const vipCodes = [
+                        { name: 'Barcelona vs Real Madrid + 4 more', league: 'LA LIGA · UCL', odds: '11.80',
+                            code: 'VIP-2024-001', price: '₦5,000', active: true, createdAt: firebase.firestore
+                                .FieldValue.serverTimestamp() },
+                        { name: 'Bayern vs Dortmund + 3 more', league: 'BUNDESLIGA', odds: '8.65',
+                            code: 'VIP-2024-002', price: '₦3,500', active: true, createdAt: firebase.firestore
+                                .FieldValue.serverTimestamp() },
+                        { name: 'AC Milan vs Inter + 3 more', league: 'SERIE A', odds: '9.20', code: 'VIP-2024-003',
+                            price: '₦4,200', active: true, createdAt: firebase.firestore.FieldValue
+                            .serverTimestamp() }
+                    ];
+
+                    for (const code of vipCodes) {
+                        await db.collection(VIP_CODES_COLLECTION).add(code);
+                    }
+
+                    // Seed payment info
+                    await db.collection(PAYMENT_INFO_DOC).doc('settings').set({
+                        bankName: 'Testing Bank',
+                        accountNumber: 'Testing',
+                        accountName: 'Testing Account',
+                        updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+                    });
+
+                    console.log('✅ Initial data seeded successfully!');
+                }
+            } catch (error) {
+                console.error('Error initializing data:', error);
+            }
+        }
+
+        // ============================================================
+        // REAL-TIME LISTENERS
+        // ============================================================
+
+        let freeCodesListener = null;
+        let vipCodesListener = null;
+        let transactionsListener = null;
+        let paymentInfoListener = null;
+        let usersListener = null;
+
+        function setupRealtimeListeners() {
+            // Free Codes
+            if (freeCodesListener) freeCodesListener();
+            freeCodesListener = db.collection(FREE_CODES_COLLECTION)
+                .orderBy('createdAt', 'asc')
+                .onSnapshot((snapshot) => {
+                    const codes = [];
+                    snapshot.forEach(doc => {
+                        codes.push({ ...doc.data(), firebaseId: doc.id });
+                    });
+                    window.appData.freeCodes = codes;
+                    renderAllPages();
+                }, (error) => {
+                    console.error('Free codes listener error:', error);
+                });
+
+            // VIP Codes
+            if (vipCodesListener) vipCodesListener();
+            vipCodesListener = db.collection(VIP_CODES_COLLECTION)
+                .orderBy('createdAt', 'asc')
+                .onSnapshot((snapshot) => {
+                    const codes = [];
+                    snapshot.forEach(doc => {
+                        codes.push({ ...doc.data(), firebaseId: doc.id });
+                    });
+                    window.appData.vipCodes = codes;
+                    renderAllPages();
+                }, (error) => {
+                    console.error('VIP codes listener error:', error);
+                });
+
+            // Transactions
+            if (transactionsListener) transactionsListener();
+            transactionsListener = db.collection(TRANSACTIONS_COLLECTION)
+                .orderBy('createdAt', 'desc')
+                .onSnapshot((snapshot) => {
+                    const txs = [];
+                    snapshot.forEach(doc => {
+                        txs.push({ ...doc.data(), firebaseId: doc.id });
+                    });
+                    window.appData.transactions = txs;
+                    renderAllPages();
+                }, (error) => {
+                    console.error('Transactions listener error:', error);
+                });
+
+            // Payment Info
+            if (paymentInfoListener) paymentInfoListener();
+            paymentInfoListener = db.collection(PAYMENT_INFO_DOC).doc('settings')
+                .onSnapshot((doc) => {
+                    if (doc.exists) {
+                        window.appData.paymentInfo = doc.data();
+                        renderAllPages();
+                    }
+                }, (error) => {
+                    console.error('Payment info listener error:', error);
+                });
+
+            // Users
+            if (usersListener) usersListener();
+            usersListener = db.collection(USERS_COLLECTION)
+                .onSnapshot((snapshot) => {
+                    const users = [];
+                    snapshot.forEach(doc => {
+                        users.push({ ...doc.data(), firebaseId: doc.id, uid: doc.id });
+                    });
+                    window.appData.users = users;
+                    renderAllPages();
+                }, (error) => {
+                    console.error('Users listener error:', error);
+                });
+        }
+
+        // ============================================================
+        // CRUD OPERATIONS
+        // ============================================================
+
+        // FREE CODES
+        async function adminAddFreeCode() {
+            const name = document.getElementById('adminFreeName').value.trim();
+            const league = document.getElementById('adminFreeLeague').value.trim();
+            const odds = document.getElementById('adminFreeOdds').value.trim();
+            const code = document.getElementById('adminFreeCode').value.trim();
+
+            if (!name || !league || !odds || !code) {
+                showToast('All fields are required', 'error');
+                return;
+            }
+
+            try {
+                await db.collection(FREE_CODES_COLLECTION).add({
+                    name,
+                    league,
+                    odds,
+                    code,
+                    active: true,
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+                document.getElementById('adminFreeName').value = '';
+                document.getElementById('adminFreeLeague').value = '';
+                document.getElementById('adminFreeOdds').value = '';
+                document.getElementById('adminFreeCode').value = '';
+                showToast('Free code added! ✅', 'success');
+            } catch (error) {
+                showToast('Error adding code', 'error');
+            }
+        }
+
+        async function adminUpdateFree(firebaseId) {
+            const name = document.getElementById(`free_name_${firebaseId}`).value.trim();
+            const league = document.getElementById(`free_league_${firebaseId}`).value.trim();
+            const odds = document.getElementById(`free_odds_${firebaseId}`).value.trim();
+            const code = document.getElementById(`free_code_${firebaseId}`).value.trim();
+
+            if (!name || !league || !odds || !code) {
+                showToast('All fields are required', 'error');
+                return;
+            }
+
+            try {
+                await db.collection(FREE_CODES_COLLECTION).doc(firebaseId).update({
+                    name,
+                    league,
+                    odds,
+                    code,
+                    updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+                showToast('Free code updated! ✅', 'success');
+            } catch (error) {
+                showToast('Error updating code', 'error');
+            }
+        }
+
+        async function adminToggleFree(firebaseId) {
+            const code = window.appData.freeCodes.find(c => c.firebaseId === firebaseId);
+            if (code) {
+                try {
+                    await db.collection(FREE_CODES_COLLECTION).doc(firebaseId).update({
+                        active: !code.active
+                    });
+                } catch (error) {
+                    showToast('Error toggling code', 'error');
+                }
+            }
+        }
+
+        async function adminDeleteFree(firebaseId) {
+            if (confirm('Delete this free code?')) {
+                try {
+                    await db.collection(FREE_CODES_COLLECTION).doc(firebaseId).delete();
+                    showToast('Free code deleted', 'info');
+                } catch (error) {
+                    showToast('Error deleting code', 'error');
+                }
+            }
+        }
+
+        // VIP CODES
+        async function adminAddVipCode() {
+            const name = document.getElementById('adminVipName').value.trim();
+            const league = document.getElementById('adminVipLeague').value.trim();
+            const odds = document.getElementById('adminVipOdds').value.trim();
+            const price = document.getElementById('adminVipPrice').value.trim();
+            const code = document.getElementById('adminVipCode').value.trim();
+
+            if (!name || !league || !odds || !price || !code) {
+                showToast('All fields are required', 'error');
+                return;
+            }
+
+            try {
+                await db.collection(VIP_CODES_COLLECTION).add({
+                    name,
+                    league,
+                    odds,
+                    price,
+                    code,
+                    active: true,
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+                document.getElementById('adminVipName').value = '';
+                document.getElementById('adminVipLeague').value = '';
+                document.getElementById('adminVipOdds').value = '';
+                document.getElementById('adminVipPrice').value = '';
+                document.getElementById('adminVipCode').value = '';
+                showToast('VIP code added! 💎', 'success');
+            } catch (error) {
+                showToast('Error adding VIP code', 'error');
+            }
+        }
+
+        async function adminUpdateVip(firebaseId) {
+            const name = document.getElementById(`vip_name_${firebaseId}`).value.trim();
+            const league = document.getElementById(`vip_league_${firebaseId}`).value.trim();
+            const odds = document.getElementById(`vip_odds_${firebaseId}`).value.trim();
+            const price = document.getElementById(`vip_price_${firebaseId}`).value.trim();
+            const code = document.getElementById(`vip_code_${firebaseId}`).value.trim();
+
+            if (!name || !league || !odds || !price || !code) {
+                showToast('All fields are required', 'error');
+                return;
+            }
+
+            try {
+                await db.collection(VIP_CODES_COLLECTION).doc(firebaseId).update({
+                    name,
+                    league,
+                    odds,
+                    price,
+                    code,
+                    updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+                showToast('VIP code updated! 💎', 'success');
+            } catch (error) {
+                showToast('Error updating VIP code', 'error');
+            }
+        }
+
+        async function adminToggleVip(firebaseId) {
+            const code = window.appData.vipCodes.find(c => c.firebaseId === firebaseId);
+            if (code) {
+                try {
+                    await db.collection(VIP_CODES_COLLECTION).doc(firebaseId).update({
+                        active: !code.active
+                    });
+                } catch (error) {
+                    showToast('Error toggling VIP code', 'error');
+                }
+            }
+        }
+
+        async function adminDeleteVip(firebaseId) {
+            if (confirm('Delete this VIP code?')) {
+                try {
+                    await db.collection(VIP_CODES_COLLECTION).doc(firebaseId).delete();
+                    showToast('VIP code deleted', 'info');
+                } catch (error) {
+                    showToast('Error deleting VIP code', 'error');
+                }
+            }
+        }
+
+        // PAYMENT INFO
+        async function adminUpdatePaymentInfo() {
+            const bankName = document.getElementById('adminBankName').value.trim();
+            const accountNumber = document.getElementById('adminAccountNumber').value.trim();
+            const accountName = document.getElementById('adminAccountName').value.trim();
+
+            if (!bankName || !accountNumber || !accountName) {
+                showToast('All payment fields are required', 'error');
+                return;
+            }
+
+            try {
+                await db.collection(PAYMENT_INFO_DOC).doc('settings').set({
+                    bankName,
+                    accountNumber,
+                    accountName,
+                    updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+                }, { merge: true });
+                showToast('Payment info updated! 💳', 'success');
+            } catch (error) {
+                showToast('Error updating payment info', 'error');
+            }
+        }
+
+        // TRANSACTIONS
+        async function adminConfirmPayment(firebaseId) {
+            try {
+                await db.collection(TRANSACTIONS_COLLECTION).doc(firebaseId).update({
+                    status: 'confirmed',
+                    confirmedAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+                showToast('Payment confirmed! ✅', 'success');
+            } catch (error) {
+                showToast('Error confirming payment', 'error');
+            }
+        }
+
+        async function addTransaction(userId, username, vipId, vipName, vipCode, amount, paymentName) {
+            try {
+                await db.collection(TRANSACTIONS_COLLECTION).add({
+                    userId,
+                    username,
+                    vipId,
+                    vipName,
+                    vipCode,
+                    amount,
+                    paymentName,
+                    status: 'pending',
+                    date: new Date().toLocaleString(),
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+                return true;
+            } catch (error) {
+                console.error('Error adding transaction:', error);
+                return false;
+            }
+        }
+
+        // ============================================================
         // NAVIGATION
         // ============================================================
         function showPage(page) {
@@ -2120,9 +2543,9 @@
             const target = document.getElementById('page-' + page);
             if (target) target.classList.remove('hidden');
 
-            const user = getCurrentUser();
+            const user = window.appData.currentUser;
             const isLoggedIn = !!user;
-            const isAdminUser = isAdmin();
+            const isAdminUser = user && user.isAdmin === true;
 
             document.getElementById('navDashboard').classList.toggle('hidden', !isLoggedIn);
             document.getElementById('navHistory').classList.toggle('hidden', !isLoggedIn);
@@ -2174,85 +2597,22 @@
         }
 
         // ============================================================
-        // AUTH
-        // ============================================================
-        function handleSignup() {
-            const username = document.getElementById('signupUsername').value.trim();
-            const email = document.getElementById('signupEmail').value.trim();
-            const password = document.getElementById('signupPassword').value.trim();
-            const errorEl = document.getElementById('signupError');
-
-            if (!username || !email || !password) {
-                errorEl.textContent = 'All fields are required';
-                errorEl.style.display = 'block';
-                return;
-            }
-            if (data.users.find(u => u.email === email)) {
-                errorEl.textContent = 'Email already registered';
-                errorEl.style.display = 'block';
-                return;
-            }
-
-            errorEl.style.display = 'none';
-            const btn = document.getElementById('signupBtn');
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating...';
-            btn.disabled = true;
-
-            setTimeout(() => {
-                data.users.push({ username, email, password, isAdmin: false });
-                save();
-                btn.innerHTML = '<i class="fas fa-user-plus"></i> Create Account';
-                btn.disabled = false;
-                sessionStorage.setItem('currentUser', email);
-                showToast('Account created successfully! 🎉', 'success');
-                showPage('dashboard');
-            }, 1500);
-        }
-
-        function handleLogin() {
-            const email = document.getElementById('loginEmail').value.trim();
-            const password = document.getElementById('loginPassword').value.trim();
-            const errorEl = document.getElementById('loginError');
-
-            if (!email || !password) {
-                errorEl.textContent = 'All fields are required';
-                errorEl.style.display = 'block';
-                return;
-            }
-
-            const user = data.users.find(u => u.email === email && u.password === password);
-            if (!user) {
-                errorEl.textContent = 'Invalid email or password';
-                errorEl.style.display = 'block';
-                return;
-            }
-
-            errorEl.style.display = 'none';
-            const btn = document.getElementById('loginBtn');
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Logging in...';
-            btn.disabled = true;
-
-            setTimeout(() => {
-                btn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Login';
-                btn.disabled = false;
-                sessionStorage.setItem('currentUser', email);
-                showToast(`Welcome back, ${user.username}! 👋`, 'success');
-                showPage('dashboard');
-            }, 1500);
-        }
-
-        function logout() {
-            sessionStorage.removeItem('currentUser');
-            showToast('Logged out successfully', 'info');
-            showPage('landing');
-        }
-
-        // ============================================================
         // RENDER FUNCTIONS
         // ============================================================
+        function renderAllPages() {
+            const currentPage = document.querySelector('[id^="page-"]:not(.hidden)');
+            if (!currentPage) return;
+
+            const pageId = currentPage.id.replace('page-', '');
+            if (pageId === 'landing') renderLandingFreeCodes();
+            else if (pageId === 'dashboard') renderDashboard();
+            else if (pageId === 'history') renderHistory();
+            else if (pageId === 'admin') renderAdminPanels();
+        }
+
         function renderLandingFreeCodes() {
             const container = document.getElementById('landingFreeCodes');
-            const activeCodes = data.freeCodes.filter(c => c.active);
+            const activeCodes = window.appData.freeCodes.filter(c => c.active);
             container.innerHTML = activeCodes.map(c => `
                     <div class="code-card fade-up">
                         <div class="top-row">
@@ -2272,12 +2632,12 @@
         }
 
         function renderDashboard() {
-            const user = getCurrentUser();
+            const user = window.appData.currentUser;
             if (!user) return;
             document.getElementById('dashUsername').textContent = user.username;
 
-            const activeFree = data.freeCodes.filter(c => c.active);
-            const activeVip = data.vipCodes.filter(c => c.active);
+            const activeFree = window.appData.freeCodes.filter(c => c.active);
+            const activeVip = window.appData.vipCodes.filter(c => c.active);
 
             document.getElementById('dashFreeCount').textContent = activeFree.length;
             document.getElementById('dashVipCount').textContent = activeVip.length;
@@ -2317,7 +2677,7 @@
                             <span>Combined odds</span>
                             <strong>${c.odds}</strong>
                         </div>
-                        <button class="unlock-btn" onclick="startUnlock(${c.id})">🔓 Unlock Code</button>
+                        <button class="unlock-btn" onclick="startUnlock('${c.firebaseId}')">🔓 Unlock Code</button>
                     </div>
                 `).join('');
             observeElements();
@@ -2328,9 +2688,9 @@
         // ============================================================
         let currentUnlockVipId = null;
 
-        function startUnlock(vipId) {
-            currentUnlockVipId = vipId;
-            const vip = data.vipCodes.find(c => c.id === vipId);
+        function startUnlock(firebaseId) {
+            currentUnlockVipId = firebaseId;
+            const vip = window.appData.vipCodes.find(c => c.firebaseId === firebaseId);
             if (!vip) return;
 
             const container = document.getElementById('vipUnlockContent');
@@ -2352,7 +2712,7 @@
         }
 
         function goToPayment() {
-            const vip = data.vipCodes.find(c => c.id === currentUnlockVipId);
+            const vip = window.appData.vipCodes.find(c => c.firebaseId === currentUnlockVipId);
             if (!vip) return;
 
             const container = document.getElementById('paymentContent');
@@ -2365,8 +2725,11 @@
             showPage('payment');
 
             setTimeout(() => {
-                const paymentInfo = data.paymentInfo || { bankName: 'Testing Bank', accountNumber: 'Testing',
-                    accountName: 'Testing Account' };
+                const paymentInfo = window.appData.paymentInfo || {
+                    bankName: 'Testing Bank',
+                    accountNumber: 'Testing',
+                    accountName: 'Testing Account'
+                };
                 container.innerHTML = `
                         <h2>💳 Complete Payment</h2>
                         <p style="color:var(--text-secondary);margin-bottom:16px;">Send the exact amount to the account below</p>
@@ -2394,15 +2757,15 @@
             }, 2000);
         }
 
-        function confirmPayment() {
+        async function confirmPayment() {
             const name = document.getElementById('paymentName').value.trim();
             if (!name) {
                 showToast('Please enter your name as on bank', 'error');
                 return;
             }
 
-            const user = getCurrentUser();
-            const vip = data.vipCodes.find(c => c.id === currentUnlockVipId);
+            const user = window.appData.currentUser;
+            const vip = window.appData.vipCodes.find(c => c.firebaseId === currentUnlockVipId);
             if (!vip || !user) return;
 
             const container = document.getElementById('paymentContent');
@@ -2413,35 +2776,36 @@
                     </div>
                 `;
 
-            setTimeout(() => {
-                const tx = {
-                    id: generateId(),
-                    userId: user.email,
-                    username: user.username,
-                    vipId: vip.id,
-                    vipName: vip.name,
-                    vipCode: vip.code,
-                    amount: vip.price,
-                    status: 'pending',
-                    date: new Date().toLocaleString(),
-                    paymentName: name
-                };
-                data.transactions.push(tx);
-                save();
+            const success = await addTransaction(
+                user.uid,
+                user.username,
+                vip.firebaseId,
+                vip.name,
+                vip.code,
+                vip.price,
+                name
+            );
+
+            if (success) {
                 showToast('Payment submitted! Waiting for confirmation.', 'info');
-                showPage('history');
-                renderHistory();
-            }, 3000);
+                setTimeout(() => {
+                    showPage('history');
+                    renderHistory();
+                }, 1000);
+            } else {
+                showToast('Error submitting payment', 'error');
+                showPage('dashboard');
+            }
         }
 
         // ============================================================
         // HISTORY
         // ============================================================
         function renderHistory() {
-            const user = getCurrentUser();
+            const user = window.appData.currentUser;
             if (!user) return;
             const container = document.getElementById('historyContent');
-            const userTxs = data.transactions.filter(t => t.userId === user.email);
+            const userTxs = window.appData.transactions.filter(t => t.userId === user.uid);
 
             if (userTxs.length === 0) {
                 container.innerHTML =
@@ -2474,12 +2838,13 @@
         }
 
         // ============================================================
-        // ENHANCED ADMIN PANEL
+        // ADMIN PANEL
         // ============================================================
         function renderAdminPanels() {
-            if (!isAdmin()) return;
+            const user = window.appData.currentUser;
+            if (!user || !user.isAdmin) return;
 
-            const paymentInfo = data.paymentInfo || { bankName: 'Testing Bank', accountNumber: 'Testing',
+            const paymentInfo = window.appData.paymentInfo || { bankName: 'Testing Bank', accountNumber: 'Testing',
                 accountName: 'Testing Account' };
             document.getElementById('adminBankName').value = paymentInfo.bankName || '';
             document.getElementById('adminAccountNumber').value = paymentInfo.accountNumber || '';
@@ -2490,15 +2855,15 @@
             renderAdminVipCodes();
             renderAdminHistory();
 
-            document.getElementById('userCountBadge').textContent = data.users.length;
-            document.getElementById('freeCodeCount').textContent = data.freeCodes.length;
-            document.getElementById('vipCodeCount').textContent = data.vipCodes.length;
-            document.getElementById('txCountBadge').textContent = data.transactions.length;
+            document.getElementById('userCountBadge').textContent = window.appData.users.length;
+            document.getElementById('freeCodeCount').textContent = window.appData.freeCodes.length;
+            document.getElementById('vipCodeCount').textContent = window.appData.vipCodes.length;
+            document.getElementById('txCountBadge').textContent = window.appData.transactions.length;
         }
 
         function renderAdminUsers() {
             const container = document.getElementById('adminUsersList');
-            container.innerHTML = data.users.map(u => `
+            container.innerHTML = window.appData.users.map(u => `
                     <div class="user-item">
                         <div class="user-info">
                             <span class="username">${u.username}</span>
@@ -2506,7 +2871,7 @@
                             <span class="role ${u.isAdmin ? 'admin' : ''}">${u.isAdmin ? 'Admin' : 'User'}</span>
                         </div>
                         <div class="user-tx-count">
-                            ${data.transactions.filter(t => t.userId === u.email).length} transactions
+                            ${window.appData.transactions.filter(t => t.userId === u.uid).length} transactions
                         </div>
                     </div>
                 `).join('');
@@ -2514,23 +2879,23 @@
 
         function renderAdminFreeCodes() {
             const container = document.getElementById('adminFreeList');
-            if (data.freeCodes.length === 0) {
+            if (window.appData.freeCodes.length === 0) {
                 container.innerHTML = '<p style="color:var(--text-secondary);">No free codes yet. Add one above.</p>';
                 return;
             }
-            container.innerHTML = data.freeCodes.map(c => `
+            container.innerHTML = window.appData.freeCodes.map(c => `
                     <div class="admin-item">
                         <div class="item-info">
-                            <input class="edit-input" id="free_name_${c.id}" value="${c.name}" placeholder="Name">
-                            <input class="edit-input" id="free_league_${c.id}" value="${c.league}" placeholder="League" style="width:80px;">
-                            <input class="edit-input" id="free_odds_${c.id}" value="${c.odds}" placeholder="Odds" style="width:60px;">
-                            <input class="edit-input" id="free_code_${c.id}" value="${c.code}" placeholder="Code" style="width:100px;">
+                            <input class="edit-input" id="free_name_${c.firebaseId}" value="${c.name}" placeholder="Name">
+                            <input class="edit-input" id="free_league_${c.firebaseId}" value="${c.league}" placeholder="League" style="width:80px;">
+                            <input class="edit-input" id="free_odds_${c.firebaseId}" value="${c.odds}" placeholder="Odds" style="width:60px;">
+                            <input class="edit-input" id="free_code_${c.firebaseId}" value="${c.code}" placeholder="Code" style="width:100px;">
                             <span style="font-size:11px;color:${c.active ? 'var(--accent-green)' : 'var(--accent-red)'};">${c.active ? 'Active' : 'Inactive'}</span>
                         </div>
                         <div class="item-actions">
-                            <button class="btn-save" onclick="adminUpdateFree(${c.id})">💾 Save</button>
-                            <button class="btn-save" onclick="adminToggleFree(${c.id})">${c.active ? 'Deactivate' : 'Activate'}</button>
-                            <button class="btn-delete" onclick="adminDeleteFree(${c.id})">Delete</button>
+                            <button class="btn-save" onclick="adminUpdateFree('${c.firebaseId}')">💾 Save</button>
+                            <button class="btn-save" onclick="adminToggleFree('${c.firebaseId}')">${c.active ? 'Deactivate' : 'Activate'}</button>
+                            <button class="btn-delete" onclick="adminDeleteFree('${c.firebaseId}')">Delete</button>
                         </div>
                     </div>
                 `).join('');
@@ -2538,24 +2903,24 @@
 
         function renderAdminVipCodes() {
             const container = document.getElementById('adminVipList');
-            if (data.vipCodes.length === 0) {
+            if (window.appData.vipCodes.length === 0) {
                 container.innerHTML = '<p style="color:var(--text-secondary);">No VIP codes yet. Add one above.</p>';
                 return;
             }
-            container.innerHTML = data.vipCodes.map(c => `
+            container.innerHTML = window.appData.vipCodes.map(c => `
                     <div class="admin-item">
                         <div class="item-info">
-                            <input class="edit-input" id="vip_name_${c.id}" value="${c.name}" placeholder="Name">
-                            <input class="edit-input" id="vip_league_${c.id}" value="${c.league}" placeholder="League" style="width:80px;">
-                            <input class="edit-input" id="vip_odds_${c.id}" value="${c.odds}" placeholder="Odds" style="width:60px;">
-                            <input class="edit-input" id="vip_price_${c.id}" value="${c.price}" placeholder="Price" style="width:80px;">
-                            <input class="edit-input" id="vip_code_${c.id}" value="${c.code}" placeholder="Code" style="width:100px;">
+                            <input class="edit-input" id="vip_name_${c.firebaseId}" value="${c.name}" placeholder="Name">
+                            <input class="edit-input" id="vip_league_${c.firebaseId}" value="${c.league}" placeholder="League" style="width:80px;">
+                            <input class="edit-input" id="vip_odds_${c.firebaseId}" value="${c.odds}" placeholder="Odds" style="width:60px;">
+                            <input class="edit-input" id="vip_price_${c.firebaseId}" value="${c.price}" placeholder="Price" style="width:80px;">
+                            <input class="edit-input" id="vip_code_${c.firebaseId}" value="${c.code}" placeholder="Code" style="width:100px;">
                             <span style="font-size:11px;color:${c.active ? 'var(--accent-green)' : 'var(--accent-red)'};">${c.active ? 'Active' : 'Inactive'}</span>
                         </div>
                         <div class="item-actions">
-                            <button class="btn-save" onclick="adminUpdateVip(${c.id})">💾 Save</button>
-                            <button class="btn-save" onclick="adminToggleVip(${c.id})">${c.active ? 'Deactivate' : 'Activate'}</button>
-                            <button class="btn-delete" onclick="adminDeleteVip(${c.id})">Delete</button>
+                            <button class="btn-save" onclick="adminUpdateVip('${c.firebaseId}')">💾 Save</button>
+                            <button class="btn-save" onclick="adminToggleVip('${c.firebaseId}')">${c.active ? 'Deactivate' : 'Activate'}</button>
+                            <button class="btn-delete" onclick="adminDeleteVip('${c.firebaseId}')">Delete</button>
                         </div>
                     </div>
                 `).join('');
@@ -2563,11 +2928,11 @@
 
         function renderAdminHistory() {
             const container = document.getElementById('adminHistoryList');
-            if (data.transactions.length === 0) {
+            if (window.appData.transactions.length === 0) {
                 container.innerHTML = '<p style="color:var(--text-secondary);">No transactions yet.</p>';
                 return;
             }
-            container.innerHTML = data.transactions.map(t => `
+            container.innerHTML = window.appData.transactions.map(t => `
                     <div class="admin-item">
                         <div class="item-info">
                             <span><strong>${t.username}</strong></span>
@@ -2579,172 +2944,11 @@
                         </div>
                         <div class="item-actions">
                             ${t.status === 'pending' ? `
-                                <button class="btn-save" onclick="adminConfirmPayment(${t.id})">✅ Confirm</button>
+                                <button class="btn-save" onclick="adminConfirmPayment('${t.firebaseId}')">✅ Confirm</button>
                             ` : ''}
                         </div>
                     </div>
                 `).join('');
-        }
-
-        // ============================================================
-        // ADMIN ACTIONS - FULL CRUD
-        // ============================================================
-
-        // Free Codes
-        function adminAddFreeCode() {
-            const name = document.getElementById('adminFreeName').value.trim();
-            const league = document.getElementById('adminFreeLeague').value.trim();
-            const odds = document.getElementById('adminFreeOdds').value.trim();
-            const code = document.getElementById('adminFreeCode').value.trim();
-
-            if (!name || !league || !odds || !code) {
-                showToast('All fields are required', 'error');
-                return;
-            }
-
-            data.freeCodes.push({ id: generateId(), name, league, odds, code, active: true });
-            save();
-            renderAdminFreeCodes();
-            document.getElementById('adminFreeName').value = '';
-            document.getElementById('adminFreeLeague').value = '';
-            document.getElementById('adminFreeOdds').value = '';
-            document.getElementById('adminFreeCode').value = '';
-            document.getElementById('freeCodeCount').textContent = data.freeCodes.length;
-            showToast('Free code added! ✅', 'success');
-        }
-
-        function adminUpdateFree(id) {
-            const name = document.getElementById(`free_name_${id}`).value.trim();
-            const league = document.getElementById(`free_league_${id}`).value.trim();
-            const odds = document.getElementById(`free_odds_${id}`).value.trim();
-            const code = document.getElementById(`free_code_${id}`).value.trim();
-
-            if (!name || !league || !odds || !code) {
-                showToast('All fields are required', 'error');
-                return;
-            }
-
-            const item = data.freeCodes.find(c => c.id === id);
-            if (item) {
-                item.name = name;
-                item.league = league;
-                item.odds = odds;
-                item.code = code;
-                save();
-                renderAdminFreeCodes();
-                showToast('Free code updated! ✅', 'success');
-            }
-        }
-
-        function adminToggleFree(id) {
-            const code = data.freeCodes.find(c => c.id === id);
-            if (code) { code.active = !code.active;
-                save();
-                renderAdminFreeCodes(); }
-        }
-
-        function adminDeleteFree(id) {
-            if (confirm('Delete this free code?')) {
-                data.freeCodes = data.freeCodes.filter(c => c.id !== id);
-                save();
-                renderAdminFreeCodes();
-                document.getElementById('freeCodeCount').textContent = data.freeCodes.length;
-                showToast('Free code deleted', 'info');
-            }
-        }
-
-        // VIP Codes
-        function adminAddVipCode() {
-            const name = document.getElementById('adminVipName').value.trim();
-            const league = document.getElementById('adminVipLeague').value.trim();
-            const odds = document.getElementById('adminVipOdds').value.trim();
-            const price = document.getElementById('adminVipPrice').value.trim();
-            const code = document.getElementById('adminVipCode').value.trim();
-
-            if (!name || !league || !odds || !price || !code) {
-                showToast('All fields are required', 'error');
-                return;
-            }
-
-            data.vipCodes.push({ id: generateId(), name, league, odds, price, code, active: true });
-            save();
-            renderAdminVipCodes();
-            document.getElementById('adminVipName').value = '';
-            document.getElementById('adminVipLeague').value = '';
-            document.getElementById('adminVipOdds').value = '';
-            document.getElementById('adminVipPrice').value = '';
-            document.getElementById('adminVipCode').value = '';
-            document.getElementById('vipCodeCount').textContent = data.vipCodes.length;
-            showToast('VIP code added! 💎', 'success');
-        }
-
-        function adminUpdateVip(id) {
-            const name = document.getElementById(`vip_name_${id}`).value.trim();
-            const league = document.getElementById(`vip_league_${id}`).value.trim();
-            const odds = document.getElementById(`vip_odds_${id}`).value.trim();
-            const price = document.getElementById(`vip_price_${id}`).value.trim();
-            const code = document.getElementById(`vip_code_${id}`).value.trim();
-
-            if (!name || !league || !odds || !price || !code) {
-                showToast('All fields are required', 'error');
-                return;
-            }
-
-            const item = data.vipCodes.find(c => c.id === id);
-            if (item) {
-                item.name = name;
-                item.league = league;
-                item.odds = odds;
-                item.price = price;
-                item.code = code;
-                save();
-                renderAdminVipCodes();
-                showToast('VIP code updated! 💎', 'success');
-            }
-        }
-
-        function adminToggleVip(id) {
-            const code = data.vipCodes.find(c => c.id === id);
-            if (code) { code.active = !code.active;
-                save();
-                renderAdminVipCodes(); }
-        }
-
-        function adminDeleteVip(id) {
-            if (confirm('Delete this VIP code?')) {
-                data.vipCodes = data.vipCodes.filter(c => c.id !== id);
-                save();
-                renderAdminVipCodes();
-                document.getElementById('vipCodeCount').textContent = data.vipCodes.length;
-                showToast('VIP code deleted', 'info');
-            }
-        }
-
-        // Payment Info
-        function adminUpdatePaymentInfo() {
-            const bankName = document.getElementById('adminBankName').value.trim();
-            const accountNumber = document.getElementById('adminAccountNumber').value.trim();
-            const accountName = document.getElementById('adminAccountName').value.trim();
-
-            if (!bankName || !accountNumber || !accountName) {
-                showToast('All payment fields are required', 'error');
-                return;
-            }
-
-            data.paymentInfo = { bankName, accountNumber, accountName };
-            save();
-            showToast('Payment information updated! 💳', 'success');
-        }
-
-        // Transactions
-        function adminConfirmPayment(txId) {
-            const tx = data.transactions.find(t => t.id === txId);
-            if (tx) {
-                tx.status = 'confirmed';
-                save();
-                renderAdminHistory();
-                showToast('Payment confirmed! ✅', 'success');
-            }
         }
 
         // ============================================================
@@ -2885,42 +3089,66 @@
         })();
 
         // ============================================================
+        // AUTH STATE LISTENER
+        // ============================================================
+        auth.onAuthStateChanged(async (user) => {
+            if (user) {
+                const userData = await getCurrentUserData();
+                if (userData) {
+                    window.appData.currentUser = userData;
+                    // Check if admin
+                    if (userData.isAdmin) {
+                        console.log('👑 Admin logged in:', userData.username);
+                    }
+                    showPage('dashboard');
+                    showToast(`Welcome back, ${userData.username}! 👋`, 'success');
+                }
+            } else {
+                window.appData.currentUser = null;
+                showPage('landing');
+            }
+        });
+
+        // ============================================================
         // INIT
         // ============================================================
-        (function init() {
-            data = initData();
-            const user = getCurrentUser();
-            if (user) {
-                showPage('dashboard');
-            } else {
-                showPage('landing');
-                setTimeout(animateCounters, 500);
+        async function init() {
+            try {
+                await initializeFirebaseData();
+                setupRealtimeListeners();
+                console.log('🔥 Firebase fully initialized!');
+                console.log('📊 App Data:', window.appData);
+            } catch (error) {
+                console.error('Firebase init error:', error);
             }
-            observeElements();
-        })();
+        }
 
-        // Global exports
+        init();
+
+        // Make functions globally accessible
         window.showPage = showPage;
         window.handleSignup = handleSignup;
         window.handleLogin = handleLogin;
-        window.logout = logout;
+        window.logoutUser = logoutUser;
         window.copyCode = copyCode;
         window.startUnlock = startUnlock;
         window.goToPayment = goToPayment;
         window.confirmPayment = confirmPayment;
         window.adminAddFreeCode = adminAddFreeCode;
         window.adminUpdateFree = adminUpdateFree;
+        window.adminToggleFree = adminToggleFree;
+        window.adminDeleteFree = adminDeleteFree;
         window.adminAddVipCode = adminAddVipCode;
         window.adminUpdateVip = adminUpdateVip;
-        window.adminUpdatePaymentInfo = adminUpdatePaymentInfo;
-        window.adminToggleFree = adminToggleFree;
         window.adminToggleVip = adminToggleVip;
-        window.adminDeleteFree = adminDeleteFree;
         window.adminDeleteVip = adminDeleteVip;
+        window.adminUpdatePaymentInfo = adminUpdatePaymentInfo;
         window.adminConfirmPayment = adminConfirmPayment;
         window.toggleMobileNav = toggleMobileNav;
         window.closeMobileNav = closeMobileNav;
-        window.resetDatabase = resetDatabase;
+
+        console.log('🚀 App ready!');
+        console.log('🔑 Admin login: Create an account then set isAdmin=true in Firestore');
     </script>
 </body>
 </html>
