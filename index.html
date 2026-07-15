@@ -31,9 +31,6 @@
             --transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* ============================================================
-           RESET & BASE
-           ============================================================ */
         * {
             margin: 0;
             padding: 0;
@@ -243,7 +240,6 @@
             transition: all var(--transition);
         }
 
-        /* Mobile Nav */
         .mobile-nav {
             display: none;
             position: fixed;
@@ -291,7 +287,7 @@
         }
 
         /* ============================================================
-           PREMIUM HERO
+           HERO
            ============================================================ */
         .hero {
             position: relative;
@@ -419,9 +415,6 @@
             animation: fadeInUp 1.6s ease;
         }
 
-        /* ============================================================
-           PREMIUM BUTTONS
-           ============================================================ */
         .btn {
             padding: 14px 32px;
             border-radius: 12px;
@@ -478,24 +471,12 @@
             box-shadow: 0 0 60px rgba(255, 215, 0, 0.4);
         }
 
-        .btn-red {
-            background: var(--accent-red);
-            color: #fff;
-        }
-        .btn-red:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 0 40px rgba(255, 59, 48, 0.3);
-        }
-
         .btn-sm {
             padding: 8px 16px;
             font-size: 12px;
             border-radius: 8px;
         }
 
-        /* ============================================================
-           SECTION TITLES
-           ============================================================ */
         .section-header {
             text-align: center;
             margin-bottom: 48px;
@@ -523,9 +504,6 @@
             margin-top: 8px;
         }
 
-        /* ============================================================
-           PREMIUM CARDS (Glassmorphism)
-           ============================================================ */
         .code-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -653,7 +631,6 @@
             font-weight: 700;
         }
 
-        /* VIP Card Special */
         .code-card.vip {
             border-color: rgba(255, 215, 0, 0.15);
         }
@@ -697,9 +674,6 @@
             box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
         }
 
-        /* ============================================================
-           TESTIMONIALS
-           ============================================================ */
         .testi-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -737,9 +711,6 @@
             color: var(--text-primary);
         }
 
-        /* ============================================================
-           CHANNEL BUTTONS
-           ============================================================ */
         .channel-buttons {
             display: flex;
             gap: 16px;
@@ -770,9 +741,6 @@
             background: #0088cc;
         }
 
-        /* ============================================================
-           AUTH PAGES
-           ============================================================ */
         .auth-page {
             min-height: 100vh;
             display: flex;
@@ -860,9 +828,6 @@
             display: none;
         }
 
-        /* ============================================================
-           DASHBOARD
-           ============================================================ */
         .dashboard {
             padding: 100px 24px 60px;
             position: relative;
@@ -912,9 +877,6 @@
             margin: 40px 0 20px;
         }
 
-        /* ============================================================
-           VIP UNLOCK PAGE
-           ============================================================ */
         .vip-unlock {
             max-width: 600px;
             margin: 100px auto 60px;
@@ -948,9 +910,6 @@
             font-size: 28px;
         }
 
-        /* ============================================================
-           PAYMENT PAGE
-           ============================================================ */
         .payment-page {
             max-width: 500px;
             margin: 100px auto 60px;
@@ -1025,9 +984,6 @@
             font-weight: 700;
         }
 
-        /* ============================================================
-           HISTORY PAGE
-           ============================================================ */
         .history-page {
             padding: 100px 24px 60px;
             position: relative;
@@ -1113,7 +1069,7 @@
         }
 
         /* ============================================================
-           ADMIN PANEL - ENHANCED
+           ENHANCED ADMIN PANEL
            ============================================================ */
         .admin-panel {
             padding: 100px 24px 60px;
@@ -1167,8 +1123,7 @@
             margin-bottom: 4px;
         }
         .admin-section .form-row input,
-        .admin-section .form-row textarea,
-        .admin-section .form-row select {
+        .admin-section .form-row textarea {
             width: 100%;
             padding: 10px 14px;
             border-radius: var(--radius-sm);
@@ -1182,10 +1137,6 @@
         .admin-section .form-row textarea:focus {
             outline: none;
             border-color: var(--accent-gold);
-        }
-        .admin-section .form-row textarea {
-            min-height: 60px;
-            resize: vertical;
         }
         .admin-section .btn-add {
             margin-top: 16px;
@@ -1201,6 +1152,7 @@
         .admin-section .btn-add:hover {
             transform: scale(1.02);
         }
+
         .admin-item {
             display: flex;
             justify-content: space-between;
@@ -1282,7 +1234,6 @@
             transform: scale(1.05);
         }
 
-        /* Admin Users List */
         .user-item {
             display: flex;
             justify-content: space-between;
@@ -1323,9 +1274,6 @@
             color: var(--text-secondary);
         }
 
-        /* ============================================================
-           TOAST NOTIFICATIONS
-           ============================================================ */
         .toast-container {
             position: fixed;
             top: 80px;
@@ -1387,9 +1335,6 @@
             }
         }
 
-        /* ============================================================
-           FLOATING ELEMENTS
-           ============================================================ */
         .floating-buttons {
             position: fixed;
             bottom: 24px;
@@ -1431,9 +1376,6 @@
             color: var(--bg-primary);
         }
 
-        /* ============================================================
-           PREMIUM FOOTER
-           ============================================================ */
         .footer {
             background: var(--bg-secondary);
             border-top: 1px solid rgba(255, 255, 255, 0.03);
@@ -1516,61 +1458,12 @@
             }
         }
 
-        /* ============================================================
-           ANIMATIONS
-           ============================================================ */
         .fade-up {
             opacity: 0;
             transform: translateY(30px);
             transition: all 0.8s ease;
         }
         .fade-up.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .fade-left {
-            opacity: 0;
-            transform: translateX(-30px);
-            transition: all 0.8s ease;
-        }
-        .fade-left.visible {
-            opacity: 1;
-            transform: translateX(0);
-        }
-        .fade-right {
-            opacity: 0;
-            transform: translateX(30px);
-            transition: all 0.8s ease;
-        }
-        .fade-right.visible {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .stagger-children>* {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.6s ease;
-        }
-        .stagger-children.visible>*:nth-child(1) {
-            transition-delay: 0.05s;
-        }
-        .stagger-children.visible>*:nth-child(2) {
-            transition-delay: 0.1s;
-        }
-        .stagger-children.visible>*:nth-child(3) {
-            transition-delay: 0.15s;
-        }
-        .stagger-children.visible>*:nth-child(4) {
-            transition-delay: 0.2s;
-        }
-        .stagger-children.visible>*:nth-child(5) {
-            transition-delay: 0.25s;
-        }
-        .stagger-children.visible>*:nth-child(6) {
-            transition-delay: 0.3s;
-        }
-        .stagger-children.visible>* {
             opacity: 1;
             transform: translateY(0);
         }
@@ -1596,9 +1489,6 @@
             }
         }
 
-        /* ============================================================
-           RESPONSIVE
-           ============================================================ */
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 32px;
@@ -1692,24 +1582,6 @@
             .dash-stat .num {
                 font-size: 22px;
             }
-        }
-
-        /* Reset Button */
-        .reset-btn {
-            background: var(--accent-red);
-            color: #fff;
-            padding: 8px 16px;
-            border: none;
-            border-radius: 8px;
-            font-weight: 700;
-            font-size: 12px;
-            cursor: pointer;
-            transition: all var(--transition);
-            margin-left: 12px;
-        }
-        .reset-btn:hover {
-            transform: scale(1.05);
-            opacity: 0.9;
         }
     </style>
 </head>
@@ -1921,9 +1793,6 @@
                         <i class="fas fa-sign-in-alt"></i> Login
                     </button>
                     <div class="auth-link">Don't have an account? <a onclick="showPage('signup')">Sign Up</a></div>
-                    <div style="margin-top:12px;text-align:center;">
-                        <button class="reset-btn" onclick="resetDatabase()">🔄 Reset Database (Fix Login)</button>
-                    </div>
                 </div>
             </div>
         </div>
@@ -1987,7 +1856,7 @@
             </div>
         </div>
 
-        <!-- ===== ADMIN PANEL ===== -->
+        <!-- ===== ENHANCED ADMIN PANEL ===== -->
         <div id="page-admin" class="hidden">
             <div class="admin-panel">
                 <h2>⚙️ Admin Panel</h2>
@@ -2003,6 +1872,9 @@
                 <!-- Free Codes Admin -->
                 <div class="admin-section">
                     <h3>📋 Free Codes <span class="badge" id="freeCodeCount">0</span></h3>
+                    <div style="margin-bottom:16px;">
+                        <p style="color:var(--text-secondary);font-size:13px;">Add new free code below</p>
+                    </div>
                     <div class="form-row">
                         <div class="full">
                             <label>Fixture Name</label>
@@ -2030,6 +1902,9 @@
                 <!-- VIP Codes Admin -->
                 <div class="admin-section">
                     <h3>💎 VIP Codes <span class="badge" id="vipCodeCount">0</span></h3>
+                    <div style="margin-bottom:16px;">
+                        <p style="color:var(--text-secondary);font-size:13px;">Add new VIP code below</p>
+                    </div>
                     <div class="form-row">
                         <div class="full">
                             <label>Fixture Name</label>
@@ -2061,6 +1936,9 @@
                 <!-- Payment Info Admin -->
                 <div class="admin-section">
                     <h3>🏦 Payment Information <span class="badge">Edit</span></h3>
+                    <div style="margin-bottom:16px;">
+                        <p style="color:var(--text-secondary);font-size:13px;">Update payment details shown to users</p>
+                    </div>
                     <div class="form-row">
                         <div>
                             <label>Bank Name</label>
@@ -2225,11 +2103,7 @@
             const container = document.getElementById('toastContainer');
             const toast = document.createElement('div');
             toast.className = `toast ${type}`;
-            const icons = {
-                success: '✅',
-                error: '❌',
-                info: 'ℹ️'
-            };
+            const icons = { success: '✅', error: '❌', info: 'ℹ️' };
             toast.innerHTML = `<span class="icon">${icons[type] || 'ℹ️'}</span> ${message}`;
             container.appendChild(toast);
             setTimeout(() => {
@@ -2250,7 +2124,6 @@
             const isLoggedIn = !!user;
             const isAdminUser = isAdmin();
 
-            // Update nav links
             document.getElementById('navDashboard').classList.toggle('hidden', !isLoggedIn);
             document.getElementById('navHistory').classList.toggle('hidden', !isLoggedIn);
             document.getElementById('adminNavLink').classList.toggle('hidden', !isAdminUser);
@@ -2258,12 +2131,10 @@
             document.getElementById('mobileHistory').classList.toggle('hidden', !isLoggedIn);
             document.getElementById('mobileAdmin').classList.toggle('hidden', !isAdminUser);
 
-            // Update active nav
             document.querySelectorAll('.nav-links a').forEach(el => el.classList.remove('active'));
             const activeLink = document.querySelector(`.nav-links a[data-page="${page}"]`);
             if (activeLink) activeLink.classList.add('active');
 
-            // Username & logout
             const navUsername = document.getElementById('navUsername');
             const logoutBtn = document.getElementById('logoutBtn');
             if (isLoggedIn) {
@@ -2275,11 +2146,8 @@
                 logoutBtn.classList.add('hidden');
             }
 
-            // Render
-            if (page === 'landing') {
-                renderLandingFreeCodes();
-                animateCounters();
-            }
+            if (page === 'landing') { renderLandingFreeCodes();
+                animateCounters(); }
             if (page === 'dashboard') renderDashboard();
             if (page === 'history') renderHistory();
             if (page === 'admin') renderAdminPanels();
@@ -2352,10 +2220,6 @@
                 return;
             }
 
-            // Debug: Log what we're looking for
-            console.log('Looking for user with email:', email);
-            console.log('All users:', data.users);
-
             const user = data.users.find(u => u.email === email && u.password === password);
             if (!user) {
                 errorEl.textContent = 'Invalid email or password';
@@ -2420,7 +2284,6 @@
             const bestOdds = Math.max(...activeVip.map(c => parseFloat(c.odds)), 0);
             document.getElementById('dashOdds').textContent = bestOdds > 0 ? bestOdds.toFixed(2) : '0';
 
-            // Free codes
             document.getElementById('dashFreeCodes').innerHTML = activeFree.map(c => `
                     <div class="code-card">
                         <div class="top-row">
@@ -2437,7 +2300,6 @@
                     </div>
                 `).join('');
 
-            // VIP codes
             document.getElementById('dashVipCodes').innerHTML = activeVip.map(c => `
                     <div class="code-card vip">
                         <span class="vip-badge">⭐ VIP</span>
@@ -2503,11 +2365,8 @@
             showPage('payment');
 
             setTimeout(() => {
-                const paymentInfo = data.paymentInfo || {
-                    bankName: 'Testing Bank',
-                    accountNumber: 'Testing',
-                    accountName: 'Testing Account'
-                };
+                const paymentInfo = data.paymentInfo || { bankName: 'Testing Bank', accountNumber: 'Testing',
+                    accountName: 'Testing Account' };
                 container.innerHTML = `
                         <h2>💳 Complete Payment</h2>
                         <p style="color:var(--text-secondary);margin-bottom:16px;">Send the exact amount to the account below</p>
@@ -2585,9 +2444,8 @@
             const userTxs = data.transactions.filter(t => t.userId === user.email);
 
             if (userTxs.length === 0) {
-                container.innerHTML = `
-                        <p style="text-align:center;color:var(--text-secondary);padding:40px 0;">No transactions yet.</p>
-                    `;
+                container.innerHTML =
+                    `<p style="text-align:center;color:var(--text-secondary);padding:40px 0;">No transactions yet.</p>`;
                 return;
             }
 
@@ -2616,17 +2474,13 @@
         }
 
         // ============================================================
-        // ADMIN PANEL - ENHANCED
+        // ENHANCED ADMIN PANEL
         // ============================================================
         function renderAdminPanels() {
             if (!isAdmin()) return;
 
-            // Load payment info
-            const paymentInfo = data.paymentInfo || {
-                bankName: 'Testing Bank',
-                accountNumber: 'Testing',
-                accountName: 'Testing Account'
-            };
+            const paymentInfo = data.paymentInfo || { bankName: 'Testing Bank', accountNumber: 'Testing',
+                accountName: 'Testing Account' };
             document.getElementById('adminBankName').value = paymentInfo.bankName || '';
             document.getElementById('adminAccountNumber').value = paymentInfo.accountNumber || '';
             document.getElementById('adminAccountName').value = paymentInfo.accountName || '';
@@ -2636,7 +2490,6 @@
             renderAdminVipCodes();
             renderAdminHistory();
 
-            // Update counts
             document.getElementById('userCountBadge').textContent = data.users.length;
             document.getElementById('freeCodeCount').textContent = data.freeCodes.length;
             document.getElementById('vipCodeCount').textContent = data.vipCodes.length;
@@ -2661,16 +2514,21 @@
 
         function renderAdminFreeCodes() {
             const container = document.getElementById('adminFreeList');
+            if (data.freeCodes.length === 0) {
+                container.innerHTML = '<p style="color:var(--text-secondary);">No free codes yet. Add one above.</p>';
+                return;
+            }
             container.innerHTML = data.freeCodes.map(c => `
                     <div class="admin-item">
                         <div class="item-info">
-                            <span>${c.name}</span>
-                            <span style="color:var(--text-secondary);font-size:12px;">${c.league}</span>
-                            <span style="font-weight:700;">${c.odds}</span>
-                            <span style="font-family:monospace;color:var(--accent-gold);">${c.code}</span>
+                            <input class="edit-input" id="free_name_${c.id}" value="${c.name}" placeholder="Name">
+                            <input class="edit-input" id="free_league_${c.id}" value="${c.league}" placeholder="League" style="width:80px;">
+                            <input class="edit-input" id="free_odds_${c.id}" value="${c.odds}" placeholder="Odds" style="width:60px;">
+                            <input class="edit-input" id="free_code_${c.id}" value="${c.code}" placeholder="Code" style="width:100px;">
                             <span style="font-size:11px;color:${c.active ? 'var(--accent-green)' : 'var(--accent-red)'};">${c.active ? 'Active' : 'Inactive'}</span>
                         </div>
                         <div class="item-actions">
+                            <button class="btn-save" onclick="adminUpdateFree(${c.id})">💾 Save</button>
                             <button class="btn-save" onclick="adminToggleFree(${c.id})">${c.active ? 'Deactivate' : 'Activate'}</button>
                             <button class="btn-delete" onclick="adminDeleteFree(${c.id})">Delete</button>
                         </div>
@@ -2680,17 +2538,22 @@
 
         function renderAdminVipCodes() {
             const container = document.getElementById('adminVipList');
+            if (data.vipCodes.length === 0) {
+                container.innerHTML = '<p style="color:var(--text-secondary);">No VIP codes yet. Add one above.</p>';
+                return;
+            }
             container.innerHTML = data.vipCodes.map(c => `
                     <div class="admin-item">
                         <div class="item-info">
-                            <span>${c.name}</span>
-                            <span style="color:var(--text-secondary);font-size:12px;">${c.league}</span>
-                            <span style="font-weight:700;">${c.odds}</span>
-                            <span style="font-family:monospace;color:var(--accent-gold);">${c.code}</span>
-                            <span style="font-weight:700;color:var(--accent-gold);">${c.price}</span>
+                            <input class="edit-input" id="vip_name_${c.id}" value="${c.name}" placeholder="Name">
+                            <input class="edit-input" id="vip_league_${c.id}" value="${c.league}" placeholder="League" style="width:80px;">
+                            <input class="edit-input" id="vip_odds_${c.id}" value="${c.odds}" placeholder="Odds" style="width:60px;">
+                            <input class="edit-input" id="vip_price_${c.id}" value="${c.price}" placeholder="Price" style="width:80px;">
+                            <input class="edit-input" id="vip_code_${c.id}" value="${c.code}" placeholder="Code" style="width:100px;">
                             <span style="font-size:11px;color:${c.active ? 'var(--accent-green)' : 'var(--accent-red)'};">${c.active ? 'Active' : 'Inactive'}</span>
                         </div>
                         <div class="item-actions">
+                            <button class="btn-save" onclick="adminUpdateVip(${c.id})">💾 Save</button>
                             <button class="btn-save" onclick="adminToggleVip(${c.id})">${c.active ? 'Deactivate' : 'Activate'}</button>
                             <button class="btn-delete" onclick="adminDeleteVip(${c.id})">Delete</button>
                         </div>
@@ -2723,7 +2586,11 @@
                 `).join('');
         }
 
-        // Admin Actions
+        // ============================================================
+        // ADMIN ACTIONS - FULL CRUD
+        // ============================================================
+
+        // Free Codes
         function adminAddFreeCode() {
             const name = document.getElementById('adminFreeName').value.trim();
             const league = document.getElementById('adminFreeLeague').value.trim();
@@ -2746,6 +2613,47 @@
             showToast('Free code added! ✅', 'success');
         }
 
+        function adminUpdateFree(id) {
+            const name = document.getElementById(`free_name_${id}`).value.trim();
+            const league = document.getElementById(`free_league_${id}`).value.trim();
+            const odds = document.getElementById(`free_odds_${id}`).value.trim();
+            const code = document.getElementById(`free_code_${id}`).value.trim();
+
+            if (!name || !league || !odds || !code) {
+                showToast('All fields are required', 'error');
+                return;
+            }
+
+            const item = data.freeCodes.find(c => c.id === id);
+            if (item) {
+                item.name = name;
+                item.league = league;
+                item.odds = odds;
+                item.code = code;
+                save();
+                renderAdminFreeCodes();
+                showToast('Free code updated! ✅', 'success');
+            }
+        }
+
+        function adminToggleFree(id) {
+            const code = data.freeCodes.find(c => c.id === id);
+            if (code) { code.active = !code.active;
+                save();
+                renderAdminFreeCodes(); }
+        }
+
+        function adminDeleteFree(id) {
+            if (confirm('Delete this free code?')) {
+                data.freeCodes = data.freeCodes.filter(c => c.id !== id);
+                save();
+                renderAdminFreeCodes();
+                document.getElementById('freeCodeCount').textContent = data.freeCodes.length;
+                showToast('Free code deleted', 'info');
+            }
+        }
+
+        // VIP Codes
         function adminAddVipCode() {
             const name = document.getElementById('adminVipName').value.trim();
             const league = document.getElementById('adminVipLeague').value.trim();
@@ -2770,6 +2678,49 @@
             showToast('VIP code added! 💎', 'success');
         }
 
+        function adminUpdateVip(id) {
+            const name = document.getElementById(`vip_name_${id}`).value.trim();
+            const league = document.getElementById(`vip_league_${id}`).value.trim();
+            const odds = document.getElementById(`vip_odds_${id}`).value.trim();
+            const price = document.getElementById(`vip_price_${id}`).value.trim();
+            const code = document.getElementById(`vip_code_${id}`).value.trim();
+
+            if (!name || !league || !odds || !price || !code) {
+                showToast('All fields are required', 'error');
+                return;
+            }
+
+            const item = data.vipCodes.find(c => c.id === id);
+            if (item) {
+                item.name = name;
+                item.league = league;
+                item.odds = odds;
+                item.price = price;
+                item.code = code;
+                save();
+                renderAdminVipCodes();
+                showToast('VIP code updated! 💎', 'success');
+            }
+        }
+
+        function adminToggleVip(id) {
+            const code = data.vipCodes.find(c => c.id === id);
+            if (code) { code.active = !code.active;
+                save();
+                renderAdminVipCodes(); }
+        }
+
+        function adminDeleteVip(id) {
+            if (confirm('Delete this VIP code?')) {
+                data.vipCodes = data.vipCodes.filter(c => c.id !== id);
+                save();
+                renderAdminVipCodes();
+                document.getElementById('vipCodeCount').textContent = data.vipCodes.length;
+                showToast('VIP code deleted', 'info');
+            }
+        }
+
+        // Payment Info
         function adminUpdatePaymentInfo() {
             const bankName = document.getElementById('adminBankName').value.trim();
             const accountNumber = document.getElementById('adminAccountNumber').value.trim();
@@ -2785,40 +2736,7 @@
             showToast('Payment information updated! 💳', 'success');
         }
 
-        function adminToggleFree(id) {
-            const code = data.freeCodes.find(c => c.id === id);
-            if (code) { code.active = !code.active;
-                save();
-                renderAdminFreeCodes(); }
-        }
-
-        function adminToggleVip(id) {
-            const code = data.vipCodes.find(c => c.id === id);
-            if (code) { code.active = !code.active;
-                save();
-                renderAdminVipCodes(); }
-        }
-
-        function adminDeleteFree(id) {
-            if (confirm('Delete this free code?')) {
-                data.freeCodes = data.freeCodes.filter(c => c.id !== id);
-                save();
-                renderAdminFreeCodes();
-                document.getElementById('freeCodeCount').textContent = data.freeCodes.length;
-                showToast('Free code deleted', 'info');
-            }
-        }
-
-        function adminDeleteVip(id) {
-            if (confirm('Delete this VIP code?')) {
-                data.vipCodes = data.vipCodes.filter(c => c.id !== id);
-                save();
-                renderAdminVipCodes();
-                document.getElementById('vipCodeCount').textContent = data.vipCodes.length;
-                showToast('VIP code deleted', 'info');
-            }
-        }
-
+        // Transactions
         function adminConfirmPayment(txId) {
             const tx = data.transactions.find(t => t.id === txId);
             if (tx) {
@@ -2861,7 +2779,7 @@
                 });
             }, { threshold: 0.1 });
 
-            document.querySelectorAll('.fade-up, .fade-left, .fade-right, .stagger-children').forEach(el => {
+            document.querySelectorAll('.fade-up, .stagger-children').forEach(el => {
                 if (!el.classList.contains('visible')) {
                     observer.observe(el);
                 }
@@ -2918,9 +2836,7 @@
             resize();
 
             class Particle {
-                constructor() {
-                    this.reset();
-                }
+                constructor() { this.reset(); }
                 reset() {
                     this.x = Math.random() * width;
                     this.y = Math.random() * height;
@@ -2932,9 +2848,7 @@
                 update() {
                     this.x += this.speedX;
                     this.y += this.speedY;
-                    if (this.x < 0 || this.x > width || this.y < 0 || this.y > height) {
-                        this.reset();
-                    }
+                    if (this.x < 0 || this.x > width || this.y < 0 || this.y > height) { this.reset(); }
                 }
                 draw() {
                     ctx.beginPath();
@@ -2944,16 +2858,12 @@
                 }
             }
 
-            for (let i = 0; i < 80; i++) {
-                particles.push(new Particle());
-            }
+            for (let i = 0; i < 80; i++) { particles.push(new Particle()); }
 
             function animate() {
                 ctx.clearRect(0, 0, width, height);
-                particles.forEach(p => {
-                    p.update();
-                    p.draw();
-                });
+                particles.forEach(p => { p.update();
+                    p.draw(); });
                 for (let i = 0; i < particles.length; i++) {
                     for (let j = i + 1; j < particles.length; j++) {
                         const dx = particles[i].x - particles[j].x;
@@ -2978,10 +2888,7 @@
         // INIT
         // ============================================================
         (function init() {
-            // Force refresh data
             data = initData();
-            // Log admin user for debugging
-            console.log('Admin user:', data.users.find(u => u.isAdmin));
             const user = getCurrentUser();
             if (user) {
                 showPage('dashboard');
@@ -3002,7 +2909,9 @@
         window.goToPayment = goToPayment;
         window.confirmPayment = confirmPayment;
         window.adminAddFreeCode = adminAddFreeCode;
+        window.adminUpdateFree = adminUpdateFree;
         window.adminAddVipCode = adminAddVipCode;
+        window.adminUpdateVip = adminUpdateVip;
         window.adminUpdatePaymentInfo = adminUpdatePaymentInfo;
         window.adminToggleFree = adminToggleFree;
         window.adminToggleVip = adminToggleVip;
