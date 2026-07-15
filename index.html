@@ -1113,13 +1113,13 @@
         }
 
         /* ============================================================
-           ADMIN PANEL
+           ADMIN PANEL - ENHANCED
            ============================================================ */
         .admin-panel {
             padding: 100px 24px 60px;
             position: relative;
             z-index: 1;
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
         }
         .admin-panel h2 {
@@ -1139,6 +1139,17 @@
             font-size: 18px;
             font-weight: 700;
             margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .admin-section h3 .badge {
+            font-size: 11px;
+            padding: 2px 10px;
+            border-radius: 50px;
+            background: var(--accent-gold);
+            color: var(--bg-primary);
+            font-weight: 700;
         }
         .admin-section .form-row {
             display: grid;
@@ -1155,7 +1166,9 @@
             display: block;
             margin-bottom: 4px;
         }
-        .admin-section .form-row input {
+        .admin-section .form-row input,
+        .admin-section .form-row textarea,
+        .admin-section .form-row select {
             width: 100%;
             padding: 10px 14px;
             border-radius: var(--radius-sm);
@@ -1163,10 +1176,16 @@
             background: rgba(255, 255, 255, 0.03);
             color: var(--text-primary);
             font-size: 13px;
+            font-family: 'Inter', sans-serif;
         }
-        .admin-section .form-row input:focus {
+        .admin-section .form-row input:focus,
+        .admin-section .form-row textarea:focus {
             outline: none;
             border-color: var(--accent-gold);
+        }
+        .admin-section .form-row textarea {
+            min-height: 60px;
+            resize: vertical;
         }
         .admin-section .btn-add {
             margin-top: 16px;
@@ -1203,6 +1222,19 @@
         .admin-item .item-info span {
             font-size: 13px;
         }
+        .admin-item .item-info .edit-input {
+            padding: 4px 8px;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--text-primary);
+            font-size: 12px;
+            width: 120px;
+        }
+        .admin-item .item-info .edit-input:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+        }
         .admin-item .item-actions {
             display: flex;
             gap: 8px;
@@ -1216,6 +1248,10 @@
             font-weight: 700;
             font-size: 11px;
             cursor: pointer;
+            transition: all var(--transition);
+        }
+        .admin-item .item-actions .btn-save:hover {
+            transform: scale(1.05);
         }
         .admin-item .item-actions .btn-delete {
             padding: 4px 12px;
@@ -1226,6 +1262,65 @@
             font-weight: 700;
             font-size: 11px;
             cursor: pointer;
+            transition: all var(--transition);
+        }
+        .admin-item .item-actions .btn-delete:hover {
+            transform: scale(1.05);
+        }
+        .admin-item .item-actions .btn-edit {
+            padding: 4px 12px;
+            border-radius: 6px;
+            background: var(--accent-blue);
+            color: #fff;
+            border: none;
+            font-weight: 700;
+            font-size: 11px;
+            cursor: pointer;
+            transition: all var(--transition);
+        }
+        .admin-item .item-actions .btn-edit:hover {
+            transform: scale(1.05);
+        }
+
+        /* Admin Users List */
+        .user-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        }
+        .user-item:last-child {
+            border-bottom: none;
+        }
+        .user-item .user-info {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .user-item .user-info .username {
+            font-weight: 700;
+        }
+        .user-item .user-info .email {
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+        .user-item .user-info .role {
+            font-size: 11px;
+            padding: 2px 10px;
+            border-radius: 50px;
+            background: rgba(255, 215, 0, 0.1);
+            color: var(--accent-gold);
+            font-weight: 700;
+        }
+        .user-item .user-info .role.admin {
+            background: rgba(255, 59, 48, 0.1);
+            color: var(--accent-red);
+        }
+        .user-item .user-tx-count {
+            font-size: 13px;
+            color: var(--text-secondary);
         }
 
         /* ============================================================
@@ -1558,6 +1653,19 @@
                 font-size: 13px;
                 padding: 12px 16px;
             }
+            .admin-item .item-info {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 4px;
+            }
+            .user-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+            .user-item .user-info {
+                gap: 8px;
+            }
         }
         @media (max-width: 480px) {
             .hero h1 {
@@ -1858,14 +1966,22 @@
             </div>
         </div>
 
-        <!-- ===== ADMIN ===== -->
+        <!-- ===== ADMIN PANEL ===== -->
         <div id="page-admin" class="hidden">
             <div class="admin-panel">
                 <h2>⚙️ Admin Panel</h2>
 
+                <!-- Users Section -->
+                <div class="admin-section">
+                    <h3>👥 All Users <span class="badge" id="userCountBadge">0</span></h3>
+                    <div id="adminUsersList">
+                        <!-- Rendered by JS -->
+                    </div>
+                </div>
+
                 <!-- Free Codes Admin -->
                 <div class="admin-section">
-                    <h3>📋 Free Codes</h3>
+                    <h3>📋 Free Codes <span class="badge" id="freeCodeCount">0</span></h3>
                     <div class="form-row">
                         <div class="full">
                             <label>Fixture Name</label>
@@ -1892,7 +2008,7 @@
 
                 <!-- VIP Codes Admin -->
                 <div class="admin-section">
-                    <h3>💎 VIP Codes</h3>
+                    <h3>💎 VIP Codes <span class="badge" id="vipCodeCount">0</span></h3>
                     <div class="form-row">
                         <div class="full">
                             <label>Fixture Name</label>
@@ -1921,9 +2037,29 @@
                     </div>
                 </div>
 
-                <!-- History Admin -->
+                <!-- Payment Info Admin -->
                 <div class="admin-section">
-                    <h3>📜 Transaction History (Admin)</h3>
+                    <h3>🏦 Payment Information <span class="badge">Edit</span></h3>
+                    <div class="form-row">
+                        <div>
+                            <label>Bank Name</label>
+                            <input type="text" id="adminBankName" placeholder="Bank Name">
+                        </div>
+                        <div>
+                            <label>Account Number</label>
+                            <input type="text" id="adminAccountNumber" placeholder="Account Number">
+                        </div>
+                        <div class="full">
+                            <label>Account Name</label>
+                            <input type="text" id="adminAccountName" placeholder="Account Name">
+                        </div>
+                    </div>
+                    <button class="btn-add" onclick="adminUpdatePaymentInfo()">💾 Update Payment Info</button>
+                </div>
+
+                <!-- Transaction History Admin -->
+                <div class="admin-section">
+                    <h3>📜 All Transactions <span class="badge" id="txCountBadge">0</span></h3>
                     <div id="adminHistoryList">
                         <!-- Rendered by JS -->
                     </div>
@@ -2001,7 +2137,7 @@
             if (!data) {
                 data = {
                     users: [
-                        { username: 'Admin', email: 'admin@gmail.com', password: 'admin@123', isAdmin: true }
+                        { username: 'Admin', email: 'admin1@gmail.com', password: 'admin@1234', isAdmin: true }
                     ],
                     freeCodes: [
                         { id: 1, name: 'Arsenal vs Newcastle + 3 more', league: 'EPL', odds: '6.42', code: 'BBA-7719',
@@ -2022,6 +2158,11 @@
                             code: 'VIP-2024-003', price: '₦4,200', active: true }
                     ],
                     transactions: [],
+                    paymentInfo: {
+                        bankName: 'Testing Bank',
+                        accountNumber: 'Testing',
+                        accountName: 'Testing Account'
+                    },
                     nextId: 10
                 };
                 saveData(data);
@@ -2327,13 +2468,18 @@
             showPage('payment');
 
             setTimeout(() => {
+                const paymentInfo = data.paymentInfo || {
+                    bankName: 'Testing Bank',
+                    accountNumber: 'Testing',
+                    accountName: 'Testing Account'
+                };
                 container.innerHTML = `
                         <h2>💳 Complete Payment</h2>
                         <p style="color:var(--text-secondary);margin-bottom:16px;">Send the exact amount to the account below</p>
                         <div class="account-info">
-                            <p>🏦 Bank: <span>Testing Bank</span></p>
-                            <p>📋 Account Number: <span>Testing</span></p>
-                            <p>👤 Account Name: <span>Testing Account</span></p>
+                            <p>🏦 Bank: <span>${paymentInfo.bankName}</span></p>
+                            <p>📋 Account Number: <span>${paymentInfo.accountNumber}</span></p>
+                            <p>👤 Account Name: <span>${paymentInfo.accountName}</span></p>
                             <p style="margin-top:12px;color:var(--accent-gold);font-weight:800;">Amount: ${vip.price}</p>
                         </div>
                         <label style="display:block;text-align:left;font-weight:600;font-size:13px;color:var(--text-secondary);margin-top:16px;">
@@ -2435,13 +2581,47 @@
         }
 
         // ============================================================
-        // ADMIN
+        // ADMIN PANEL - ENHANCED
         // ============================================================
         function renderAdminPanels() {
             if (!isAdmin()) return;
+
+            // Load payment info
+            const paymentInfo = data.paymentInfo || {
+                bankName: 'Testing Bank',
+                accountNumber: 'Testing',
+                accountName: 'Testing Account'
+            };
+            document.getElementById('adminBankName').value = paymentInfo.bankName || '';
+            document.getElementById('adminAccountNumber').value = paymentInfo.accountNumber || '';
+            document.getElementById('adminAccountName').value = paymentInfo.accountName || '';
+
+            renderAdminUsers();
             renderAdminFreeCodes();
             renderAdminVipCodes();
             renderAdminHistory();
+
+            // Update counts
+            document.getElementById('userCountBadge').textContent = data.users.length;
+            document.getElementById('freeCodeCount').textContent = data.freeCodes.length;
+            document.getElementById('vipCodeCount').textContent = data.vipCodes.length;
+            document.getElementById('txCountBadge').textContent = data.transactions.length;
+        }
+
+        function renderAdminUsers() {
+            const container = document.getElementById('adminUsersList');
+            container.innerHTML = data.users.map(u => `
+                    <div class="user-item">
+                        <div class="user-info">
+                            <span class="username">${u.username}</span>
+                            <span class="email">${u.email}</span>
+                            <span class="role ${u.isAdmin ? 'admin' : ''}">${u.isAdmin ? 'Admin' : 'User'}</span>
+                        </div>
+                        <div class="user-tx-count">
+                            ${data.transactions.filter(t => t.userId === u.email).length} transactions
+                        </div>
+                    </div>
+                `).join('');
         }
 
         function renderAdminFreeCodes() {
@@ -2527,6 +2707,7 @@
             document.getElementById('adminFreeLeague').value = '';
             document.getElementById('adminFreeOdds').value = '';
             document.getElementById('adminFreeCode').value = '';
+            document.getElementById('freeCodeCount').textContent = data.freeCodes.length;
             showToast('Free code added! ✅', 'success');
         }
 
@@ -2550,7 +2731,23 @@
             document.getElementById('adminVipOdds').value = '';
             document.getElementById('adminVipPrice').value = '';
             document.getElementById('adminVipCode').value = '';
+            document.getElementById('vipCodeCount').textContent = data.vipCodes.length;
             showToast('VIP code added! 💎', 'success');
+        }
+
+        function adminUpdatePaymentInfo() {
+            const bankName = document.getElementById('adminBankName').value.trim();
+            const accountNumber = document.getElementById('adminAccountNumber').value.trim();
+            const accountName = document.getElementById('adminAccountName').value.trim();
+
+            if (!bankName || !accountNumber || !accountName) {
+                showToast('All payment fields are required', 'error');
+                return;
+            }
+
+            data.paymentInfo = { bankName, accountNumber, accountName };
+            save();
+            showToast('Payment information updated! 💳', 'success');
         }
 
         function adminToggleFree(id) {
@@ -2572,6 +2769,7 @@
                 data.freeCodes = data.freeCodes.filter(c => c.id !== id);
                 save();
                 renderAdminFreeCodes();
+                document.getElementById('freeCodeCount').textContent = data.freeCodes.length;
                 showToast('Free code deleted', 'info');
             }
         }
@@ -2581,6 +2779,7 @@
                 data.vipCodes = data.vipCodes.filter(c => c.id !== id);
                 save();
                 renderAdminVipCodes();
+                document.getElementById('vipCodeCount').textContent = data.vipCodes.length;
                 showToast('VIP code deleted', 'info');
             }
         }
@@ -2720,7 +2919,6 @@
                     p.update();
                     p.draw();
                 });
-                // Draw connections
                 for (let i = 0; i < particles.length; i++) {
                     for (let j = i + 1; j < particles.length; j++) {
                         const dx = particles[i].x - particles[j].x;
@@ -2766,6 +2964,7 @@
         window.confirmPayment = confirmPayment;
         window.adminAddFreeCode = adminAddFreeCode;
         window.adminAddVipCode = adminAddVipCode;
+        window.adminUpdatePaymentInfo = adminUpdatePaymentInfo;
         window.adminToggleFree = adminToggleFree;
         window.adminToggleVip = adminToggleVip;
         window.adminDeleteFree = adminDeleteFree;
