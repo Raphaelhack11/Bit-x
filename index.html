@@ -1693,6 +1693,24 @@
                 font-size: 22px;
             }
         }
+
+        /* Reset Button */
+        .reset-btn {
+            background: var(--accent-red);
+            color: #fff;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all var(--transition);
+            margin-left: 12px;
+        }
+        .reset-btn:hover {
+            transform: scale(1.05);
+            opacity: 0.9;
+        }
     </style>
 </head>
 <body>
@@ -1903,6 +1921,9 @@
                         <i class="fas fa-sign-in-alt"></i> Login
                     </button>
                     <div class="auth-link">Don't have an account? <a onclick="showPage('signup')">Sign Up</a></div>
+                    <div style="margin-top:12px;text-align:center;">
+                        <button class="reset-btn" onclick="resetDatabase()">🔄 Reset Database (Fix Login)</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -2132,6 +2153,16 @@
             localStorage.setItem('boomerData', JSON.stringify(data));
         }
 
+        function resetDatabase() {
+            if (confirm('This will reset all data. Are you sure?')) {
+                localStorage.removeItem('boomerData');
+                sessionStorage.removeItem('currentUser');
+                data = initData();
+                showToast('Database reset! Please login with admin1@gmail.com / admin@1234', 'success');
+                showPage('login');
+            }
+        }
+
         function initData() {
             let data = getData();
             if (!data) {
@@ -2320,6 +2351,10 @@
                 errorEl.style.display = 'block';
                 return;
             }
+
+            // Debug: Log what we're looking for
+            console.log('Looking for user with email:', email);
+            console.log('All users:', data.users);
 
             const user = data.users.find(u => u.email === email && u.password === password);
             if (!user) {
@@ -2943,6 +2978,10 @@
         // INIT
         // ============================================================
         (function init() {
+            // Force refresh data
+            data = initData();
+            // Log admin user for debugging
+            console.log('Admin user:', data.users.find(u => u.isAdmin));
             const user = getCurrentUser();
             if (user) {
                 showPage('dashboard');
@@ -2972,6 +3011,7 @@
         window.adminConfirmPayment = adminConfirmPayment;
         window.toggleMobileNav = toggleMobileNav;
         window.closeMobileNav = closeMobileNav;
+        window.resetDatabase = resetDatabase;
     </script>
 </body>
 </html>
