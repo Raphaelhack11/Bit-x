@@ -1,3154 +1,1327 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Boomer's Bet Arena — Premium SportyBet Codes</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <style>
-        /* ============================================================
-           PREMIUM VARIABLES
-           ============================================================ */
-        :root {
-            --bg-primary: #050816;
-            --bg-secondary: #111827;
-            --bg-card: rgba(30, 41, 59, 0.6);
-            --bg-card-hover: rgba(30, 41, 59, 0.8);
-            --text-primary: #ffffff;
-            --text-secondary: #94a3b8;
-            --text-muted: #64748b;
-            --accent-gold: #FFD700;
-            --accent-green: #00E676;
-            --accent-red: #FF3B30;
-            --accent-blue: #3b82f6;
-            --glass-bg: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --shadow-glow: 0 0 40px rgba(255, 215, 0, 0.1);
-            --radius-lg: 20px;
-            --radius-md: 14px;
-            --radius-sm: 10px;
-            --transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pure Pasture Beef — Premium Grass-Fed Beef, Delivered Fresh</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* ============ TOKENS ============ */
+    :root{
+      --bg:#0A0A0A;
+      --bg-soft:#101010;
+      --card:#141414;
+      --card-hi:#191919;
+      --line: rgba(200,155,60,0.16);
+      --gold:#C89B3C;
+      --gold-light:#E6C57A;
+      --text:#F5F5F5;
+      --dim:#9E9E9E;
+      --dim2:#6f6f6f;
+      --burgundy:#5C1220;
+      --shadow: 0 20px 60px rgba(0,0,0,0.5);
+      --radius: 18px;
+      --serif: 'Playfair Display', serif;
+      --sans: 'Inter', sans-serif;
+    }
+    *{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{
+      background:var(--bg);
+      color:var(--text);
+      font-family:var(--sans);
+      overflow-x:hidden;
+      -webkit-font-smoothing:antialiased;
+    }
+    a{color:inherit;text-decoration:none;}
+    button{font-family:var(--sans);cursor:pointer;border:none;background:none;color:inherit;}
+    img{display:block;max-width:100%;}
+    ::selection{background:var(--gold);color:#0A0A0A;}
+    .container{max-width:1240px;margin:0 auto;padding:0 32px;}
+    .eyebrow{
+      font-size:12.5px;letter-spacing:3.5px;text-transform:uppercase;color:var(--gold);
+      font-weight:600;display:inline-flex;align-items:center;gap:10px;
+    }
+    .eyebrow::before{content:'';width:26px;height:1px;background:var(--gold);}
+    h1,h2,h3,h4{font-family:var(--serif);font-weight:700;letter-spacing:-0.01em;}
+    .section{padding:120px 0;position:relative;}
+    .section-head{max-width:640px;margin:0 auto 64px;text-align:center;}
+    .section-head h2{font-size:clamp(32px,4.5vw,48px);margin-top:14px;line-height:1.15;}
+    .section-head p{color:var(--dim);margin-top:16px;font-size:16.5px;line-height:1.7;}
+    .reveal{opacity:0;transform:translateY(34px);transition:opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1);}
+    .reveal.in{opacity:1;transform:translateY(0);}
+    @media (prefers-reduced-motion: reduce){
+      .reveal{opacity:1!important;transform:none!important;}
+      *{animation-duration:0.001ms!important;transition-duration:0.001ms!important;}
+    }
+    :focus-visible{outline:2px solid var(--gold-light);outline-offset:3px;}
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        html {
-            scroll-behavior: smooth;
-        }
-        body {
-            font-family: 'Inter', 'Outfit', sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: var(--bg-secondary);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: var(--accent-gold);
-            border-radius: 10px;
-        }
+    /* ============ LOADER ============ */
+    #loader{
+      position:fixed;inset:0;z-index:9999;background:#080808;
+      display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;
+      transition:opacity .7s ease, visibility .7s ease;
+    }
+    #loader.hide{opacity:0;visibility:hidden;}
+    .loader-seal{width:74px;height:74px;position:relative;}
+    .loader-seal img{width:100%;height:100%;border-radius:50%;object-fit:cover;border:2px solid var(--gold);animation:spin 3.5s linear infinite;}
+    @keyframes spin{to{transform:rotate(360deg);}}
+    .loader-brand{font-family:var(--serif);font-size:22px;letter-spacing:4px;color:var(--gold-light);}
+    .loader-sub{font-size:11px;letter-spacing:3px;color:var(--dim2);text-transform:uppercase;}
+    .loader-bar{width:190px;height:2px;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden;}
+    .loader-bar span{display:block;height:100%;width:0%;background:linear-gradient(90deg,var(--gold),var(--gold-light));animation:load 1.9s cubic-bezier(.4,0,.2,1) forwards;}
+    @keyframes load{to{width:100%;}}
 
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-        .hidden {
-            display: none !important;
-        }
-        .wrap {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
+    /* ============ MARQUEE ============ */
+    .marquee{
+      background:var(--burgundy);color:var(--gold-light);font-size:12.5px;letter-spacing:1.5px;
+      padding:8px 0;overflow:hidden;white-space:nowrap;position:relative;z-index:500;
+      border-bottom:1px solid rgba(230,197,122,0.15);
+    }
+    .marquee-track{display:inline-block;animation:scroll-left 26s linear infinite;}
+    .marquee-track span{margin:0 40px;}
+    @keyframes scroll-left{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 
-        .bg-glow {
-            position: fixed;
-            border-radius: 50%;
-            filter: blur(120px);
-            pointer-events: none;
-            z-index: 0;
-        }
-        .bg-glow-1 {
-            width: 600px;
-            height: 600px;
-            background: rgba(255, 215, 0, 0.05);
-            top: -200px;
-            right: -200px;
-            animation: floatGlow 20s ease-in-out infinite;
-        }
-        .bg-glow-2 {
-            width: 500px;
-            height: 500px;
-            background: rgba(59, 130, 246, 0.04);
-            bottom: -200px;
-            left: -200px;
-            animation: floatGlow 25s ease-in-out infinite reverse;
-        }
-        @keyframes floatGlow {
-            0%,
-            100% {
-                transform: translate(0, 0) scale(1);
-            }
-            50% {
-                transform: translate(50px, -50px) scale(1.2);
-            }
-        }
+    /* ============ NAVBAR ============ */
+    header{
+      position:sticky;top:0;z-index:800;padding:20px 0;
+      transition:background .4s ease, padding .4s ease, box-shadow .4s ease, backdrop-filter .4s ease;
+    }
+    header.solid{
+      background:rgba(9,9,9,0.82);backdrop-filter:blur(14px) saturate(140%);
+      padding:12px 0;box-shadow:0 8px 30px rgba(0,0,0,0.4);border-bottom:1px solid var(--line);
+    }
+    nav{display:flex;align-items:center;justify-content:space-between;}
+    .brand{display:flex;align-items:center;gap:12px;font-family:var(--serif);font-weight:700;font-size:20px;letter-spacing:0.5px;}
+    .brand img{width:38px;height:38px;border-radius:50%;object-fit:cover;border:1.5px solid var(--gold);}
+    .nav-links{display:flex;gap:38px;font-size:14px;font-weight:500;}
+    .nav-links a{position:relative;color:var(--text);opacity:0.88;}
+    .nav-links a::after{content:'';position:absolute;left:0;bottom:-6px;width:0;height:1px;background:var(--gold-light);transition:width .3s ease;}
+    .nav-links a:hover::after{width:100%;}
+    .nav-actions{display:flex;align-items:center;gap:20px;}
+    .icon-btn{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.04);border:1px solid var(--line);transition:background .3s,transform .3s;position:relative;}
+    .icon-btn:hover{background:rgba(200,155,60,0.14);transform:translateY(-2px);}
+    .icon-btn svg{width:17px;height:17px;stroke:var(--text);}
+    .cart-badge{position:absolute;top:-6px;right:-6px;background:var(--gold);color:#0A0A0A;font-size:10px;font-weight:800;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;}
+    .search-bar{max-width:1240px;margin:14px auto 0;padding:0 32px;display:none;}
+    .search-bar.open{display:block;}
+    .search-bar input{width:100%;padding:14px 18px;border-radius:12px;background:rgba(255,255,255,0.05);border:1px solid var(--line);color:var(--text);font-size:15px;}
+    .search-bar input:focus{border-color:var(--gold);}
 
-        /* ============================================================
-           GLASS NAVIGATION
-           ============================================================ */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            padding: 12px 24px;
-            background: rgba(5, 8, 22, 0.85);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all var(--transition);
-        }
-        .navbar.scrolled {
-            background: rgba(5, 8, 22, 0.95);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
-        }
-        .navbar .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        .navbar .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 22px;
-            font-weight: 900;
-            color: var(--text-primary);
-        }
-        .navbar .logo .mark {
-            width: 38px;
-            height: 38px;
-            border-radius: 10px;
-            background: linear-gradient(135deg, var(--accent-gold), #b8860b);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-            font-weight: 900;
-            color: var(--bg-primary);
-            box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
-        }
-        .navbar .logo span {
-            color: var(--accent-gold);
-        }
+    /* ============ HERO ============ */
+    .hero{
+      position:relative;min-height:100vh;display:flex;align-items:center;
+      background:linear-gradient(180deg, rgba(6,6,6,0.35) 0%, rgba(6,6,6,0.55) 45%, #0A0A0A 100%),
+                 url('https://i.imgur.com/Rf5U6Il.jpeg') center 30%/cover no-repeat;
+    }
+    .hero-inner{max-width:1240px;margin:0 auto;padding:160px 32px 220px;width:100%;}
+    .hero h1{font-size:clamp(42px,7vw,84px);line-height:1.03;margin:20px 0 22px;max-width:820px;}
+    .hero h1 em{font-style:italic;color:var(--gold-light);}
+    .hero p{max-width:520px;color:#e8e8e8;font-size:17.5px;line-height:1.7;margin-bottom:38px;}
+    .btn{
+      display:inline-flex;align-items:center;gap:10px;padding:16px 34px;border-radius:100px;
+      font-weight:600;font-size:14.5px;letter-spacing:0.4px;transition:transform .3s ease, box-shadow .3s ease, background .3s ease;
+    }
+    .btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold-light));color:#0A0A0A;box-shadow:0 8px 30px rgba(200,155,60,0.28);}
+    .btn-gold:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(200,155,60,0.42);}
+    .btn-outline{border:1px solid rgba(245,245,245,0.3);color:var(--text);}
+    .btn-outline:hover{border-color:var(--gold-light);background:rgba(230,197,122,0.08);}
+    .hero-stats{
+      position:absolute;left:0;right:0;bottom:-1px;transform:translateY(50%);
+      max-width:1000px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);
+      background:rgba(20,20,20,0.72);backdrop-filter:blur(18px);border:1px solid var(--line);
+      border-radius:20px;box-shadow:var(--shadow);
+    }
+    .hero-stat{padding:30px 20px;text-align:center;border-right:1px solid var(--line);}
+    .hero-stat:last-child{border-right:none;}
+    .hero-stat .num{font-family:var(--serif);font-size:32px;color:var(--gold-light);font-weight:700;}
+    .hero-stat .label{font-size:12.5px;color:var(--dim);letter-spacing:0.5px;margin-top:4px;}
+    .stars{color:var(--gold);letter-spacing:2px;font-size:14px;}
 
-        .nav-links {
-            display: flex;
-            gap: 8px;
-            align-items: center;
-        }
-        .nav-links a {
-            padding: 8px 16px;
-            border-radius: 8px;
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--text-secondary);
-            transition: all var(--transition);
-            position: relative;
-            cursor: pointer;
-        }
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: var(--text-primary);
-            background: rgba(255, 255, 255, 0.05);
-        }
-        .nav-links a.active::after {
-            content: '';
-            position: absolute;
-            bottom: 2px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 20px;
-            height: 2px;
-            background: var(--accent-gold);
-            border-radius: 2px;
-        }
+    /* ============ TRUST ============ */
+    .trust{padding-top:170px;}
+    .trust-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;}
+    .trust-item{text-align:center;padding:26px 14px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,0.015);transition:transform .3s ease, border-color .3s ease;}
+    .trust-item:hover{transform:translateY(-4px);border-color:var(--gold);}
+    .trust-item .seal-mini{width:34px;height:34px;margin:0 auto 12px;}
+    .trust-item span{display:block;font-size:13px;color:var(--dim);line-height:1.5;}
 
-        .nav-user {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-        }
-        .nav-user span {
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--text-secondary);
-        }
-        .nav-user .logout-btn {
-            padding: 6px 16px;
-            border-radius: 8px;
-            background: rgba(255, 59, 48, 0.15);
-            color: var(--accent-red);
-            border: 1px solid rgba(255, 59, 48, 0.2);
-            font-size: 12px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all var(--transition);
-        }
-        .nav-user .logout-btn:hover {
-            background: rgba(255, 59, 48, 0.25);
-        }
+    /* ============ SHOP ============ */
+    .shop-toolbar{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-bottom:56px;}
+    .chip{padding:10px 22px;border-radius:100px;border:1px solid var(--line);font-size:13.5px;font-weight:500;color:var(--dim);transition:all .3s ease;}
+    .chip.active,.chip:hover{border-color:var(--gold);color:var(--gold-light);background:rgba(200,155,60,0.08);}
 
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            gap: 4px;
-            cursor: pointer;
-            padding: 4px;
-        }
-        .hamburger span {
-            width: 25px;
-            height: 2px;
-            background: var(--text-primary);
-            border-radius: 2px;
-            transition: all var(--transition);
-        }
+    .featured-card{
+      display:grid;grid-template-columns:1.1fr 1fr;gap:0;background:var(--card);border:1px solid var(--line);
+      border-radius:24px;overflow:hidden;margin-bottom:60px;box-shadow:var(--shadow);
+    }
+    .featured-card .img-wrap{height:100%;min-height:420px;overflow:hidden;position:relative;}
+    .featured-card .img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .8s ease;}
+    .featured-card:hover .img-wrap img{transform:scale(1.06);}
+    .featured-badge{position:absolute;top:20px;left:20px;background:var(--gold);color:#0A0A0A;font-size:11px;font-weight:800;letter-spacing:1px;padding:7px 14px;border-radius:100px;text-transform:uppercase;}
+    .featured-info{padding:52px;display:flex;flex-direction:column;justify-content:center;}
+    .featured-info h3{font-size:38px;margin-bottom:10px;}
+    .featured-info .price{color:var(--gold-light);font-size:22px;font-weight:700;margin:14px 0 18px;font-family:var(--serif);}
+    .featured-info p{color:var(--dim);line-height:1.7;margin-bottom:28px;font-size:15px;}
 
-        .mobile-nav {
-            display: none;
-            position: fixed;
-            top: 70px;
-            left: 0;
-            right: 0;
-            background: rgba(5, 8, 22, 0.98);
-            backdrop-filter: blur(20px);
-            padding: 20px 24px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            z-index: 999;
-            flex-direction: column;
-            gap: 8px;
-        }
-        .mobile-nav.open {
-            display: flex;
-        }
-        .mobile-nav a {
-            padding: 12px 16px;
-            border-radius: 10px;
-            font-size: 15px;
-            font-weight: 600;
-            color: var(--text-secondary);
-            transition: all var(--transition);
-            cursor: pointer;
-        }
-        .mobile-nav a:hover {
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--text-primary);
-        }
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;}
+    .card{
+      background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;
+      position:relative;transition:transform .4s ease, box-shadow .4s ease, border-color .4s ease;
+    }
+    .card:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:rgba(200,155,60,0.4);}
+    .card .img-wrap{height:230px;overflow:hidden;position:relative;background:#0d0d0d;}
+    .card .img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .7s ease;}
+    .card:hover .img-wrap img{transform:scale(1.09);}
+    .badge-stock{position:absolute;top:14px;left:14px;background:rgba(10,10,10,0.75);backdrop-filter:blur(6px);border:1px solid var(--line);font-size:11px;padding:5px 12px;border-radius:100px;color:var(--gold-light);letter-spacing:0.5px;}
+    .card-body{padding:24px 24px 26px;}
+    .card-body h4{font-size:20px;margin-bottom:6px;}
+    .card-body .cat{font-size:12px;color:var(--dim2);text-transform:uppercase;letter-spacing:1.2px;margin-bottom:10px;}
+    .card-body .price{color:var(--gold-light);font-family:var(--serif);font-weight:700;font-size:19px;margin:10px 0 16px;}
+    .card-body .price small{color:var(--dim);font-family:var(--sans);font-weight:400;font-size:13px;}
+    .btn-card{width:100%;padding:13px;border:1px solid var(--gold);border-radius:100px;color:var(--gold-light);font-weight:600;font-size:13.5px;letter-spacing:0.4px;transition:all .35s ease;}
+    .btn-card:hover{background:var(--gold);color:#0A0A0A;box-shadow:0 8px 24px rgba(200,155,60,0.3);}
 
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            .hamburger {
-                display: flex;
-            }
-            .mobile-nav {
-                display: none;
-            }
-            .mobile-nav.open {
-                display: flex;
-            }
-        }
+    /* ============ RANCH / SHIPPING / FAQ split sections ============ */
+    .split{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center;}
+    .split img{border-radius:20px;width:100%;height:420px;object-fit:cover;box-shadow:var(--shadow);}
+    .split h2{font-size:clamp(28px,4vw,40px);margin:16px 0 18px;line-height:1.2;}
+    .split p{color:var(--dim);line-height:1.75;font-size:15.5px;margin-bottom:14px;}
+    .steps{margin-top:24px;display:flex;flex-direction:column;gap:16px;}
+    .step{display:flex;gap:16px;align-items:flex-start;}
+    .step .dot{width:8px;height:8px;border-radius:50%;background:var(--gold);margin-top:8px;flex-shrink:0;}
+    .step div p{margin:0;color:var(--dim);font-size:14.5px;}
+    .step div strong{color:var(--text);font-size:15.5px;}
 
-        /* ============================================================
-           HERO
-           ============================================================ */
-        .hero {
-            position: relative;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 120px 24px 80px;
-            z-index: 1;
-            overflow: hidden;
-        }
-        .hero::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background:
-                radial-gradient(ellipse at 20% 50%, rgba(255, 215, 0, 0.08), transparent 60%),
-                radial-gradient(ellipse at 80% 50%, rgba(59, 130, 246, 0.06), transparent 60%);
-            z-index: 0;
-        }
+    /* ============ REVIEWS ============ */
+    .reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;}
+    .review-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:30px;}
+    .review-top{display:flex;align-items:center;gap:14px;margin-bottom:16px;}
+    .avatar{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--burgundy));display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-weight:700;font-size:16px;color:#fff;}
+    .review-name{font-weight:600;font-size:14.5px;}
+    .review-loc{font-size:12.5px;color:var(--dim2);}
+    .review-card p{color:#d6d6d6;font-size:14.5px;line-height:1.7;font-style:italic;}
 
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            text-align: center;
-            max-width: 800px;
-        }
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 8px 20px;
-            border-radius: 50px;
-            background: rgba(255, 215, 0, 0.1);
-            border: 1px solid rgba(255, 215, 0, 0.2);
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--accent-gold);
-            margin-bottom: 24px;
-            animation: fadeInDown 0.8s ease;
-        }
-        .hero-badge .pulse-dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: var(--accent-green);
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse {
-            0%,
-            100% {
-                opacity: 1;
-                transform: scale(1);
-            }
-            50% {
-                opacity: 0.5;
-                transform: scale(0.8);
-            }
-        }
+    /* ============ FAQ ============ */
+    .faq-item{border-bottom:1px solid var(--line);padding:22px 0;}
+    .faq-q{display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:16px;}
+    .faq-q .plus{transition:transform .3s ease;font-size:20px;color:var(--gold);}
+    .faq-item.open .plus{transform:rotate(45deg);}
+    .faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease;}
+    .faq-item.open .faq-a{max-height:200px;}
+    .faq-a p{color:var(--dim);font-size:14.5px;line-height:1.7;padding-top:14px;}
 
-        .hero h1 {
-            font-size: clamp(42px, 8vw, 80px);
-            font-weight: 900;
-            line-height: 1.05;
-            margin-bottom: 20px;
-            animation: fadeInUp 1s ease;
-        }
-        .hero h1 .gold {
-            background: linear-gradient(135deg, var(--accent-gold), #b8860b, var(--accent-gold));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-size: 200% 200%;
-            animation: shimmerGold 3s ease-in-out infinite;
-        }
-        @keyframes shimmerGold {
-            0%,
-            100% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-        }
-        .hero h1 .stroke {
-            -webkit-text-stroke: 1.5px var(--accent-gold);
-            -webkit-text-fill-color: transparent;
-        }
+    /* ============ NEWSLETTER / CONTACT ============ */
+    .contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:60px;}
+    .form-card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:40px;}
+    .form-card h3{font-size:24px;margin-bottom:8px;}
+    .form-card p.sub{color:var(--dim);font-size:14px;margin-bottom:26px;}
+    .field{margin-bottom:18px;}
+    .field label{display:block;font-size:12.5px;color:var(--dim);margin-bottom:8px;letter-spacing:0.4px;text-transform:uppercase;}
+    .field input,.field select,.field textarea{
+      width:100%;padding:14px 16px;background:rgba(255,255,255,0.04);border:1px solid var(--line);
+      border-radius:10px;color:var(--text);font-size:14.5px;font-family:var(--sans);transition:border-color .3s ease;
+    }
+    .field textarea{resize:vertical;min-height:110px;}
+    .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--gold);}
+    .field select option{background:#141414;}
 
-        .hero p {
-            font-size: 18px;
-            color: var(--text-secondary);
-            max-width: 560px;
-            margin: 0 auto 36px;
-            animation: fadeInUp 1.2s ease;
-        }
+    /* ============ FOOTER ============ */
+    footer{background:#070707;border-top:1px solid var(--line);padding:80px 0 30px;}
+    .footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:50px;margin-bottom:60px;}
+    .footer-brand{display:flex;align-items:center;gap:12px;font-family:var(--serif);font-size:20px;font-weight:700;margin-bottom:14px;}
+    .footer-brand img{width:36px;height:36px;border-radius:50%;border:1.5px solid var(--gold);}
+    footer p.tag{color:var(--dim);font-size:14px;line-height:1.6;max-width:280px;}
+    .footer-col h5{font-size:13px;letter-spacing:1px;text-transform:uppercase;color:var(--gold-light);margin-bottom:18px;}
+    .footer-col a{display:block;color:var(--dim);font-size:14px;margin-bottom:12px;transition:color .3s;}
+    .footer-col a:hover{color:var(--gold-light);}
+    .footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:26px;border-top:1px solid var(--line);font-size:13px;color:var(--dim2);flex-wrap:wrap;gap:14px;}
+    .socials{display:flex;gap:14px;}
+    .socials a{width:36px;height:36px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;transition:all .3s;}
+    .socials a:hover{background:var(--gold);color:#0A0A0A;border-color:var(--gold);}
 
-        .hero-stats {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin-bottom: 40px;
-            flex-wrap: wrap;
-            animation: fadeInUp 1.4s ease;
-        }
-        .hero-stat {
-            text-align: center;
-        }
-        .hero-stat .number {
-            font-size: 32px;
-            font-weight: 900;
-            color: var(--accent-gold);
-            display: block;
-        }
-        .hero-stat .label {
-            font-size: 13px;
-            color: var(--text-secondary);
-            font-weight: 500;
-        }
+    /* ============ FLOATING UI ============ */
+    .floating-cart{
+      position:fixed;bottom:28px;right:28px;z-index:700;background:linear-gradient(135deg,var(--gold),var(--gold-light));
+      color:#0A0A0A;border-radius:100px;padding:15px 24px;display:flex;align-items:center;gap:12px;
+      box-shadow:0 12px 34px rgba(200,155,60,0.4);font-weight:700;font-size:14px;transition:transform .3s ease;
+      transform:translateY(120px);opacity:0;
+    }
+    .floating-cart.show{transform:translateY(0);opacity:1;}
+    .floating-cart:hover{transform:translateY(-3px);}
+    .help-btn{
+      position:fixed;bottom:28px;left:28px;z-index:700;background:var(--card);border:1px solid var(--gold);
+      color:var(--gold-light);border-radius:100px;padding:14px 20px;display:flex;align-items:center;gap:10px;font-size:13.5px;font-weight:600;
+      box-shadow:var(--shadow);
+    }
+    .help-btn .dot-live{width:8px;height:8px;border-radius:50%;background:#5ec26a;box-shadow:0 0 0 0 rgba(94,194,106,0.6);animation:pulse 2s infinite;}
+    @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(94,194,106,0.55);}70%{box-shadow:0 0 0 10px rgba(94,194,106,0);}100%{box-shadow:0 0 0 0 rgba(94,194,106,0);}}
+    .top-btn{
+      position:fixed;bottom:100px;right:28px;z-index:699;width:44px;height:44px;border-radius:50%;background:var(--card);
+      border:1px solid var(--line);display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;
+      transition:all .3s ease;box-shadow:var(--shadow);
+    }
+    .top-btn.show{opacity:1;visibility:visible;}
+    .top-btn svg{width:16px;height:16px;stroke:var(--gold-light);}
 
-        .hero-ctas {
-            display: flex;
-            gap: 16px;
-            justify-content: center;
-            flex-wrap: wrap;
-            animation: fadeInUp 1.6s ease;
-        }
+    /* ============ TOASTS ============ */
+    #toast-wrap{position:fixed;top:24px;right:24px;z-index:9998;display:flex;flex-direction:column;gap:12px;}
+    .toast{
+      min-width:300px;max-width:360px;background:rgba(20,20,20,0.9);backdrop-filter:blur(16px);
+      border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:12px;padding:16px 18px;
+      display:flex;align-items:center;gap:14px;box-shadow:var(--shadow);
+      animation:toast-in .45s cubic-bezier(.2,.8,.2,1) forwards;position:relative;overflow:hidden;
+    }
+    .toast.leaving{animation:toast-out .4s ease forwards;}
+    @keyframes toast-in{from{transform:translateX(120%);opacity:0;}to{transform:translateX(0);opacity:1;}}
+    @keyframes toast-out{to{transform:translateX(120%);opacity:0;}}
+    .toast .ticon{width:30px;height:30px;border-radius:50%;background:rgba(200,155,60,0.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--gold-light);font-size:15px;}
+    .toast .tmsg strong{display:block;font-size:14px;margin-bottom:2px;}
+    .toast .tmsg span{font-size:12.5px;color:var(--dim);}
+    .toast .tbar{position:absolute;bottom:0;left:0;height:2px;background:var(--gold);animation:tbar 3.5s linear forwards;}
+    @keyframes tbar{from{width:100%;}to{width:0%;}}
 
-        .btn {
-            padding: 14px 32px;
-            border-radius: 12px;
-            font-size: 14px;
-            font-weight: 700;
-            border: none;
-            cursor: pointer;
-            transition: all var(--transition);
-            position: relative;
-            overflow: hidden;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .btn-primary {
-            background: linear-gradient(135deg, var(--accent-gold), #b8860b);
-            color: var(--bg-primary);
-            box-shadow: 0 0 40px rgba(255, 215, 0, 0.2);
-        }
-        .btn-primary:hover {
-            transform: translateY(-2px) scale(1.02);
-            box-shadow: 0 0 60px rgba(255, 215, 0, 0.4);
-        }
-        .btn-primary::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, transparent 50%, rgba(255, 255, 255, 0.2));
-            transform: translateX(-100%);
-            transition: transform 0.6s;
-        }
-        .btn-primary:hover::after {
-            transform: translateX(100%);
-        }
+    /* ============ MODAL ============ */
+    .overlay{position:fixed;inset:0;background:rgba(4,4,4,0.78);backdrop-filter:blur(6px);z-index:2000;display:none;align-items:center;justify-content:center;padding:20px;}
+    .overlay.open{display:flex;animation:fade-in .3s ease;}
+    @keyframes fade-in{from{opacity:0;}to{opacity:1;}}
+    .modal{background:var(--card);border:1px solid var(--line);border-radius:24px;max-width:880px;width:100%;max-height:88vh;overflow-y:auto;display:grid;grid-template-columns:1fr 1fr;position:relative;animation:modal-in .35s cubic-bezier(.2,.8,.2,1);}
+    @keyframes modal-in{from{opacity:0;transform:scale(.94) translateY(10px);}to{opacity:1;transform:scale(1) translateY(0);}}
+    .modal .close-x{position:absolute;top:16px;right:16px;width:34px;height:34px;border-radius:50%;background:rgba(0,0,0,0.4);display:flex;align-items:center;justify-content:center;z-index:5;font-size:18px;}
+    .modal-img{height:100%;min-height:340px;background:#0d0d0d;}
+    .modal-img img{width:100%;height:100%;object-fit:cover;}
+    .modal-info{padding:40px;}
+    .modal-info h3{font-size:28px;margin-bottom:6px;}
+    .modal-info .cat{font-size:12px;color:var(--dim2);text-transform:uppercase;letter-spacing:1.2px;}
+    .modal-info .desc{color:var(--dim);font-size:14px;line-height:1.7;margin:16px 0;}
+    .selector-label{font-size:12px;text-transform:uppercase;letter-spacing:1px;color:var(--gold-light);margin:20px 0 10px;}
+    .weight-chips{display:flex;gap:10px;flex-wrap:wrap;}
+    .wchip{padding:9px 16px;border:1px solid var(--line);border-radius:10px;font-size:13.5px;transition:all .25s ease;}
+    .wchip.active{border-color:var(--gold);background:rgba(200,155,60,0.12);color:var(--gold-light);}
+    .qty-row{display:flex;align-items:center;gap:16px;margin-top:22px;}
+    .qty-control{display:flex;align-items:center;border:1px solid var(--line);border-radius:100px;overflow:hidden;}
+    .qty-control button{width:40px;height:40px;font-size:18px;color:var(--gold-light);transition:background .2s;}
+    .qty-control button:hover{background:rgba(200,155,60,0.14);}
+    .qty-control span{width:36px;text-align:center;font-weight:700;}
+    .modal-price{font-family:var(--serif);font-size:26px;color:var(--gold-light);font-weight:700;}
+    .modal-actions{margin-top:26px;display:flex;gap:12px;}
+    .modal-actions .btn-gold{flex:1;justify-content:center;}
 
-        .btn-ghost {
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--text-primary);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .btn-ghost:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-2px);
-            border-color: rgba(255, 215, 0, 0.3);
-        }
+    /* ============ CART DRAWER ============ */
+    .drawer{position:fixed;top:0;right:0;height:100%;width:400px;max-width:92vw;background:var(--card);border-left:1px solid var(--line);z-index:2100;transform:translateX(100%);transition:transform .4s cubic-bezier(.2,.8,.2,1);display:flex;flex-direction:column;}
+    .drawer.open{transform:translateX(0);}
+    .drawer-head{padding:26px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;}
+    .drawer-head h3{font-size:20px;}
+    .drawer-items{flex:1;overflow-y:auto;padding:20px 26px;}
+    .drawer-item{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--line);}
+    .drawer-item img{width:64px;height:64px;border-radius:10px;object-fit:cover;flex-shrink:0;}
+    .drawer-item .di-info{flex:1;}
+    .drawer-item .di-info h5{font-size:14.5px;margin-bottom:4px;}
+    .drawer-item .di-info .di-meta{font-size:12.5px;color:var(--dim);}
+    .drawer-item .di-price{font-size:14px;color:var(--gold-light);font-weight:700;margin-top:6px;}
+    .drawer-item .di-remove{font-size:12px;color:var(--dim2);text-decoration:underline;margin-top:6px;}
+    .drawer-empty{text-align:center;padding:60px 20px;color:var(--dim);}
+    .drawer-foot{padding:22px 26px 28px;border-top:1px solid var(--line);}
+    .drawer-foot .subtotal{display:flex;justify-content:space-between;font-size:16px;font-weight:700;margin-bottom:16px;}
+    .drawer-foot .subtotal span:last-child{color:var(--gold-light);}
+    .drawer-foot .btn-gold{width:100%;justify-content:center;}
 
-        .btn-gold {
-            background: linear-gradient(135deg, var(--accent-gold), #b8860b);
-            color: var(--bg-primary);
-            box-shadow: 0 0 40px rgba(255, 215, 0, 0.2);
-        }
-        .btn-gold:hover {
-            transform: translateY(-2px) scale(1.02);
-            box-shadow: 0 0 60px rgba(255, 215, 0, 0.4);
-        }
+    /* ============ CHECKOUT ============ */
+    .checkout-overlay{position:fixed;inset:0;background:var(--bg);z-index:3000;display:none;overflow-y:auto;}
+    .checkout-overlay.open{display:block;animation:fade-in .4s ease;}
+    .checkout-wrap{max-width:520px;margin:0 auto;padding:80px 24px 60px;}
+    .progress-bar{display:flex;gap:8px;margin-bottom:50px;}
+    .progress-bar .seg{height:3px;flex:1;background:rgba(255,255,255,0.08);border-radius:3px;overflow:hidden;}
+    .progress-bar .seg i{display:block;height:100%;width:0%;background:linear-gradient(90deg,var(--gold),var(--gold-light));transition:width .5s ease;}
+    .payment-summary{background:rgba(255,255,255,0.03);border:1px solid var(--line);border-radius:16px;padding:22px;margin-bottom:26px;}
+    .payment-summary .prow{display:flex;justify-content:space-between;font-size:14px;padding:8px 0;border-bottom:1px solid var(--line);color:var(--dim);}
+    .payment-summary .prow span:last-child{color:var(--text);}
+    .payment-summary .ptotal{display:flex;justify-content:space-between;font-size:19px;font-weight:700;color:var(--gold-light);padding-top:14px;font-family:var(--serif);}
+    .dropdown-wrap{position:relative;}
+    .dropdown-menu{display:none;position:absolute;left:0;right:0;top:calc(100% + 8px);background:#1e1e1e;border:1px solid var(--line);border-radius:16px;padding:8px;z-index:50;box-shadow:var(--shadow);}
+    .dropdown-menu.open{display:block;}
+    .dropdown-item{display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:12px;transition:background .2s;cursor:pointer;font-weight:500;color:#ddd;}
+    .dropdown-item:hover{background:rgba(200,155,60,0.12);color:#fff;}
+    .pay-icon{width:26px;height:26px;object-fit:contain;}
+    .btc-page{display:none;margin-top:22px;}
+    .btc-page.active{display:block;animation:fade-in .4s ease;}
+    .btc-box{background:rgba(255,255,255,0.03);border:1px solid var(--line);border-radius:20px;padding:28px;text-align:center;}
+    .btc-box .qr{width:180px;height:180px;margin:0 auto 18px;background:#1a1a1a;border-radius:16px;display:flex;align-items:center;justify-content:center;border:1px solid var(--line);padding:10px;}
+    .btc-box .qr img{width:100%;height:100%;object-fit:contain;}
+    .btc-address{background:#0d0d0d;padding:14px;border-radius:12px;font-family:monospace;font-size:14px;letter-spacing:1px;color:var(--gold-light);word-break:break-all;border:1px solid var(--line);margin:14px 0;}
+    .btc-amount{font-size:18px;font-weight:700;color:var(--gold-light);margin:10px 0;font-family:var(--serif);}
+    .btc-hint{color:var(--dim);font-size:12.5px;margin:10px 0 18px;line-height:1.6;}
+    .confirm-loading{display:none;text-align:center;padding:50px 0;}
+    .confirm-loading.active{display:block;}
+    .checkout-step{display:none;}
+    .checkout-step.active{display:block;animation:step-in .5s ease;}
+    @keyframes step-in{from{opacity:0;transform:translateX(20px);}to{opacity:1;transform:translateX(0);}}
+    .checkout-step h2{font-size:30px;margin-bottom:8px;}
+    .checkout-step p.sub{color:var(--dim);margin-bottom:36px;font-size:14.5px;}
+    .saving-state{display:none;align-items:center;justify-content:center;gap:12px;}
+    .saving-state.active{display:flex;}
+    .spinner{width:18px;height:18px;border:2px solid rgba(10,10,10,0.25);border-top-color:#0A0A0A;border-radius:50%;animation:spin-s 0.7s linear infinite;}
+    @keyframes spin-s{to{transform:rotate(360deg);}}
+    .thankyou{text-align:center;padding:40px 0;}
+    .check-circle{width:84px;height:84px;border-radius:50%;background:rgba(200,155,60,0.12);border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;margin:0 auto 30px;}
+    .check-circle svg{width:38px;height:38px;stroke:var(--gold-light);animation:check-pop .5s cubic-bezier(.2,.8,.2,1) .1s both;}
+    @keyframes check-pop{from{transform:scale(0);opacity:0;}to{transform:scale(1);opacity:1;}}
+    .thankyou h2{font-size:32px;margin-bottom:16px;}
+    .thankyou p{color:var(--dim);font-size:15.5px;line-height:1.7;max-width:400px;margin:0 auto 34px;}
+    .checkout-close{position:fixed;top:26px;right:32px;width:38px;height:38px;border-radius:50%;background:var(--card);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;z-index:10;}
 
-        .btn-sm {
-            padding: 8px 16px;
-            font-size: 12px;
-            border-radius: 8px;
-        }
+    /* ============ POPUP ============ */
+    .popup-overlay{position:fixed;inset:0;background:rgba(4,4,4,0.8);backdrop-filter:blur(6px);z-index:4000;display:none;align-items:center;justify-content:center;padding:20px;}
+    .popup-overlay.open{display:flex;}
+    .popup-card{background:#141414;border:1px solid var(--line);border-radius:24px;max-width:480px;width:100%;padding:36px 32px;text-align:center;position:relative;animation:fade-in .3s ease;}
+    .popup-card h3{font-family:'Playfair Display',serif;font-size:24px;margin-bottom:12px;color:var(--gold-light);}
+    .popup-card p{color:var(--dim);font-size:14.5px;line-height:1.6;margin-bottom:22px;}
+    .popup-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+    .popup-actions .btn{min-width:120px;justify-content:center;}
+    .btn-secondary{background:rgba(255,255,255,0.06);border:1px solid var(--line);color:var(--text);}
+    .btn-secondary:hover{background:rgba(255,255,255,0.12);}
 
-        .section-header {
-            text-align: center;
-            margin-bottom: 48px;
-        }
-        .section-header .tag {
-            display: inline-block;
-            padding: 4px 16px;
-            border-radius: 50px;
-            background: rgba(255, 215, 0, 0.1);
-            border: 1px solid rgba(255, 215, 0, 0.15);
-            font-size: 11px;
-            font-weight: 700;
-            color: var(--accent-gold);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 12px;
-        }
-        .section-header h2 {
-            font-size: clamp(28px, 4vw, 42px);
-            font-weight: 900;
-        }
-        .section-header p {
-            color: var(--text-secondary);
-            font-size: 16px;
-            margin-top: 8px;
-        }
-
-        .code-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 24px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .code-card {
-            background: var(--bg-card);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: var(--radius-lg);
-            padding: 24px;
-            transition: all var(--transition);
-            position: relative;
-            overflow: hidden;
-        }
-        .code-card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: var(--radius-lg);
-            padding: 1px;
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), transparent, rgba(255, 215, 0, 0.05));
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            pointer-events: none;
-        }
-        .code-card:hover {
-            transform: translateY(-6px);
-            background: var(--bg-card-hover);
-            border-color: rgba(255, 215, 0, 0.15);
-            box-shadow: var(--shadow-glow);
-        }
-
-        .code-card .top-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 12px;
-        }
-        .code-card .league-tag {
-            font-size: 10px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            padding: 4px 12px;
-            border-radius: 50px;
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--text-secondary);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        .code-card .status-tag {
-            font-size: 10px;
-            font-weight: 700;
-            text-transform: uppercase;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            color: var(--accent-green);
-        }
-        .code-card .status-tag .dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: var(--accent-green);
-            animation: pulse 2s infinite;
-        }
-        .code-card .fixture {
-            font-size: 16px;
-            font-weight: 700;
-            margin-bottom: 4px;
-        }
-        .code-card .fixture-time {
-            font-size: 12px;
-            color: var(--text-secondary);
-            margin-bottom: 16px;
-        }
-        .code-card .code-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: var(--radius-sm);
-            padding: 12px 16px;
-            margin-bottom: 12px;
-        }
-        .code-card .code-row .code-val {
-            font-family: 'Inter', monospace;
-            font-size: 18px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            color: var(--accent-gold);
-        }
-        .code-card .copy-btn {
-            padding: 4px 14px;
-            border-radius: 6px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            color: var(--text-secondary);
-            font-size: 11px;
-            font-weight: 700;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all var(--transition);
-        }
-        .code-card .copy-btn:hover {
-            background: var(--accent-gold);
-            color: var(--bg-primary);
-            border-color: var(--accent-gold);
-        }
-        .code-card .odds-row {
-            display: flex;
-            justify-content: space-between;
-            font-size: 13px;
-            color: var(--text-secondary);
-        }
-        .code-card .odds-row strong {
-            color: var(--text-primary);
-            font-weight: 700;
-        }
-
-        .code-card.vip {
-            border-color: rgba(255, 215, 0, 0.15);
-        }
-        .code-card.vip::before {
-            background: linear-gradient(135deg, var(--accent-gold), transparent, var(--accent-gold));
-        }
-        .code-card.vip .vip-badge {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            padding: 2px 12px;
-            border-radius: 50px;
-            background: var(--accent-gold);
-            color: var(--bg-primary);
-            font-size: 9px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        .code-card.vip .vip-price {
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--accent-gold);
-        }
-        .code-card.vip .unlock-btn {
-            width: 100%;
-            padding: 10px;
-            border-radius: var(--radius-sm);
-            background: linear-gradient(135deg, var(--accent-gold), #b8860b);
-            color: var(--bg-primary);
-            border: none;
-            font-weight: 800;
-            font-size: 13px;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all var(--transition);
-            margin-top: 12px;
-        }
-        .code-card.vip .unlock-btn:hover {
-            transform: scale(1.02);
-            box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
-        }
-
-        .testi-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .testi-card {
-            background: var(--bg-card);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: var(--radius-lg);
-            padding: 24px;
-            transition: all var(--transition);
-        }
-        .testi-card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(255, 215, 0, 0.1);
-        }
-        .testi-card .stars {
-            color: var(--accent-gold);
-            font-size: 14px;
-            letter-spacing: 2px;
-            margin-bottom: 12px;
-        }
-        .testi-card p {
-            font-size: 14px;
-            color: var(--text-secondary);
-            margin-bottom: 12px;
-            line-height: 1.7;
-        }
-        .testi-card .name {
-            font-weight: 700;
-            font-size: 13px;
-            color: var(--text-primary);
-        }
-
-        .channel-buttons {
-            display: flex;
-            gap: 16px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin: 24px 0;
-        }
-        .channel-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 12px 24px;
-            border-radius: 12px;
-            font-weight: 700;
-            font-size: 14px;
-            color: #fff;
-            transition: all var(--transition);
-            border: none;
-            cursor: pointer;
-        }
-        .channel-btn:hover {
-            transform: translateY(-3px);
-        }
-        .channel-btn-whatsapp {
-            background: #25D366;
-        }
-        .channel-btn-telegram {
-            background: #0088cc;
-        }
-
-        .auth-page {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 100px 24px 60px;
-            position: relative;
-            z-index: 1;
-        }
-        .auth-box {
-            background: var(--bg-card);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: var(--radius-lg);
-            padding: 48px 40px;
-            max-width: 440px;
-            width: 100%;
-            box-shadow: var(--shadow-glow);
-        }
-        .auth-box h2 {
-            text-align: center;
-            font-size: 28px;
-            font-weight: 900;
-            margin-bottom: 4px;
-        }
-        .auth-box .sub {
-            text-align: center;
-            color: var(--text-secondary);
-            font-size: 14px;
-            margin-bottom: 28px;
-        }
-        .auth-box label {
-            font-weight: 600;
-            font-size: 13px;
-            display: block;
-            margin-bottom: 4px;
-            color: var(--text-secondary);
-        }
-        .auth-box input {
-            width: 100%;
-            padding: 12px 16px;
-            border-radius: var(--radius-sm);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            background: rgba(255, 255, 255, 0.03);
-            color: var(--text-primary);
-            font-size: 14px;
-            margin-bottom: 16px;
-            transition: all var(--transition);
-        }
-        .auth-box input:focus {
-            outline: none;
-            border-color: var(--accent-gold);
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.05);
-        }
-        .auth-box .auth-btn {
-            width: 100%;
-            padding: 14px;
-            border: none;
-            border-radius: var(--radius-sm);
-            font-weight: 700;
-            font-size: 14px;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all var(--transition);
-        }
-        .auth-box .auth-link {
-            text-align: center;
-            margin-top: 16px;
-            font-size: 14px;
-            color: var(--text-secondary);
-        }
-        .auth-box .auth-link a {
-            color: var(--accent-gold);
-            font-weight: 700;
-            cursor: pointer;
-        }
-        .auth-box .auth-link a:hover {
-            text-decoration: underline;
-        }
-        .auth-box .error-msg {
-            color: var(--accent-red);
-            font-size: 13px;
-            text-align: center;
-            margin-bottom: 12px;
-            display: none;
-        }
-
-        .dashboard {
-            padding: 100px 24px 60px;
-            position: relative;
-            z-index: 1;
-        }
-        .dashboard .welcome {
-            font-size: 28px;
-            font-weight: 900;
-            margin-bottom: 4px;
-        }
-        .dashboard .welcome small {
-            font-weight: 400;
-            font-size: 16px;
-            color: var(--text-secondary);
-        }
-        .dashboard .welcome .greeting {
-            color: var(--accent-gold);
-        }
-        .dashboard-stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 16px;
-            margin: 24px 0 40px;
-        }
-        .dash-stat {
-            background: var(--bg-card);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: var(--radius-md);
-            padding: 20px;
-            text-align: center;
-        }
-        .dash-stat .num {
-            font-size: 28px;
-            font-weight: 900;
-            color: var(--accent-gold);
-        }
-        .dash-stat .label {
-            font-size: 12px;
-            color: var(--text-secondary);
-            font-weight: 500;
-            margin-top: 4px;
-        }
-        .dashboard .section-title {
-            font-size: 22px;
-            font-weight: 800;
-            margin: 40px 0 20px;
-        }
-
-        .vip-unlock {
-            max-width: 600px;
-            margin: 100px auto 60px;
-            padding: 40px 32px;
-            background: var(--bg-card);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 215, 0, 0.1);
-            border-radius: var(--radius-lg);
-            text-align: center;
-            position: relative;
-            z-index: 1;
-        }
-        .vip-unlock .code-preview {
-            background: rgba(0, 0, 0, 0.3);
-            padding: 24px;
-            border-radius: var(--radius-md);
-            font-family: 'Inter', monospace;
-            font-size: 28px;
-            font-weight: 700;
-            letter-spacing: 2px;
-            color: var(--accent-gold);
-            margin: 20px 0;
-        }
-        .vip-unlock .amount {
-            font-size: 20px;
-            font-weight: 700;
-            margin: 16px 0;
-        }
-        .vip-unlock .amount span {
-            color: var(--accent-gold);
-            font-size: 28px;
-        }
-
-        .payment-page {
-            max-width: 500px;
-            margin: 100px auto 60px;
-            padding: 40px 32px;
-            background: var(--bg-card);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: var(--radius-lg);
-            text-align: center;
-            position: relative;
-            z-index: 1;
-        }
-        .payment-page .spinner-container {
-            padding: 60px 0;
-        }
-        .spinner {
-            display: inline-block;
-            width: 50px;
-            height: 50px;
-            border: 3px solid rgba(255, 255, 255, 0.05);
-            border-top: 3px solid var(--accent-gold);
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-        }
-        @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-        .payment-page .account-info {
-            background: rgba(0, 0, 0, 0.3);
-            padding: 20px;
-            border-radius: var(--radius-md);
-            margin: 20px 0;
-            text-align: left;
-        }
-        .payment-page .account-info p {
-            margin: 4px 0;
-            font-weight: 600;
-            font-size: 14px;
-        }
-        .payment-page .account-info span {
-            font-weight: 400;
-            color: var(--text-secondary);
-        }
-        .payment-page input {
-            width: 100%;
-            padding: 12px 16px;
-            border-radius: var(--radius-sm);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            background: rgba(255, 255, 255, 0.03);
-            color: var(--text-primary);
-            font-size: 14px;
-            margin: 8px 0 16px;
-        }
-        .payment-page input:focus {
-            outline: none;
-            border-color: var(--accent-gold);
-        }
-        .telegram-proof {
-            padding: 16px;
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: var(--radius-sm);
-            margin: 16px 0;
-            border-left: 3px solid var(--accent-gold);
-        }
-        .telegram-proof a {
-            color: var(--accent-gold);
-            font-weight: 700;
-        }
-
-        .history-page {
-            padding: 100px 24px 60px;
-            position: relative;
-            z-index: 1;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-        .history-page h2 {
-            font-size: 28px;
-            font-weight: 900;
-            margin-bottom: 24px;
-        }
-        .history-card {
-            background: var(--bg-card);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: var(--radius-md);
-            padding: 20px 24px;
-            margin-bottom: 12px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 12px;
-            transition: all var(--transition);
-        }
-        .history-card:hover {
-            border-color: rgba(255, 215, 0, 0.1);
-        }
-        .history-card .left {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-        }
-        .history-card .left .code {
-            font-family: 'Inter', monospace;
-            font-weight: 700;
-            font-size: 16px;
-        }
-        .history-card .left .code.blurred {
-            filter: blur(6px);
-            user-select: none;
-        }
-        .history-card .left .meta {
-            font-size: 12px;
-            color: var(--text-secondary);
-        }
-        .history-card .right {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-        .history-card .right .amount {
-            font-weight: 700;
-            color: var(--accent-gold);
-        }
-        .status-badge {
-            padding: 4px 14px;
-            border-radius: 50px;
-            font-size: 11px;
-            font-weight: 700;
-            text-transform: uppercase;
-        }
-        .status-badge.pending {
-            background: rgba(255, 215, 0, 0.15);
-            color: var(--accent-gold);
-        }
-        .status-badge.confirmed {
-            background: rgba(0, 230, 118, 0.15);
-            color: var(--accent-green);
-        }
-        .history-msg {
-            background: rgba(255, 215, 0, 0.05);
-            border-left: 3px solid var(--accent-gold);
-            padding: 16px 20px;
-            border-radius: var(--radius-sm);
-            margin-top: 16px;
-            font-size: 14px;
-            color: var(--text-secondary);
-        }
-        .history-msg strong {
-            color: var(--text-primary);
-        }
-
-        /* ============================================================
-           ENHANCED ADMIN PANEL
-           ============================================================ */
-        .admin-panel {
-            padding: 100px 24px 60px;
-            position: relative;
-            z-index: 1;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .admin-panel h2 {
-            font-size: 28px;
-            font-weight: 900;
-            margin-bottom: 32px;
-        }
-        .admin-section {
-            background: var(--bg-card);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: var(--radius-lg);
-            padding: 24px;
-            margin-bottom: 32px;
-        }
-        .admin-section h3 {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 16px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .admin-section h3 .badge {
-            font-size: 11px;
-            padding: 2px 10px;
-            border-radius: 50px;
-            background: var(--accent-gold);
-            color: var(--bg-primary);
-            font-weight: 700;
-        }
-        .admin-section .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-        }
-        .admin-section .form-row .full {
-            grid-column: 1 / -1;
-        }
-        .admin-section .form-row label {
-            font-weight: 600;
-            font-size: 12px;
-            color: var(--text-secondary);
-            display: block;
-            margin-bottom: 4px;
-        }
-        .admin-section .form-row input,
-        .admin-section .form-row textarea {
-            width: 100%;
-            padding: 10px 14px;
-            border-radius: var(--radius-sm);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            background: rgba(255, 255, 255, 0.03);
-            color: var(--text-primary);
-            font-size: 13px;
-            font-family: 'Inter', sans-serif;
-        }
-        .admin-section .form-row input:focus,
-        .admin-section .form-row textarea:focus {
-            outline: none;
-            border-color: var(--accent-gold);
-        }
-        .admin-section .btn-add {
-            margin-top: 16px;
-            padding: 10px 24px;
-            background: var(--accent-green);
-            color: var(--bg-primary);
-            border: none;
-            border-radius: var(--radius-sm);
-            font-weight: 700;
-            cursor: pointer;
-            transition: all var(--transition);
-        }
-        .admin-section .btn-add:hover {
-            transform: scale(1.02);
-        }
-
-        .admin-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-        .admin-item:last-child {
-            border-bottom: none;
-        }
-        .admin-item .item-info {
-            display: flex;
-            gap: 16px;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-        .admin-item .item-info span {
-            font-size: 13px;
-        }
-        .admin-item .item-info .edit-input {
-            padding: 4px 8px;
-            border-radius: 4px;
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            background: rgba(255, 255, 255, 0.03);
-            color: var(--text-primary);
-            font-size: 12px;
-            width: 120px;
-        }
-        .admin-item .item-info .edit-input:focus {
-            outline: none;
-            border-color: var(--accent-gold);
-        }
-        .admin-item .item-actions {
-            display: flex;
-            gap: 8px;
-        }
-        .admin-item .item-actions .btn-save {
-            padding: 4px 12px;
-            border-radius: 6px;
-            background: var(--accent-green);
-            color: var(--bg-primary);
-            border: none;
-            font-weight: 700;
-            font-size: 11px;
-            cursor: pointer;
-            transition: all var(--transition);
-        }
-        .admin-item .item-actions .btn-save:hover {
-            transform: scale(1.05);
-        }
-        .admin-item .item-actions .btn-delete {
-            padding: 4px 12px;
-            border-radius: 6px;
-            background: var(--accent-red);
-            color: #fff;
-            border: none;
-            font-weight: 700;
-            font-size: 11px;
-            cursor: pointer;
-            transition: all var(--transition);
-        }
-        .admin-item .item-actions .btn-delete:hover {
-            transform: scale(1.05);
-        }
-
-        .user-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-        }
-        .user-item:last-child {
-            border-bottom: none;
-        }
-        .user-item .user-info {
-            display: flex;
-            gap: 20px;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-        .user-item .user-info .username {
-            font-weight: 700;
-        }
-        .user-item .user-info .email {
-            color: var(--text-secondary);
-            font-size: 13px;
-        }
-        .user-item .user-info .role {
-            font-size: 11px;
-            padding: 2px 10px;
-            border-radius: 50px;
-            background: rgba(255, 215, 0, 0.1);
-            color: var(--accent-gold);
-            font-weight: 700;
-        }
-        .user-item .user-info .role.admin {
-            background: rgba(255, 59, 48, 0.1);
-            color: var(--accent-red);
-        }
-        .user-item .user-tx-count {
-            font-size: 13px;
-            color: var(--text-secondary);
-        }
-
-        .toast-container {
-            position: fixed;
-            top: 80px;
-            right: 20px;
-            z-index: 9999;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        .toast {
-            padding: 14px 24px;
-            border-radius: var(--radius-sm);
-            background: var(--bg-card);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            color: var(--text-primary);
-            font-size: 14px;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            min-width: 280px;
-            animation: slideInRight 0.4s ease;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-        }
-        .toast.success {
-            border-left: 3px solid var(--accent-green);
-        }
-        .toast.error {
-            border-left: 3px solid var(--accent-red);
-        }
-        .toast.info {
-            border-left: 3px solid var(--accent-gold);
-        }
-        .toast .icon {
-            font-size: 18px;
-        }
-        @keyframes slideInRight {
-            0% {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-            100% {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-        .toast.fade-out {
-            animation: slideOutRight 0.3s ease forwards;
-        }
-        @keyframes slideOutRight {
-            0% {
-                transform: translateX(0);
-                opacity: 1;
-            }
-            100% {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-        }
-
-        .floating-buttons {
-            position: fixed;
-            bottom: 24px;
-            right: 24px;
-            z-index: 999;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        .floating-btn {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 22px;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-            transition: all var(--transition);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-        }
-        .floating-btn:hover {
-            transform: scale(1.1);
-        }
-        .floating-btn.whatsapp {
-            background: #25D366;
-        }
-        .floating-btn.telegram {
-            background: #0088cc;
-        }
-        .floating-btn.top {
-            background: var(--bg-card);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        .floating-btn.top:hover {
-            background: var(--accent-gold);
-            color: var(--bg-primary);
-        }
-
-        .footer {
-            background: var(--bg-secondary);
-            border-top: 1px solid rgba(255, 255, 255, 0.03);
-            padding: 60px 24px 30px;
-            position: relative;
-            z-index: 1;
-        }
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 40px;
-            max-width: 1200px;
-            margin: 0 auto 40px;
-        }
-        .footer-grid .brand p {
-            color: var(--text-secondary);
-            font-size: 14px;
-            max-width: 320px;
-            margin-top: 12px;
-        }
-        .footer-grid h4 {
-            font-size: 13px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: var(--text-secondary);
-            margin-bottom: 16px;
-        }
-        .footer-grid ul {
-            list-style: none;
-        }
-        .footer-grid ul li {
-            margin-bottom: 8px;
-        }
-        .footer-grid ul li a {
-            color: var(--text-secondary);
-            font-size: 13px;
-            transition: all var(--transition);
-        }
-        .footer-grid ul li a:hover {
-            color: var(--accent-gold);
-        }
-        .footer-bottom {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.03);
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 12px;
-            font-size: 12px;
-            color: var(--text-secondary);
-        }
-        .footer-socials {
-            display: flex;
-            gap: 12px;
-        }
-        .footer-socials a {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-secondary);
-            transition: all var(--transition);
-        }
-        .footer-socials a:hover {
-            background: var(--accent-gold);
-            color: var(--bg-primary);
-            border-color: var(--accent-gold);
-        }
-        @media (max-width: 768px) {
-            .footer-grid {
-                grid-template-columns: 1fr;
-                gap: 24px;
-            }
-        }
-
-        .fade-up {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease;
-        }
-        .fade-up.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        @keyframes fadeInUp {
-            0% {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        @keyframes fadeInDown {
-            0% {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 32px;
-            }
-            .hero-stats {
-                gap: 20px;
-            }
-            .hero-stat .number {
-                font-size: 24px;
-            }
-            .code-grid {
-                grid-template-columns: 1fr;
-            }
-            .auth-box {
-                padding: 32px 20px;
-            }
-            .admin-section .form-row {
-                grid-template-columns: 1fr;
-            }
-            .vip-unlock {
-                padding: 24px 16px;
-                margin: 80px 16px 40px;
-            }
-            .payment-page {
-                padding: 24px 16px;
-                margin: 80px 16px 40px;
-            }
-            .history-card {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            .history-card .right {
-                width: 100%;
-                justify-content: space-between;
-            }
-            .floating-buttons {
-                bottom: 16px;
-                right: 16px;
-            }
-            .floating-btn {
-                width: 44px;
-                height: 44px;
-                font-size: 18px;
-            }
-            .toast-container {
-                top: 70px;
-                right: 10px;
-                left: 10px;
-            }
-            .toast {
-                min-width: auto;
-                font-size: 13px;
-                padding: 12px 16px;
-            }
-            .admin-item .item-info {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 4px;
-            }
-            .user-item {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 8px;
-            }
-            .user-item .user-info {
-                gap: 8px;
-            }
-        }
-        @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 26px;
-            }
-            .hero p {
-                font-size: 15px;
-            }
-            .btn {
-                padding: 12px 24px;
-                font-size: 13px;
-            }
-            .hero-ctas {
-                flex-direction: column;
-                align-items: center;
-            }
-            .hero-ctas .btn {
-                width: 100%;
-                justify-content: center;
-            }
-            .dashboard .welcome {
-                font-size: 22px;
-            }
-            .dash-stat .num {
-                font-size: 22px;
-            }
-        }
-    </style>
+    /* ============ MISC ============ */
+    .seal-svg{width:100%;height:100%;}
+    @media(max-width:980px){
+      .grid{grid-template-columns:repeat(2,1fr);}
+      .trust-grid{grid-template-columns:repeat(3,1fr);}
+      .featured-card,.split,.contact-wrap{grid-template-columns:1fr;}
+      .featured-card .img-wrap{min-height:280px;}
+      .nav-links{display:none;}
+      .footer-grid{grid-template-columns:1fr 1fr;}
+      .reviews-grid{grid-template-columns:1fr;}
+    }
+    @media(max-width:600px){
+      .grid{grid-template-columns:1fr;}
+      .trust-grid{grid-template-columns:repeat(2,1fr);}
+      .hero-stats{grid-template-columns:1fr;position:static;transform:none;margin-top:40px;}
+      .hero-inner{padding-bottom:60px;}
+      .trust{padding-top:60px;}
+      .modal{grid-template-columns:1fr;}
+      .modal-img{min-height:220px;}
+      .footer-grid{grid-template-columns:1fr;}
+      .section{padding:80px 0;}
+    }
+  </style>
 </head>
 <body>
 
-    <!-- ===== ANIMATED BACKGROUND ===== -->
-    <canvas id="particles-canvas"></canvas>
-    <div class="bg-glow bg-glow-1"></div>
-    <div class="bg-glow bg-glow-2"></div>
+<!-- ===================== LOADER ===================== -->
+<div id="loader">
+  <div class="loader-seal">
+    <img src="https://i.imgur.com/fNT2dMN.jpeg" alt="Pure Pasture Beef logo">
+  </div>
+  <div class="loader-brand">PURE PASTURE</div>
+  <div class="loader-sub">Est. Grass-Fed &amp; Grain Finished</div>
+  <div class="loader-bar"><span></span></div>
+</div>
 
-    <!-- ===== TOAST CONTAINER ===== -->
-    <div class="toast-container" id="toastContainer"></div>
+<!-- ===================== TOASTS ===================== -->
+<div id="toast-wrap"></div>
 
-    <!-- ===== FLOATING BUTTONS ===== -->
-    <div class="floating-buttons">
-        <a href="https://wa.me/" target="_blank" class="floating-btn whatsapp">
-            <i class="fab fa-whatsapp"></i>
-        </a>
-        <a href="https://t.me/+SQcfKjslomQxMzM0" target="_blank" class="floating-btn telegram">
-            <i class="fab fa-telegram-plane"></i>
-        </a>
-        <button class="floating-btn top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-            <i class="fas fa-arrow-up"></i>
+<!-- ===================== MARQUEE ===================== -->
+<div class="marquee">
+  <div class="marquee-track">
+    <span>🚚 FREE NATIONWIDE SHIPPING ON ORDERS OVER $150</span>
+    <span>🥩 100% USDA-INSPECTED GRASS-FED BEEF</span>
+    <span>❄️ FLASH-FROZEN &amp; SHIPPED IN 2–3 BUSINESS DAYS</span>
+    <span>🚚 FREE NATIONWIDE SHIPPING ON ORDERS OVER $150</span>
+    <span>🥩 100% USDA-INSPECTED GRASS-FED BEEF</span>
+    <span>❄️ FLASH-FROZEN &amp; SHIPPED IN 2–3 BUSINESS DAYS</span>
+  </div>
+</div>
+
+<!-- ===================== NAVBAR ===================== -->
+<header id="site-header">
+  <div class="container">
+    <nav>
+      <a href="#top" class="brand">
+        <img src="https://i.imgur.com/fNT2dMN.jpeg" alt="Pure Pasture Beef logo">
+        Pure Pasture Beef
+      </a>
+      <div class="nav-links">
+        <a href="#shop">Shop</a>
+        <a href="#ranch">Our Ranch</a>
+        <a href="#shipping">Shipping</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <div class="nav-actions">
+        <button class="icon-btn" id="search-toggle" aria-label="Search products">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
         </button>
-    </div>
-
-    <!-- ===== NAVIGATION ===== -->
-    <nav class="navbar" id="navbar">
-        <div class="nav-container">
-            <div class="logo">
-                <div class="mark">B</div>
-                Boomer's <span>Bet</span> Arena
-            </div>
-            <div class="nav-links" id="navLinks">
-                <a onclick="showPage('landing')" class="active" data-page="landing">Home</a>
-                <a onclick="showPage('dashboard')" data-page="dashboard" class="hidden" id="navDashboard">Dashboard</a>
-                <a onclick="showPage('history')" data-page="history" class="hidden" id="navHistory">History</a>
-                <a onclick="showPage('admin')" data-page="admin" class="hidden" id="adminNavLink">Admin</a>
-            </div>
-            <div class="nav-user">
-                <span id="navUsername" class="hidden"></span>
-                <button class="logout-btn hidden" id="logoutBtn" onclick="logoutUser()">Logout</button>
-                <div class="hamburger" onclick="toggleMobileNav()">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </div>
-        </div>
+        <button class="icon-btn" id="cart-toggle" aria-label="Open cart">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          <span class="cart-badge" id="cart-count-badge">0</span>
+        </button>
+      </div>
     </nav>
+    <div class="search-bar" id="search-bar">
+      <input type="text" id="search-input" placeholder="Search ribeye, ground beef, whole cow…">
+    </div>
+  </div>
+</header>
 
-    <!-- ===== MOBILE NAV ===== -->
-    <div class="mobile-nav" id="mobileNav">
-        <a onclick="showPage('landing');closeMobileNav()">Home</a>
-        <a onclick="showPage('dashboard');closeMobileNav()" id="mobileDashboard" class="hidden">Dashboard</a>
-        <a onclick="showPage('history');closeMobileNav()" id="mobileHistory" class="hidden">History</a>
-        <a onclick="showPage('admin');closeMobileNav()" id="mobileAdmin" class="hidden">Admin</a>
+<!-- ===================== HERO ===================== -->
+<section class="hero" id="top">
+  <div class="hero-inner">
+    <div class="eyebrow">Raised Naturally · Delivered Fresh</div>
+    <h1>Premium Grass-Fed Beef, <em>Straight From Pasture to Plate.</em></h1>
+    <p>USDA-quality beef, raised on open pasture and shipped frozen-fresh anywhere in the United States — in as little as 2–3 business days.</p>
+    <div style="display:flex;gap:16px;flex-wrap:wrap;">
+      <a href="#shop" class="btn btn-gold">Shop The Collection</a>
+      <a href="#ranch" class="btn btn-outline">Our Story</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="stars">★★★★★</div><div class="label">4.9 Average Rating</div></div>
+    <div class="hero-stat"><div class="num" data-count="20000">0</div><div class="label">Happy Customers</div></div>
+    <div class="hero-stat"><div class="num" data-count="48">0</div><div class="label">States Delivered</div></div>
+  </div>
+</section>
+
+<!-- ===================== TRUST ===================== -->
+<section class="section trust">
+  <div class="container">
+    <div class="trust-grid reveal">
+      <div class="trust-item">
+        <svg class="seal-mini" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="44" stroke="#C89B3C" stroke-width="2"/><path d="M32 52l12 12 24-26" stroke="#E6C57A" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>USDA Certified</span>
+      </div>
+      <div class="trust-item">
+        <svg class="seal-mini" viewBox="0 0 100 100" fill="none"><rect x="24" y="30" width="52" height="44" rx="4" stroke="#C89B3C" stroke-width="2"/><path d="M24 42h52" stroke="#E6C57A" stroke-width="2"/></svg>
+        <span>Vacuum Sealed &amp; Frozen</span>
+      </div>
+      <div class="trust-item">
+        <svg class="seal-mini" viewBox="0 0 100 100" fill="none"><rect x="14" y="40" width="46" height="26" rx="3" stroke="#C89B3C" stroke-width="2"/><path d="M60 48h16l10 12v6H60z" stroke="#E6C57A" stroke-width="2"/><circle cx="30" cy="72" r="6" stroke="#E6C57A" stroke-width="2"/><circle cx="72" cy="72" r="6" stroke="#E6C57A" stroke-width="2"/></svg>
+        <span>2–3 Day Delivery</span>
+      </div>
+      <div class="trust-item">
+        <svg class="seal-mini" viewBox="0 0 100 100" fill="none"><rect x="16" y="34" width="68" height="40" rx="6" stroke="#C89B3C" stroke-width="2"/><line x1="16" y1="46" x2="84" y2="46" stroke="#E6C57A" stroke-width="2"/></svg>
+        <span>PayPal &amp; Bitcoin Accepted</span>
+      </div>
+      <div class="trust-item">
+        <svg class="seal-mini" viewBox="0 0 100 100" fill="none"><path d="M50 12l10 20 22 3-16 16 4 22-20-11-20 11 4-22-16-16 22-3z" stroke="#C89B3C" stroke-width="2" stroke-linejoin="round"/></svg>
+        <span>Satisfaction Guaranteed</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SHOP ===================== -->
+<section class="section" id="shop">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow" style="justify-content:center;">The Collection</div>
+      <h2>Cuts Worth Firing Up The Grill For</h2>
+      <p>Every order is hand-cut, professionally packaged, and flash-frozen at peak freshness to arrive tasting like it just left the butcher block.</p>
     </div>
 
-    <!-- ================================================================
-    PAGES
-    ================================================================ -->
-    <div id="app">
-
-        <!-- ===== LANDING PAGE ===== -->
-        <div id="page-landing">
-            <section class="hero">
-                <div class="hero-content">
-                    <div class="hero-badge">
-                        <span class="pulse-dot"></span>
-                        Week 29 Codes Live Now
-                    </div>
-                    <h1>
-                        Weekly <span class="gold">SportyBet</span><br>
-                        <span class="stroke">Booking Codes</span>
-                    </h1>
-                    <p>Boomer's Bet Arena drops fresh, verified SportyBet booking codes every week — free picks for the crowd, sharper VIP slips for serious punters.</p>
-                    <div class="hero-stats">
-                        <div class="hero-stat">
-                            <span class="number" data-count="18000">0</span>
-                            <span class="label">Members</span>
-                        </div>
-                        <div class="hero-stat">
-                            <span class="number" data-count="94">0</span>
-                            <span class="label">% Satisfaction</span>
-                        </div>
-                        <div class="hero-stat">
-                            <span class="number" data-count="1240">0</span>
-                            <span class="label">Winning Codes</span>
-                        </div>
-                    </div>
-                    <div class="hero-ctas">
-                        <button class="btn btn-primary" onclick="showPage('signup')">
-                            <i class="fas fa-rocket"></i> Get Started
-                        </button>
-                        <button class="btn btn-ghost" onclick="showPage('login')">
-                            <i class="fas fa-sign-in-alt"></i> Login
-                        </button>
-                    </div>
-                    <div class="channel-buttons" style="margin-top:32px;">
-                        <a href="https://whatsapp.com/channel/0029VbDRLHhFXUujWcaPUq3U" target="_blank" class="channel-btn channel-btn-whatsapp">
-                            <i class="fab fa-whatsapp"></i> WhatsApp Channel
-                        </a>
-                        <a href="https://t.me/+SQcfKjslomQxMzM0" target="_blank" class="channel-btn channel-btn-telegram">
-                            <i class="fab fa-telegram-plane"></i> Telegram Group
-                        </a>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Features -->
-            <div style="padding:60px 24px;position:relative;z-index:1;">
-                <div class="wrap">
-                    <div class="code-grid stagger-children" id="featuresGrid">
-                        <div class="feature-card" style="background:var(--bg-card);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.05);border-radius:var(--radius-lg);padding:32px;text-align:center;">
-                            <div style="font-size:40px;margin-bottom:16px;">🎯</div>
-                            <h3 style="font-size:18px;font-weight:700;">Daily Free Codes</h3>
-                            <p style="color:var(--text-secondary);font-size:14px;">Well-researched multis posted every day. Copy and paste straight into SportyBet.</p>
-                        </div>
-                        <div class="feature-card" style="background:var(--bg-card);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.05);border-radius:var(--radius-lg);padding:32px;text-align:center;">
-                            <div style="font-size:40px;margin-bottom:16px;">💎</div>
-                            <h3 style="font-size:18px;font-weight:700;">VIP Premium Picks</h3>
-                            <p style="color:var(--text-secondary);font-size:14px;">Higher odds, deeper research. Unlock exclusive slips with better hit rates.</p>
-                        </div>
-                        <div class="feature-card" style="background:var(--bg-card);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.05);border-radius:var(--radius-lg);padding:32px;text-align:center;">
-                            <div style="font-size:40px;margin-bottom:16px;">📊</div>
-                            <h3 style="font-size:18px;font-weight:700;">Track Record</h3>
-                            <p style="color:var(--text-secondary);font-size:14px;">1,240+ codes posted with 18K weekly readers. Join the winning community.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Today's Free Codes -->
-            <div style="padding:60px 24px;background:var(--bg-secondary);position:relative;z-index:1;">
-                <div class="wrap">
-                    <div class="section-header">
-                        <span class="tag">No Charge · Updated Daily</span>
-                        <h2>Today's Free Codes</h2>
-                        <p>Solid, well-researched slips open to everyone.</p>
-                    </div>
-                    <div class="code-grid" id="landingFreeCodes">
-                        <!-- Rendered by JS -->
-                    </div>
-                </div>
-            </div>
-
-            <!-- Testimonials -->
-            <div style="padding:60px 24px;position:relative;z-index:1;">
-                <div class="wrap">
-                    <div class="section-header">
-                        <span class="tag">From The Terraces</span>
-                        <h2>What Members Say</h2>
-                    </div>
-                    <div class="testi-grid" id="testiGrid">
-                        <div class="testi-card">
-                            <div class="stars">★★★★★</div>
-                            <p>"The free codes alone are better than most paid pages I've tried. VIP is a different level though."</p>
-                            <div class="name">— Tunde A.</div>
-                        </div>
-                        <div class="testi-card">
-                            <div class="stars">★★★★★</div>
-                            <p>"I like that everything's dated and easy to copy straight into the app. No stress, no clutter."</p>
-                            <div class="name">— Blessing O.</div>
-                        </div>
-                        <div class="testi-card">
-                            <div class="stars">★★★★★</div>
-                            <p>"Been following the weekly drops for two months. Consistent and easy to follow."</p>
-                            <div class="name">— Chidi E.</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ===== SIGNUP ===== -->
-        <div id="page-signup" class="hidden">
-            <div class="auth-page">
-                <div class="auth-box">
-                    <h2>Create Account</h2>
-                    <p class="sub">Join Boomer's Bet Arena today</p>
-                    <div class="error-msg" id="signupError"></div>
-                    <label>Username</label>
-                    <input type="text" id="signupUsername" placeholder="Enter username">
-                    <label>Email</label>
-                    <input type="email" id="signupEmail" placeholder="Enter email">
-                    <label>Password</label>
-                    <input type="password" id="signupPassword" placeholder="Enter password">
-                    <button class="auth-btn btn-primary" id="signupBtn" onclick="handleSignup()">
-                        <i class="fas fa-user-plus"></i> Create Account
-                    </button>
-                    <div class="auth-link">Already have an account? <a onclick="showPage('login')">Login</a></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ===== LOGIN ===== -->
-        <div id="page-login" class="hidden">
-            <div class="auth-page">
-                <div class="auth-box">
-                    <h2>Welcome Back</h2>
-                    <p class="sub">Login to your account</p>
-                    <div class="error-msg" id="loginError"></div>
-                    <label>Email</label>
-                    <input type="email" id="loginEmail" placeholder="Enter email">
-                    <label>Password</label>
-                    <input type="password" id="loginPassword" placeholder="Enter password">
-                    <button class="auth-btn btn-primary" id="loginBtn" onclick="handleLogin()">
-                        <i class="fas fa-sign-in-alt"></i> Login
-                    </button>
-                    <div class="auth-link">Don't have an account? <a onclick="showPage('signup')">Sign Up</a></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ===== DASHBOARD ===== -->
-        <div id="page-dashboard" class="hidden">
-            <div class="dashboard wrap">
-                <h1 class="welcome">
-                    Good <span id="dashGreeting">Evening</span> <span id="dashUsername"></span> 👋
-                </h1>
-                <p style="color:var(--text-secondary);margin-bottom:24px;">Here's what's available for you today</p>
-
-                <div class="dashboard-stats">
-                    <div class="dash-stat">
-                        <div class="num" id="dashFreeCount">0</div>
-                        <div class="label">Free Codes</div>
-                    </div>
-                    <div class="dash-stat">
-                        <div class="num" id="dashVipCount">0</div>
-                        <div class="label">VIP Codes</div>
-                    </div>
-                    <div class="dash-stat">
-                        <div class="num" id="dashOdds">0</div>
-                        <div class="label">Best Odds</div>
-                    </div>
-                </div>
-
-                <h2 class="section-title">📋 Free Codes</h2>
-                <div class="code-grid" id="dashFreeCodes">
-                    <!-- Rendered by JS -->
-                </div>
-
-                <h2 class="section-title">💎 VIP Codes</h2>
-                <div class="code-grid" id="dashVipCodes">
-                    <!-- Rendered by JS -->
-                </div>
-            </div>
-        </div>
-
-        <!-- ===== VIP UNLOCK ===== -->
-        <div id="page-vip-unlock" class="hidden">
-            <div class="vip-unlock" id="vipUnlockContent">
-                <!-- Rendered by JS -->
-            </div>
-        </div>
-
-        <!-- ===== PAYMENT ===== -->
-        <div id="page-payment" class="hidden">
-            <div class="payment-page" id="paymentContent">
-                <!-- Rendered by JS -->
-            </div>
-        </div>
-
-        <!-- ===== HISTORY ===== -->
-        <div id="page-history" class="hidden">
-            <div class="history-page">
-                <h2>📜 Transaction History</h2>
-                <div id="historyContent">
-                    <!-- Rendered by JS -->
-                </div>
-            </div>
-        </div>
-
-        <!-- ===== ENHANCED ADMIN PANEL ===== -->
-        <div id="page-admin" class="hidden">
-            <div class="admin-panel">
-                <h2>⚙️ Admin Panel</h2>
-
-                <!-- Users Section -->
-                <div class="admin-section">
-                    <h3>👥 All Users <span class="badge" id="userCountBadge">0</span></h3>
-                    <div id="adminUsersList">
-                        <!-- Rendered by JS -->
-                    </div>
-                </div>
-
-                <!-- Free Codes Admin -->
-                <div class="admin-section">
-                    <h3>📋 Free Codes <span class="badge" id="freeCodeCount">0</span></h3>
-                    <div style="margin-bottom:16px;">
-                        <p style="color:var(--text-secondary);font-size:13px;">Add new free code below</p>
-                    </div>
-                    <div class="form-row">
-                        <div class="full">
-                            <label>Fixture Name</label>
-                            <input type="text" id="adminFreeName" placeholder="e.g. Arsenal vs Newcastle + 3 more">
-                        </div>
-                        <div>
-                            <label>League</label>
-                            <input type="text" id="adminFreeLeague" placeholder="e.g. EPL">
-                        </div>
-                        <div>
-                            <label>Odds</label>
-                            <input type="text" id="adminFreeOdds" placeholder="e.g. 6.42">
-                        </div>
-                        <div class="full">
-                            <label>Code</label>
-                            <input type="text" id="adminFreeCode" placeholder="e.g. BBA-7719">
-                        </div>
-                    </div>
-                    <button class="btn-add" onclick="adminAddFreeCode()">➕ Add Free Code</button>
-                    <div style="margin-top:20px;" id="adminFreeList">
-                        <!-- Rendered by JS -->
-                    </div>
-                </div>
-
-                <!-- VIP Codes Admin -->
-                <div class="admin-section">
-                    <h3>💎 VIP Codes <span class="badge" id="vipCodeCount">0</span></h3>
-                    <div style="margin-bottom:16px;">
-                        <p style="color:var(--text-secondary);font-size:13px;">Add new VIP code below</p>
-                    </div>
-                    <div class="form-row">
-                        <div class="full">
-                            <label>Fixture Name</label>
-                            <input type="text" id="adminVipName" placeholder="e.g. Barcelona vs Real Madrid + 3 more">
-                        </div>
-                        <div>
-                            <label>League</label>
-                            <input type="text" id="adminVipLeague" placeholder="e.g. LA LIGA">
-                        </div>
-                        <div>
-                            <label>Odds</label>
-                            <input type="text" id="adminVipOdds" placeholder="e.g. 8.65">
-                        </div>
-                        <div>
-                            <label>Price (Amount)</label>
-                            <input type="text" id="adminVipPrice" placeholder="e.g. ₦5,000">
-                        </div>
-                        <div class="full">
-                            <label>Code (hidden until payment)</label>
-                            <input type="text" id="adminVipCode" placeholder="e.g. VIP-2024-001">
-                        </div>
-                    </div>
-                    <button class="btn-add" onclick="adminAddVipCode()">➕ Add VIP Code</button>
-                    <div style="margin-top:20px;" id="adminVipList">
-                        <!-- Rendered by JS -->
-                    </div>
-                </div>
-
-                <!-- Payment Info Admin -->
-                <div class="admin-section">
-                    <h3>🏦 Payment Information <span class="badge">Edit</span></h3>
-                    <div style="margin-bottom:16px;">
-                        <p style="color:var(--text-secondary);font-size:13px;">Update payment details shown to users</p>
-                    </div>
-                    <div class="form-row">
-                        <div>
-                            <label>Bank Name</label>
-                            <input type="text" id="adminBankName" placeholder="Bank Name">
-                        </div>
-                        <div>
-                            <label>Account Number</label>
-                            <input type="text" id="adminAccountNumber" placeholder="Account Number">
-                        </div>
-                        <div class="full">
-                            <label>Account Name</label>
-                            <input type="text" id="adminAccountName" placeholder="Account Name">
-                        </div>
-                    </div>
-                    <button class="btn-add" onclick="adminUpdatePaymentInfo()">💾 Update Payment Info</button>
-                </div>
-
-                <!-- Transaction History Admin -->
-                <div class="admin-section">
-                    <h3>📜 All Transactions <span class="badge" id="txCountBadge">0</span></h3>
-                    <div id="adminHistoryList">
-                        <!-- Rendered by JS -->
-                    </div>
-                </div>
-            </div>
-        </div>
-
+    <div class="shop-toolbar reveal">
+      <button class="chip active" data-filter="all">All Products</button>
+      <button class="chip" data-filter="cut">Individual Cuts</button>
+      <button class="chip" data-filter="bulk">Bulk Packages</button>
     </div>
 
-    <!-- ===== FOOTER ===== -->
-    <footer class="footer">
-        <div class="wrap">
-            <div class="footer-grid">
-                <div class="brand">
-                    <div class="logo" style="font-size:20px;font-weight:900;">
-                        <div class="mark" style="width:34px;height:34px;border-radius:8px;background:linear-gradient(135deg,var(--accent-gold),#b8860b);display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--bg-primary);">B</div>
-                        Boomer's <span style="color:var(--accent-gold);">Bet</span> Arena
-                    </div>
-                    <p>Independent weekly SportyBet booking code page. We research fixtures and publish booking codes for use on the SportyBet platform.</p>
-                </div>
-                <div>
-                    <h4>Explore</h4>
-                    <ul>
-                        <li><a onclick="showPage('landing')">Home</a></li>
-                        <li><a onclick="showPage('dashboard')">Dashboard</a></li>
-                        <li><a onclick="showPage('history')">History</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4>Support</h4>
-                    <ul>
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">Responsible Betting</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4>Connect</h4>
-                    <div class="footer-socials">
-                        <a href="https://whatsapp.com/channel/0029VbDRLHhFXUujWcaPUq3U" target="_blank"><i class="fab fa-whatsapp"></i></a>
-                        <a href="https://t.me/+SQcfKjslomQxMzM0" target="_blank"><i class="fab fa-telegram-plane"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <span>© 2026 Boomer's Bet Arena. All rights reserved.</span>
-                <span>18+ · Bet Responsibly</span>
-            </div>
+    <div id="featured-slot" class="reveal"></div>
+    <div class="grid" id="product-grid"></div>
+  </div>
+</section>
+
+<!-- ===================== OUR RANCH ===================== -->
+<section class="section" id="ranch" style="background:var(--bg-soft);">
+  <div class="container">
+    <div class="split">
+      <img class="reveal" src="https://i.imgur.com/0OABM8u.jpeg" alt="Pasture-raised cattle" onerror="this.style.background='linear-gradient(135deg,#1a1a1a,#0a0a0a)'; this.style.display='none';">
+      <div class="reveal">
+        <div class="eyebrow">Our Ranch</div>
+        <h2>Raised Slow. Finished Right.</h2>
+        <p>Our cattle graze on open, rotational pastureland with no shortcuts — no added hormones, no unnecessary antibiotics, and no rushed finishing. It's the difference you can taste in every cut.</p>
+        <p>We work directly with independent American ranchers who share our standard for how beef should be raised, so every order supports a real farm, not a feedlot.</p>
+        <a href="#shop" class="btn btn-outline" style="margin-top:10px;">Shop Our Beef</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SHIPPING ===================== -->
+<section class="section" id="shipping">
+  <div class="container">
+    <div class="split">
+      <div class="reveal" style="order:2;">
+        <div class="eyebrow">How Shipping Works</div>
+        <h2>From Our Freezer to Your Door</h2>
+        <p>Every order is packed to arrive as fresh as the day it was cut — no matter where in the country you are.</p>
+        <div class="steps">
+          <div class="step"><div class="dot"></div><div><strong>Cut &amp; Vacuum Sealed</strong><p>Portioned and sealed within hours of processing to lock in freshness.</p></div></div>
+          <div class="step"><div class="dot"></div><div><strong>Flash Frozen</strong><p>Rapidly frozen at peak quality, then packed with dry ice and insulation.</p></div></div>
+          <div class="step"><div class="dot"></div><div><strong>Shipped Nationwide</strong><p>Delivered frozen in 2–3 business days via tracked, expedited shipping.</p></div></div>
+          <div class="step"><div class="dot"></div><div><strong>Arrives Ready to Cook</strong><p>Thaw in the fridge for 24 hours, or cook straight from frozen.</p></div></div>
         </div>
-    </footer>
-
-    <!-- ================================================================
-    FIREBASE SDK
-    ================================================================ -->
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js">
-    </script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js">
-    </script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js">
-    </script>
-
-    <!-- ================================================================
-    JAVASCRIPT
-    ================================================================ -->
-    <script>
-        // ============================================================
-        // FIREBASE CONFIG - YOUR CONFIG
-        // ============================================================
-        const firebaseConfig = {
-            apiKey: "AIzaSyD7dUmV7Bmrc7V69mYaQA_I7iB8JG4T6f8",
-            authDomain: "sporty-arena.firebaseapp.com",
-            projectId: "sporty-arena",
-            storageBucket: "sporty-arena.firebasestorage.app",
-            messagingSenderId: "864228461780",
-            appId: "1:864228461780:web:4382bfb4c1a48bd4443f41",
-            measurementId: "G-1F0K131JFY"
-        };
-
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        const auth = firebase.auth();
-        const db = firebase.firestore();
-
-        // Enable offline persistence
-        db.enablePersistence({ synchronizeTabs: true })
-            .catch((err) => {
-                console.warn('Firebase persistence error:', err);
-            });
-
-        console.log('🔥 Firebase initialized successfully!');
-
-        // ============================================================
-        // COLLECTION REFERENCES
-        // ============================================================
-        const USERS_COLLECTION = 'users';
-        const FREE_CODES_COLLECTION = 'freeCodes';
-        const VIP_CODES_COLLECTION = 'vipCodes';
-        const TRANSACTIONS_COLLECTION = 'transactions';
-        const PAYMENT_INFO_DOC = 'paymentInfo';
-
-        // ============================================================
-        // DATA STATE
-        // ============================================================
-        window.appData = {
-            freeCodes: [],
-            vipCodes: [],
-            transactions: [],
-            users: [],
-            paymentInfo: null,
-            currentUser: null
-        };
-
-        // ============================================================
-        // TOAST SYSTEM
-        // ============================================================
-        function showToast(message, type = 'success') {
-            const container = document.getElementById('toastContainer');
-            const toast = document.createElement('div');
-            toast.className = `toast ${type}`;
-            const icons = { success: '✅', error: '❌', info: 'ℹ️' };
-            toast.innerHTML = `<span class="icon">${icons[type] || 'ℹ️'}</span> ${message}`;
-            container.appendChild(toast);
-            setTimeout(() => {
-                toast.classList.add('fade-out');
-                setTimeout(() => toast.remove(), 300);
-            }, 3500);
-        }
-
-        // ============================================================
-        // AUTH FUNCTIONS
-        // ============================================================
-        async function handleSignup() {
-            const username = document.getElementById('signupUsername').value.trim();
-            const email = document.getElementById('signupEmail').value.trim();
-            const password = document.getElementById('signupPassword').value.trim();
-            const errorEl = document.getElementById('signupError');
-
-            if (!username || !email || !password) {
-                errorEl.textContent = 'All fields are required';
-                errorEl.style.display = 'block';
-                return;
-            }
-
-            errorEl.style.display = 'none';
-            const btn = document.getElementById('signupBtn');
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating...';
-            btn.disabled = true;
-
-            try {
-                // Create auth user
-                const userCredential = await auth.createUserWithEmailAndPassword(email, password);
-                const uid = userCredential.user.uid;
-
-                // Create user document
-                await db.collection(USERS_COLLECTION).doc(uid).set({
-                    username,
-                    email,
-                    isAdmin: false,
-                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
-                });
-
-                btn.innerHTML = '<i class="fas fa-user-plus"></i> Create Account';
-                btn.disabled = false;
-                showToast('Account created successfully! 🎉', 'success');
-                // Auth state listener will handle navigation
-
-            } catch (error) {
-                errorEl.textContent = error.message;
-                errorEl.style.display = 'block';
-                btn.innerHTML = '<i class="fas fa-user-plus"></i> Create Account';
-                btn.disabled = false;
-            }
-        }
-
-        async function handleLogin() {
-            const email = document.getElementById('loginEmail').value.trim();
-            const password = document.getElementById('loginPassword').value.trim();
-            const errorEl = document.getElementById('loginError');
-
-            if (!email || !password) {
-                errorEl.textContent = 'All fields are required';
-                errorEl.style.display = 'block';
-                return;
-            }
-
-            errorEl.style.display = 'none';
-            const btn = document.getElementById('loginBtn');
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Logging in...';
-            btn.disabled = true;
-
-            try {
-                await auth.signInWithEmailAndPassword(email, password);
-                btn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Login';
-                btn.disabled = false;
-                // Auth state listener will handle navigation
-            } catch (error) {
-                errorEl.textContent = 'Invalid email or password';
-                errorEl.style.display = 'block';
-                btn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Login';
-                btn.disabled = false;
-            }
-        }
-
-        async function logoutUser() {
-            try {
-                await auth.signOut();
-                showToast('Logged out successfully', 'info');
-                showPage('landing');
-            } catch (error) {
-                showToast('Error logging out', 'error');
-            }
-        }
-
-        // ============================================================
-        // GET CURRENT USER DATA
-        // ============================================================
-        async function getCurrentUserData() {
-            const user = auth.currentUser;
-            if (!user) return null;
-
-            try {
-                const doc = await db.collection(USERS_COLLECTION).doc(user.uid).get();
-                if (doc.exists) {
-                    return { ...doc.data(), uid: user.uid };
-                }
-                return null;
-            } catch (error) {
-                console.error('Error getting user data:', error);
-                return null;
-            }
-        }
-
-        // ============================================================
-        // INITIALIZE DATA (First time setup)
-        // ============================================================
-        async function initializeFirebaseData() {
-            try {
-                // Check if free codes exist
-                const freeCodesSnap = await db.collection(FREE_CODES_COLLECTION).limit(1).get();
-                if (freeCodesSnap.empty) {
-                    console.log('📝 Seeding initial data...');
-
-                    // Seed free codes
-                    const freeCodes = [
-                        { name: 'Arsenal vs Newcastle + 3 more', league: 'EPL', odds: '6.42', code: 'BBA-7719',
-                            active: true, createdAt: firebase.firestore.FieldValue.serverTimestamp() },
-                        { name: 'Real Sociedad vs Villarreal + 2 more', league: 'LA LIGA', odds: '4.18',
-                            code: 'BBA-7724', active: true, createdAt: firebase.firestore.FieldValue
-                            .serverTimestamp() },
-                        { name: 'Fiorentina vs Torino + 2 more', league: 'SERIE A', odds: '5.05', code: 'BBA-7731',
-                            active: true, createdAt: firebase.firestore.FieldValue.serverTimestamp() },
-                        { name: 'Freiburg vs Mainz + 1 more', league: 'BUNDESLIGA', odds: '3.10', code: 'BBA-7738',
-                            active: true, createdAt: firebase.firestore.FieldValue.serverTimestamp() }
-                    ];
-
-                    for (const code of freeCodes) {
-                        await db.collection(FREE_CODES_COLLECTION).add(code);
-                    }
-
-                    // Seed VIP codes
-                    const vipCodes = [
-                        { name: 'Barcelona vs Real Madrid + 4 more', league: 'LA LIGA · UCL', odds: '11.80',
-                            code: 'VIP-2024-001', price: '₦5,000', active: true, createdAt: firebase.firestore
-                                .FieldValue.serverTimestamp() },
-                        { name: 'Bayern vs Dortmund + 3 more', league: 'BUNDESLIGA', odds: '8.65',
-                            code: 'VIP-2024-002', price: '₦3,500', active: true, createdAt: firebase.firestore
-                                .FieldValue.serverTimestamp() },
-                        { name: 'AC Milan vs Inter + 3 more', league: 'SERIE A', odds: '9.20', code: 'VIP-2024-003',
-                            price: '₦4,200', active: true, createdAt: firebase.firestore.FieldValue
-                            .serverTimestamp() }
-                    ];
-
-                    for (const code of vipCodes) {
-                        await db.collection(VIP_CODES_COLLECTION).add(code);
-                    }
-
-                    // Seed payment info
-                    await db.collection(PAYMENT_INFO_DOC).doc('settings').set({
-                        bankName: 'Testing Bank',
-                        accountNumber: 'Testing',
-                        accountName: 'Testing Account',
-                        updatedAt: firebase.firestore.FieldValue.serverTimestamp()
-                    });
-
-                    console.log('✅ Initial data seeded successfully!');
-                }
-            } catch (error) {
-                console.error('Error initializing data:', error);
-            }
-        }
-
-        // ============================================================
-        // REAL-TIME LISTENERS
-        // ============================================================
-
-        let freeCodesListener = null;
-        let vipCodesListener = null;
-        let transactionsListener = null;
-        let paymentInfoListener = null;
-        let usersListener = null;
-
-        function setupRealtimeListeners() {
-            // Free Codes
-            if (freeCodesListener) freeCodesListener();
-            freeCodesListener = db.collection(FREE_CODES_COLLECTION)
-                .orderBy('createdAt', 'asc')
-                .onSnapshot((snapshot) => {
-                    const codes = [];
-                    snapshot.forEach(doc => {
-                        codes.push({ ...doc.data(), firebaseId: doc.id });
-                    });
-                    window.appData.freeCodes = codes;
-                    renderAllPages();
-                }, (error) => {
-                    console.error('Free codes listener error:', error);
-                });
-
-            // VIP Codes
-            if (vipCodesListener) vipCodesListener();
-            vipCodesListener = db.collection(VIP_CODES_COLLECTION)
-                .orderBy('createdAt', 'asc')
-                .onSnapshot((snapshot) => {
-                    const codes = [];
-                    snapshot.forEach(doc => {
-                        codes.push({ ...doc.data(), firebaseId: doc.id });
-                    });
-                    window.appData.vipCodes = codes;
-                    renderAllPages();
-                }, (error) => {
-                    console.error('VIP codes listener error:', error);
-                });
-
-            // Transactions
-            if (transactionsListener) transactionsListener();
-            transactionsListener = db.collection(TRANSACTIONS_COLLECTION)
-                .orderBy('createdAt', 'desc')
-                .onSnapshot((snapshot) => {
-                    const txs = [];
-                    snapshot.forEach(doc => {
-                        txs.push({ ...doc.data(), firebaseId: doc.id });
-                    });
-                    window.appData.transactions = txs;
-                    renderAllPages();
-                }, (error) => {
-                    console.error('Transactions listener error:', error);
-                });
-
-            // Payment Info
-            if (paymentInfoListener) paymentInfoListener();
-            paymentInfoListener = db.collection(PAYMENT_INFO_DOC).doc('settings')
-                .onSnapshot((doc) => {
-                    if (doc.exists) {
-                        window.appData.paymentInfo = doc.data();
-                        renderAllPages();
-                    }
-                }, (error) => {
-                    console.error('Payment info listener error:', error);
-                });
-
-            // Users
-            if (usersListener) usersListener();
-            usersListener = db.collection(USERS_COLLECTION)
-                .onSnapshot((snapshot) => {
-                    const users = [];
-                    snapshot.forEach(doc => {
-                        users.push({ ...doc.data(), firebaseId: doc.id, uid: doc.id });
-                    });
-                    window.appData.users = users;
-                    renderAllPages();
-                }, (error) => {
-                    console.error('Users listener error:', error);
-                });
-        }
-
-        // ============================================================
-        // CRUD OPERATIONS
-        // ============================================================
-
-        // FREE CODES
-        async function adminAddFreeCode() {
-            const name = document.getElementById('adminFreeName').value.trim();
-            const league = document.getElementById('adminFreeLeague').value.trim();
-            const odds = document.getElementById('adminFreeOdds').value.trim();
-            const code = document.getElementById('adminFreeCode').value.trim();
-
-            if (!name || !league || !odds || !code) {
-                showToast('All fields are required', 'error');
-                return;
-            }
-
-            try {
-                await db.collection(FREE_CODES_COLLECTION).add({
-                    name,
-                    league,
-                    odds,
-                    code,
-                    active: true,
-                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
-                });
-                document.getElementById('adminFreeName').value = '';
-                document.getElementById('adminFreeLeague').value = '';
-                document.getElementById('adminFreeOdds').value = '';
-                document.getElementById('adminFreeCode').value = '';
-                showToast('Free code added! ✅', 'success');
-            } catch (error) {
-                showToast('Error adding code', 'error');
-            }
-        }
-
-        async function adminUpdateFree(firebaseId) {
-            const name = document.getElementById(`free_name_${firebaseId}`).value.trim();
-            const league = document.getElementById(`free_league_${firebaseId}`).value.trim();
-            const odds = document.getElementById(`free_odds_${firebaseId}`).value.trim();
-            const code = document.getElementById(`free_code_${firebaseId}`).value.trim();
-
-            if (!name || !league || !odds || !code) {
-                showToast('All fields are required', 'error');
-                return;
-            }
-
-            try {
-                await db.collection(FREE_CODES_COLLECTION).doc(firebaseId).update({
-                    name,
-                    league,
-                    odds,
-                    code,
-                    updatedAt: firebase.firestore.FieldValue.serverTimestamp()
-                });
-                showToast('Free code updated! ✅', 'success');
-            } catch (error) {
-                showToast('Error updating code', 'error');
-            }
-        }
-
-        async function adminToggleFree(firebaseId) {
-            const code = window.appData.freeCodes.find(c => c.firebaseId === firebaseId);
-            if (code) {
-                try {
-                    await db.collection(FREE_CODES_COLLECTION).doc(firebaseId).update({
-                        active: !code.active
-                    });
-                } catch (error) {
-                    showToast('Error toggling code', 'error');
-                }
-            }
-        }
-
-        async function adminDeleteFree(firebaseId) {
-            if (confirm('Delete this free code?')) {
-                try {
-                    await db.collection(FREE_CODES_COLLECTION).doc(firebaseId).delete();
-                    showToast('Free code deleted', 'info');
-                } catch (error) {
-                    showToast('Error deleting code', 'error');
-                }
-            }
-        }
-
-        // VIP CODES
-        async function adminAddVipCode() {
-            const name = document.getElementById('adminVipName').value.trim();
-            const league = document.getElementById('adminVipLeague').value.trim();
-            const odds = document.getElementById('adminVipOdds').value.trim();
-            const price = document.getElementById('adminVipPrice').value.trim();
-            const code = document.getElementById('adminVipCode').value.trim();
-
-            if (!name || !league || !odds || !price || !code) {
-                showToast('All fields are required', 'error');
-                return;
-            }
-
-            try {
-                await db.collection(VIP_CODES_COLLECTION).add({
-                    name,
-                    league,
-                    odds,
-                    price,
-                    code,
-                    active: true,
-                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
-                });
-                document.getElementById('adminVipName').value = '';
-                document.getElementById('adminVipLeague').value = '';
-                document.getElementById('adminVipOdds').value = '';
-                document.getElementById('adminVipPrice').value = '';
-                document.getElementById('adminVipCode').value = '';
-                showToast('VIP code added! 💎', 'success');
-            } catch (error) {
-                showToast('Error adding VIP code', 'error');
-            }
-        }
-
-        async function adminUpdateVip(firebaseId) {
-            const name = document.getElementById(`vip_name_${firebaseId}`).value.trim();
-            const league = document.getElementById(`vip_league_${firebaseId}`).value.trim();
-            const odds = document.getElementById(`vip_odds_${firebaseId}`).value.trim();
-            const price = document.getElementById(`vip_price_${firebaseId}`).value.trim();
-            const code = document.getElementById(`vip_code_${firebaseId}`).value.trim();
-
-            if (!name || !league || !odds || !price || !code) {
-                showToast('All fields are required', 'error');
-                return;
-            }
-
-            try {
-                await db.collection(VIP_CODES_COLLECTION).doc(firebaseId).update({
-                    name,
-                    league,
-                    odds,
-                    price,
-                    code,
-                    updatedAt: firebase.firestore.FieldValue.serverTimestamp()
-                });
-                showToast('VIP code updated! 💎', 'success');
-            } catch (error) {
-                showToast('Error updating VIP code', 'error');
-            }
-        }
-
-        async function adminToggleVip(firebaseId) {
-            const code = window.appData.vipCodes.find(c => c.firebaseId === firebaseId);
-            if (code) {
-                try {
-                    await db.collection(VIP_CODES_COLLECTION).doc(firebaseId).update({
-                        active: !code.active
-                    });
-                } catch (error) {
-                    showToast('Error toggling VIP code', 'error');
-                }
-            }
-        }
-
-        async function adminDeleteVip(firebaseId) {
-            if (confirm('Delete this VIP code?')) {
-                try {
-                    await db.collection(VIP_CODES_COLLECTION).doc(firebaseId).delete();
-                    showToast('VIP code deleted', 'info');
-                } catch (error) {
-                    showToast('Error deleting VIP code', 'error');
-                }
-            }
-        }
-
-        // PAYMENT INFO
-        async function adminUpdatePaymentInfo() {
-            const bankName = document.getElementById('adminBankName').value.trim();
-            const accountNumber = document.getElementById('adminAccountNumber').value.trim();
-            const accountName = document.getElementById('adminAccountName').value.trim();
-
-            if (!bankName || !accountNumber || !accountName) {
-                showToast('All payment fields are required', 'error');
-                return;
-            }
-
-            try {
-                await db.collection(PAYMENT_INFO_DOC).doc('settings').set({
-                    bankName,
-                    accountNumber,
-                    accountName,
-                    updatedAt: firebase.firestore.FieldValue.serverTimestamp()
-                }, { merge: true });
-                showToast('Payment info updated! 💳', 'success');
-            } catch (error) {
-                showToast('Error updating payment info', 'error');
-            }
-        }
-
-        // TRANSACTIONS
-        async function adminConfirmPayment(firebaseId) {
-            try {
-                await db.collection(TRANSACTIONS_COLLECTION).doc(firebaseId).update({
-                    status: 'confirmed',
-                    confirmedAt: firebase.firestore.FieldValue.serverTimestamp()
-                });
-                showToast('Payment confirmed! ✅', 'success');
-            } catch (error) {
-                showToast('Error confirming payment', 'error');
-            }
-        }
-
-        async function addTransaction(userId, username, vipId, vipName, vipCode, amount, paymentName) {
-            try {
-                await db.collection(TRANSACTIONS_COLLECTION).add({
-                    userId,
-                    username,
-                    vipId,
-                    vipName,
-                    vipCode,
-                    amount,
-                    paymentName,
-                    status: 'pending',
-                    date: new Date().toLocaleString(),
-                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
-                });
-                return true;
-            } catch (error) {
-                console.error('Error adding transaction:', error);
-                return false;
-            }
-        }
-
-        // ============================================================
-        // NAVIGATION
-        // ============================================================
-        function showPage(page) {
-            document.querySelectorAll('[id^="page-"]').forEach(el => el.classList.add('hidden'));
-            const target = document.getElementById('page-' + page);
-            if (target) target.classList.remove('hidden');
-
-            const user = window.appData.currentUser;
-            const isLoggedIn = !!user;
-            const isAdminUser = user && user.isAdmin === true;
-
-            document.getElementById('navDashboard').classList.toggle('hidden', !isLoggedIn);
-            document.getElementById('navHistory').classList.toggle('hidden', !isLoggedIn);
-            document.getElementById('adminNavLink').classList.toggle('hidden', !isAdminUser);
-            document.getElementById('mobileDashboard').classList.toggle('hidden', !isLoggedIn);
-            document.getElementById('mobileHistory').classList.toggle('hidden', !isLoggedIn);
-            document.getElementById('mobileAdmin').classList.toggle('hidden', !isAdminUser);
-
-            document.querySelectorAll('.nav-links a').forEach(el => el.classList.remove('active'));
-            const activeLink = document.querySelector(`.nav-links a[data-page="${page}"]`);
-            if (activeLink) activeLink.classList.add('active');
-
-            const navUsername = document.getElementById('navUsername');
-            const logoutBtn = document.getElementById('logoutBtn');
-            if (isLoggedIn) {
-                navUsername.textContent = user.username;
-                navUsername.classList.remove('hidden');
-                logoutBtn.classList.remove('hidden');
-            } else {
-                navUsername.classList.add('hidden');
-                logoutBtn.classList.add('hidden');
-            }
-
-            if (page === 'landing') { renderLandingFreeCodes();
-                animateCounters(); }
-            if (page === 'dashboard') renderDashboard();
-            if (page === 'history') renderHistory();
-            if (page === 'admin') renderAdminPanels();
-
-            closeMobileNav();
-            window.scrollTo(0, 0);
-            updateGreeting();
-        }
-
-        function updateGreeting() {
-            const hour = new Date().getHours();
-            let greeting = 'Morning';
-            if (hour >= 12 && hour < 17) greeting = 'Afternoon';
-            else if (hour >= 17) greeting = 'Evening';
-            document.getElementById('dashGreeting').textContent = greeting;
-        }
-
-        function toggleMobileNav() {
-            document.getElementById('mobileNav').classList.toggle('open');
-        }
-
-        function closeMobileNav() {
-            document.getElementById('mobileNav').classList.remove('open');
-        }
-
-        // ============================================================
-        // RENDER FUNCTIONS
-        // ============================================================
-        function renderAllPages() {
-            const currentPage = document.querySelector('[id^="page-"]:not(.hidden)');
-            if (!currentPage) return;
-
-            const pageId = currentPage.id.replace('page-', '');
-            if (pageId === 'landing') renderLandingFreeCodes();
-            else if (pageId === 'dashboard') renderDashboard();
-            else if (pageId === 'history') renderHistory();
-            else if (pageId === 'admin') renderAdminPanels();
-        }
-
-        function renderLandingFreeCodes() {
-            const container = document.getElementById('landingFreeCodes');
-            const activeCodes = window.appData.freeCodes.filter(c => c.active);
-            container.innerHTML = activeCodes.map(c => `
-                    <div class="code-card fade-up">
-                        <div class="top-row">
-                            <span class="league-tag">${c.league}</span>
-                            <span class="status-tag"><span class="dot"></span>Active</span>
-                        </div>
-                        <div class="fixture">${c.name}</div>
-                        <div class="fixture-time">Multi · Today</div>
-                        <div class="code-row">
-                            <span class="code-val">${c.code}</span>
-                            <button class="copy-btn" onclick="copyCode(this,'${c.code}')">Copy</button>
-                        </div>
-                        <div class="odds-row"><span>Combined odds</span><strong>${c.odds}</strong></div>
-                    </div>
-                `).join('');
-            observeElements();
-        }
-
-        function renderDashboard() {
-            const user = window.appData.currentUser;
-            if (!user) return;
-            document.getElementById('dashUsername').textContent = user.username;
-
-            const activeFree = window.appData.freeCodes.filter(c => c.active);
-            const activeVip = window.appData.vipCodes.filter(c => c.active);
-
-            document.getElementById('dashFreeCount').textContent = activeFree.length;
-            document.getElementById('dashVipCount').textContent = activeVip.length;
-            const bestOdds = Math.max(...activeVip.map(c => parseFloat(c.odds)), 0);
-            document.getElementById('dashOdds').textContent = bestOdds > 0 ? bestOdds.toFixed(2) : '0';
-
-            document.getElementById('dashFreeCodes').innerHTML = activeFree.map(c => `
-                    <div class="code-card">
-                        <div class="top-row">
-                            <span class="league-tag">${c.league}</span>
-                            <span class="status-tag"><span class="dot"></span>Active</span>
-                        </div>
-                        <div class="fixture">${c.name}</div>
-                        <div class="fixture-time">Multi · Today</div>
-                        <div class="code-row">
-                            <span class="code-val">${c.code}</span>
-                            <button class="copy-btn" onclick="copyCode(this,'${c.code}')">Copy</button>
-                        </div>
-                        <div class="odds-row"><span>Combined odds</span><strong>${c.odds}</strong></div>
-                    </div>
-                `).join('');
-
-            document.getElementById('dashVipCodes').innerHTML = activeVip.map(c => `
-                    <div class="code-card vip">
-                        <span class="vip-badge">⭐ VIP</span>
-                        <div class="top-row">
-                            <span class="league-tag">${c.league}</span>
-                            <span class="status-tag"><span class="dot"></span>Locked</span>
-                        </div>
-                        <div class="fixture">${c.name}</div>
-                        <div class="fixture-time">Multi · Today</div>
-                        <div class="code-row">
-                            <span class="code-val" style="filter:blur(6px);user-select:none;">${c.code}</span>
-                            <span class="vip-price">${c.price}</span>
-                        </div>
-                        <div class="odds-row">
-                            <span>Combined odds</span>
-                            <strong>${c.odds}</strong>
-                        </div>
-                        <button class="unlock-btn" onclick="startUnlock('${c.firebaseId}')">🔓 Unlock Code</button>
-                    </div>
-                `).join('');
-            observeElements();
-        }
-
-        // ============================================================
-        // VIP UNLOCK
-        // ============================================================
-        let currentUnlockVipId = null;
-
-        function startUnlock(firebaseId) {
-            currentUnlockVipId = firebaseId;
-            const vip = window.appData.vipCodes.find(c => c.firebaseId === firebaseId);
-            if (!vip) return;
-
-            const container = document.getElementById('vipUnlockContent');
-            container.innerHTML = `
-                    <h2>🔓 Unlock VIP Code</h2>
-                    <p style="color:var(--text-secondary);">Preview the code below. Payment required to reveal.</p>
-                    <div class="code-preview" style="filter:blur(8px);user-select:none;">${vip.code}</div>
-                    <div class="amount">
-                        Amount: <span>${vip.price}</span>
-                    </div>
-                    <button class="btn btn-gold" onclick="goToPayment()" style="width:100%;justify-content:center;">
-                        💳 Make Payment
-                    </button>
-                    <button class="btn btn-ghost" onclick="showPage('dashboard')" style="width:100%;margin-top:12px;justify-content:center;">
-                        ← Back to Dashboard
-                    </button>
-                `;
-            showPage('vip-unlock');
-        }
-
-        function goToPayment() {
-            const vip = window.appData.vipCodes.find(c => c.firebaseId === currentUnlockVipId);
-            if (!vip) return;
-
-            const container = document.getElementById('paymentContent');
-            container.innerHTML = `
-                    <div class="spinner-container">
-                        <div class="spinner"></div>
-                        <p style="margin-top:16px;color:var(--text-secondary);">Loading payment details...</p>
-                    </div>
-                `;
-            showPage('payment');
-
-            setTimeout(() => {
-                const paymentInfo = window.appData.paymentInfo || {
-                    bankName: 'Testing Bank',
-                    accountNumber: 'Testing',
-                    accountName: 'Testing Account'
-                };
-                container.innerHTML = `
-                        <h2>💳 Complete Payment</h2>
-                        <p style="color:var(--text-secondary);margin-bottom:16px;">Send the exact amount to the account below</p>
-                        <div class="account-info">
-                            <p>🏦 Bank: <span>${paymentInfo.bankName}</span></p>
-                            <p>📋 Account Number: <span>${paymentInfo.accountNumber}</span></p>
-                            <p>👤 Account Name: <span>${paymentInfo.accountName}</span></p>
-                            <p style="margin-top:12px;color:var(--accent-gold);font-weight:800;">Amount: ${vip.price}</p>
-                        </div>
-                        <label style="display:block;text-align:left;font-weight:600;font-size:13px;color:var(--text-secondary);margin-top:16px;">
-                            Enter your name as on bank (exact match)
-                        </label>
-                        <input type="text" id="paymentName" placeholder="e.g. John Doe">
-                        <div class="telegram-proof">
-                            <p style="font-size:13px;">📸 After payment, send your proof to our Telegram:</p>
-                            <a href="https://t.me/+SQcfKjslomQxMzM0" target="_blank">https://t.me/+SQcfKjslomQxMzM0</a>
-                        </div>
-                        <button class="btn btn-primary" onclick="confirmPayment()" style="width:100%;justify-content:center;">
-                            ✅ I Have Paid
-                        </button>
-                        <button class="btn btn-ghost" onclick="showPage('dashboard')" style="width:100%;margin-top:12px;justify-content:center;">
-                            ← Cancel
-                        </button>
-                    `;
-            }, 2000);
-        }
-
-        async function confirmPayment() {
-            const name = document.getElementById('paymentName').value.trim();
-            if (!name) {
-                showToast('Please enter your name as on bank', 'error');
-                return;
-            }
-
-            const user = window.appData.currentUser;
-            const vip = window.appData.vipCodes.find(c => c.firebaseId === currentUnlockVipId);
-            if (!vip || !user) return;
-
-            const container = document.getElementById('paymentContent');
-            container.innerHTML = `
-                    <div class="spinner-container">
-                        <div class="spinner"></div>
-                        <p style="margin-top:16px;color:var(--text-secondary);">Confirming payment...</p>
-                    </div>
-                `;
-
-            const success = await addTransaction(
-                user.uid,
-                user.username,
-                vip.firebaseId,
-                vip.name,
-                vip.code,
-                vip.price,
-                name
-            );
-
-            if (success) {
-                showToast('Payment submitted! Waiting for confirmation.', 'info');
-                setTimeout(() => {
-                    showPage('history');
-                    renderHistory();
-                }, 1000);
-            } else {
-                showToast('Error submitting payment', 'error');
-                showPage('dashboard');
-            }
-        }
-
-        // ============================================================
-        // HISTORY
-        // ============================================================
-        function renderHistory() {
-            const user = window.appData.currentUser;
-            if (!user) return;
-            const container = document.getElementById('historyContent');
-            const userTxs = window.appData.transactions.filter(t => t.userId === user.uid);
-
-            if (userTxs.length === 0) {
-                container.innerHTML =
-                    `<p style="text-align:center;color:var(--text-secondary);padding:40px 0;">No transactions yet.</p>`;
-                return;
-            }
-
-            container.innerHTML = userTxs.map(t => `
-                    <div class="history-card">
-                        <div class="left">
-                            <span class="code ${t.status === 'pending' ? 'blurred' : ''}">${t.vipCode}</span>
-                            <span class="meta">${t.vipName} · ${t.date}</span>
-                        </div>
-                        <div class="right">
-                            <span class="amount">${t.amount}</span>
-                            <span class="status-badge ${t.status}">${t.status}</span>
-                        </div>
-                    </div>
-                `).join('');
-
-            if (userTxs.some(t => t.status === 'pending')) {
-                container.innerHTML += `
-                        <div class="history-msg">
-                            <strong>⏳ Pending Payment</strong><br>
-                            Your payment will be confirmed within 1-5 minutes and your code will be available to copy.<br>
-                            Please make sure to send your proof of payment to the provided Telegram chat to avoid failed payment.
-                        </div>
-                    `;
-            }
-        }
-
-        // ============================================================
-        // ADMIN PANEL
-        // ============================================================
-        function renderAdminPanels() {
-            const user = window.appData.currentUser;
-            if (!user || !user.isAdmin) return;
-
-            const paymentInfo = window.appData.paymentInfo || { bankName: 'Testing Bank', accountNumber: 'Testing',
-                accountName: 'Testing Account' };
-            document.getElementById('adminBankName').value = paymentInfo.bankName || '';
-            document.getElementById('adminAccountNumber').value = paymentInfo.accountNumber || '';
-            document.getElementById('adminAccountName').value = paymentInfo.accountName || '';
-
-            renderAdminUsers();
-            renderAdminFreeCodes();
-            renderAdminVipCodes();
-            renderAdminHistory();
-
-            document.getElementById('userCountBadge').textContent = window.appData.users.length;
-            document.getElementById('freeCodeCount').textContent = window.appData.freeCodes.length;
-            document.getElementById('vipCodeCount').textContent = window.appData.vipCodes.length;
-            document.getElementById('txCountBadge').textContent = window.appData.transactions.length;
-        }
-
-        function renderAdminUsers() {
-            const container = document.getElementById('adminUsersList');
-            container.innerHTML = window.appData.users.map(u => `
-                    <div class="user-item">
-                        <div class="user-info">
-                            <span class="username">${u.username}</span>
-                            <span class="email">${u.email}</span>
-                            <span class="role ${u.isAdmin ? 'admin' : ''}">${u.isAdmin ? 'Admin' : 'User'}</span>
-                        </div>
-                        <div class="user-tx-count">
-                            ${window.appData.transactions.filter(t => t.userId === u.uid).length} transactions
-                        </div>
-                    </div>
-                `).join('');
-        }
-
-        function renderAdminFreeCodes() {
-            const container = document.getElementById('adminFreeList');
-            if (window.appData.freeCodes.length === 0) {
-                container.innerHTML = '<p style="color:var(--text-secondary);">No free codes yet. Add one above.</p>';
-                return;
-            }
-            container.innerHTML = window.appData.freeCodes.map(c => `
-                    <div class="admin-item">
-                        <div class="item-info">
-                            <input class="edit-input" id="free_name_${c.firebaseId}" value="${c.name}" placeholder="Name">
-                            <input class="edit-input" id="free_league_${c.firebaseId}" value="${c.league}" placeholder="League" style="width:80px;">
-                            <input class="edit-input" id="free_odds_${c.firebaseId}" value="${c.odds}" placeholder="Odds" style="width:60px;">
-                            <input class="edit-input" id="free_code_${c.firebaseId}" value="${c.code}" placeholder="Code" style="width:100px;">
-                            <span style="font-size:11px;color:${c.active ? 'var(--accent-green)' : 'var(--accent-red)'};">${c.active ? 'Active' : 'Inactive'}</span>
-                        </div>
-                        <div class="item-actions">
-                            <button class="btn-save" onclick="adminUpdateFree('${c.firebaseId}')">💾 Save</button>
-                            <button class="btn-save" onclick="adminToggleFree('${c.firebaseId}')">${c.active ? 'Deactivate' : 'Activate'}</button>
-                            <button class="btn-delete" onclick="adminDeleteFree('${c.firebaseId}')">Delete</button>
-                        </div>
-                    </div>
-                `).join('');
-        }
-
-        function renderAdminVipCodes() {
-            const container = document.getElementById('adminVipList');
-            if (window.appData.vipCodes.length === 0) {
-                container.innerHTML = '<p style="color:var(--text-secondary);">No VIP codes yet. Add one above.</p>';
-                return;
-            }
-            container.innerHTML = window.appData.vipCodes.map(c => `
-                    <div class="admin-item">
-                        <div class="item-info">
-                            <input class="edit-input" id="vip_name_${c.firebaseId}" value="${c.name}" placeholder="Name">
-                            <input class="edit-input" id="vip_league_${c.firebaseId}" value="${c.league}" placeholder="League" style="width:80px;">
-                            <input class="edit-input" id="vip_odds_${c.firebaseId}" value="${c.odds}" placeholder="Odds" style="width:60px;">
-                            <input class="edit-input" id="vip_price_${c.firebaseId}" value="${c.price}" placeholder="Price" style="width:80px;">
-                            <input class="edit-input" id="vip_code_${c.firebaseId}" value="${c.code}" placeholder="Code" style="width:100px;">
-                            <span style="font-size:11px;color:${c.active ? 'var(--accent-green)' : 'var(--accent-red)'};">${c.active ? 'Active' : 'Inactive'}</span>
-                        </div>
-                        <div class="item-actions">
-                            <button class="btn-save" onclick="adminUpdateVip('${c.firebaseId}')">💾 Save</button>
-                            <button class="btn-save" onclick="adminToggleVip('${c.firebaseId}')">${c.active ? 'Deactivate' : 'Activate'}</button>
-                            <button class="btn-delete" onclick="adminDeleteVip('${c.firebaseId}')">Delete</button>
-                        </div>
-                    </div>
-                `).join('');
-        }
-
-        function renderAdminHistory() {
-            const container = document.getElementById('adminHistoryList');
-            if (window.appData.transactions.length === 0) {
-                container.innerHTML = '<p style="color:var(--text-secondary);">No transactions yet.</p>';
-                return;
-            }
-            container.innerHTML = window.appData.transactions.map(t => `
-                    <div class="admin-item">
-                        <div class="item-info">
-                            <span><strong>${t.username}</strong></span>
-                            <span style="color:var(--text-secondary);font-size:12px;">${t.vipName}</span>
-                            <span style="font-weight:700;">${t.amount}</span>
-                            <span style="font-size:12px;color:var(--text-secondary);">${t.date}</span>
-                            <span class="status-badge ${t.status}">${t.status}</span>
-                            ${t.paymentName ? `<span style="font-size:12px;color:var(--text-secondary);">Bank: ${t.paymentName}</span>` : ''}
-                        </div>
-                        <div class="item-actions">
-                            ${t.status === 'pending' ? `
-                                <button class="btn-save" onclick="adminConfirmPayment('${t.firebaseId}')">✅ Confirm</button>
-                            ` : ''}
-                        </div>
-                    </div>
-                `).join('');
-        }
-
-        // ============================================================
-        // COPY
-        // ============================================================
-        function copyCode(btn, code) {
-            navigator.clipboard.writeText(code).then(() => {
-                const original = btn.textContent;
-                btn.textContent = 'Copied! ✅';
-                btn.style.background = 'var(--accent-green)';
-                btn.style.color = 'var(--bg-primary)';
-                setTimeout(() => {
-                    btn.textContent = original;
-                    btn.style.background = '';
-                    btn.style.color = '';
-                }, 1500);
-                showToast('Code copied! 📋', 'success');
-            }).catch(() => {
-                showToast('Failed to copy', 'error');
-            });
-        }
-
-        // ============================================================
-        // ANIMATION OBSERVER
-        // ============================================================
-        function observeElements() {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, { threshold: 0.1 });
-
-            document.querySelectorAll('.fade-up, .stagger-children').forEach(el => {
-                if (!el.classList.contains('visible')) {
-                    observer.observe(el);
-                }
-            });
-        }
-
-        // ============================================================
-        // COUNTER ANIMATION
-        // ============================================================
-        function animateCounters() {
-            document.querySelectorAll('.number[data-count]').forEach(el => {
-                const target = parseInt(el.dataset.count);
-                if (el.dataset.animated) return;
-                el.dataset.animated = 'true';
-                let current = 0;
-                const increment = target / 60;
-                const timer = setInterval(() => {
-                    current += increment;
-                    if (current >= target) {
-                        el.textContent = target + (target > 100 ? '+' : '%');
-                        clearInterval(timer);
-                    } else {
-                        el.textContent = Math.floor(current);
-                    }
-                }, 20);
-            });
-        }
-
-        // ============================================================
-        // NAVBAR SCROLL
-        // ============================================================
-        window.addEventListener('scroll', () => {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-
-        // ============================================================
-        // PARTICLES
-        // ============================================================
-        (function initParticles() {
-            const canvas = document.getElementById('particles-canvas');
-            const ctx = canvas.getContext('2d');
-            let width, height, particles = [];
-
-            function resize() {
-                width = canvas.width = window.innerWidth;
-                height = canvas.height = window.innerHeight;
-            }
-            window.addEventListener('resize', resize);
-            resize();
-
-            class Particle {
-                constructor() { this.reset(); }
-                reset() {
-                    this.x = Math.random() * width;
-                    this.y = Math.random() * height;
-                    this.size = Math.random() * 2 + 0.5;
-                    this.speedX = (Math.random() - 0.5) * 0.5;
-                    this.speedY = (Math.random() - 0.5) * 0.5;
-                    this.opacity = Math.random() * 0.5 + 0.2;
-                }
-                update() {
-                    this.x += this.speedX;
-                    this.y += this.speedY;
-                    if (this.x < 0 || this.x > width || this.y < 0 || this.y > height) { this.reset(); }
-                }
-                draw() {
-                    ctx.beginPath();
-                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                    ctx.fillStyle = `rgba(255, 215, 0, ${this.opacity})`;
-                    ctx.fill();
-                }
-            }
-
-            for (let i = 0; i < 80; i++) { particles.push(new Particle()); }
-
-            function animate() {
-                ctx.clearRect(0, 0, width, height);
-                particles.forEach(p => { p.update();
-                    p.draw(); });
-                for (let i = 0; i < particles.length; i++) {
-                    for (let j = i + 1; j < particles.length; j++) {
-                        const dx = particles[i].x - particles[j].x;
-                        const dy = particles[i].y - particles[j].y;
-                        const dist = Math.sqrt(dx * dx + dy * dy);
-                        if (dist < 150) {
-                            ctx.beginPath();
-                            ctx.moveTo(particles[i].x, particles[i].y);
-                            ctx.lineTo(particles[j].x, particles[j].y);
-                            ctx.strokeStyle = `rgba(255, 215, 0, ${0.05 * (1 - dist / 150)})`;
-                            ctx.lineWidth = 0.5;
-                            ctx.stroke();
-                        }
-                    }
-                }
-                requestAnimationFrame(animate);
-            }
-            animate();
-        })();
-
-        // ============================================================
-        // AUTH STATE LISTENER
-        // ============================================================
-        auth.onAuthStateChanged(async (user) => {
-            if (user) {
-                const userData = await getCurrentUserData();
-                if (userData) {
-                    window.appData.currentUser = userData;
-                    // Check if admin
-                    if (userData.isAdmin) {
-                        console.log('👑 Admin logged in:', userData.username);
-                    }
-                    showPage('dashboard');
-                    showToast(`Welcome back, ${userData.username}! 👋`, 'success');
-                }
-            } else {
-                window.appData.currentUser = null;
-                showPage('landing');
-            }
-        });
-
-        // ============================================================
-        // INIT
-        // ============================================================
-        async function init() {
-            try {
-                await initializeFirebaseData();
-                setupRealtimeListeners();
-                console.log('🔥 Firebase fully initialized!');
-                console.log('📊 App Data:', window.appData);
-            } catch (error) {
-                console.error('Firebase init error:', error);
-            }
-        }
-
-        init();
-
-        // Make functions globally accessible
-        window.showPage = showPage;
-        window.handleSignup = handleSignup;
-        window.handleLogin = handleLogin;
-        window.logoutUser = logoutUser;
-        window.copyCode = copyCode;
-        window.startUnlock = startUnlock;
-        window.goToPayment = goToPayment;
-        window.confirmPayment = confirmPayment;
-        window.adminAddFreeCode = adminAddFreeCode;
-        window.adminUpdateFree = adminUpdateFree;
-        window.adminToggleFree = adminToggleFree;
-        window.adminDeleteFree = adminDeleteFree;
-        window.adminAddVipCode = adminAddVipCode;
-        window.adminUpdateVip = adminUpdateVip;
-        window.adminToggleVip = adminToggleVip;
-        window.adminDeleteVip = adminDeleteVip;
-        window.adminUpdatePaymentInfo = adminUpdatePaymentInfo;
-        window.adminConfirmPayment = adminConfirmPayment;
-        window.toggleMobileNav = toggleMobileNav;
-        window.closeMobileNav = closeMobileNav;
-
-        console.log('🚀 App ready!');
-        console.log('🔑 Admin login: Create an account then set isAdmin=true in Firestore');
-    </script>
+      </div>
+      <img class="reveal" style="order:1;" src="https://i.imgur.com/C9AOK49.jpeg" alt="Beef shipping package" onerror="this.style.background='linear-gradient(135deg,#1a1a1a,#0a0a0a)'; this.style.display='none';">
+    </div>
+  </div>
+</section>
+
+<!-- ===================== REVIEWS ===================== -->
+<section class="section" id="reviews" style="background:var(--bg-soft);">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow" style="justify-content:center;">Customer Reviews</div>
+      <h2>Trusted By Home Cooks Across America</h2>
+    </div>
+    <div class="reviews-grid reveal">
+      <div class="review-card">
+        <div class="review-top"><div class="avatar">M</div><div><div class="review-name">Mark T.</div><div class="review-loc">Austin, TX</div></div></div>
+        <div class="stars">★★★★★</div>
+        <p style="margin-top:10px;">Best steak I've cooked at home, hands down. The ribeye had incredible marbling and arrived still ice-cold after three days in transit.</p>
+      </div>
+      <div class="review-card">
+        <div class="review-top"><div class="avatar">J</div><div><div class="review-name">Jenna R.</div><div class="review-loc">Columbus, OH</div></div></div>
+        <div class="stars">★★★★★</div>
+        <p style="margin-top:10px;">Ordered the quarter cow for our family freezer and it's easily the best value we've found. Every cut is labeled and vacuum sealed perfectly.</p>
+      </div>
+      <div class="review-card">
+        <div class="review-top"><div class="avatar">D</div><div><div class="review-name">David K.</div><div class="review-loc">Portland, OR</div></div></div>
+        <div class="stars">★★★★★</div>
+        <p style="margin-top:10px;">Packaging alone tells you this is a premium company. Beef tastes noticeably cleaner than anything from the grocery store.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FAQ ===================== -->
+<section class="section" id="faq">
+  <div class="container" style="max-width:800px;">
+    <div class="section-head reveal">
+      <div class="eyebrow" style="justify-content:center;">FAQ</div>
+      <h2>Good To Know</h2>
+    </div>
+    <div class="reveal">
+      <div class="faq-item">
+        <div class="faq-q"><span>How long does shipping take?</span><span class="plus">+</span></div>
+        <div class="faq-a"><p>Orders are processed within 1 business day and arrive frozen within 2–3 business days via expedited shipping, nationwide.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>What payment methods do you accept?</span><span class="plus">+</span></div>
+        <div class="faq-a"><p>We accept secure payments via PayPal and Bitcoin, with more options coming soon.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>Is your beef really grass-fed?</span><span class="plus">+</span></div>
+        <div class="faq-a"><p>Yes — our cattle are pasture-raised and grass-fed, sourced from independent American ranchers who meet our quality standards.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>Can I order custom cuts?</span><span class="plus">+</span></div>
+        <div class="faq-a"><p>Absolutely. Reach out through the contact form below and we'll help you build a custom order.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== NEWSLETTER + CONTACT ===================== -->
+<section class="section" id="contact" style="background:var(--bg-soft);">
+  <div class="container">
+    <div class="contact-wrap">
+      <div class="form-card reveal">
+        <h3>Join The Herd</h3>
+        <p class="sub">Get $10 off your first order plus early access to new cuts and seasonal drops.</p>
+        <form id="newsletter-form">
+          <div class="field"><label>Email Address</label><input type="email" required placeholder="you@example.com"></div>
+          <button type="submit" class="btn btn-gold" style="width:100%;justify-content:center;">Subscribe</button>
+        </form>
+      </div>
+      <div class="form-card reveal">
+        <h3>Get In Touch</h3>
+        <p class="sub">Questions about an order, bulk pricing, or custom cuts? Send us a message.</p>
+        <form id="contact-form">
+          <div class="field"><label>Email Address</label><input type="email" required placeholder="you@example.com"></div>
+          <div class="field"><label>Message</label><textarea required placeholder="Tell us how we can help…"></textarea></div>
+          <button type="submit" class="btn btn-gold" style="width:100%;justify-content:center;">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand"><img src="https://i.imgur.com/fNT2dMN.jpeg" alt="logo">Pure Pasture Beef</div>
+        <p class="tag">Premium grass-fed beef, raised naturally and delivered fresh across the USA.</p>
+        <div class="socials" style="margin-top:20px;">
+          <a href="#" aria-label="Instagram">IG</a>
+          <a href="#" aria-label="Facebook">FB</a>
+          <a href="#" aria-label="Twitter">X</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Shop</h5>
+        <a href="#shop">Individual Cuts</a>
+        <a href="#shop">Bulk Packages</a>
+        <a href="#shop">Best Sellers</a>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <a href="#ranch">Our Ranch</a>
+        <a href="#shipping">Shipping</a>
+        <a href="#reviews">Reviews</a>
+      </div>
+      <div class="footer-col">
+        <h5>Support</h5>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact Us</a>
+        <a href="#">Privacy Policy</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Pure Pasture Beef. All rights reserved.</span>
+      <span>Made with care, shipped with pride 🇺🇸</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ===================== FLOATING UI ===================== -->
+<div class="help-btn"><span class="dot-live"></span> Need Help? Chat With Us</div>
+<button class="top-btn" id="top-btn" aria-label="Scroll to top">
+  <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+</button>
+<div class="floating-cart" id="floating-cart">
+  🛒 <span id="fc-count">0</span> Items · <span id="fc-total">$0.00</span>
+</div>
+
+<!-- ===================== PRODUCT MODAL ===================== -->
+<div class="overlay" id="product-overlay">
+  <div class="modal">
+    <button class="close-x" id="modal-close">✕</button>
+    <div class="modal-img"><img id="modal-img" src="" alt=""></div>
+    <div class="modal-info">
+      <div class="cat" id="modal-cat"></div>
+      <h3 id="modal-name"></h3>
+      <div class="stars">★★★★★</div>
+      <p class="desc" id="modal-desc"></p>
+      <div class="selector-label" id="weight-label">Select Weight</div>
+      <div class="weight-chips" id="modal-weights"></div>
+      <div class="qty-row">
+        <div class="selector-label" style="margin:0;">Quantity</div>
+        <div class="qty-control">
+          <button id="qty-minus">–</button>
+          <span id="qty-val">1</span>
+          <button id="qty-plus">+</button>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <div class="modal-price" id="modal-price"></div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn btn-gold" id="add-to-cart-btn">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== CART DRAWER ===================== -->
+<div class="overlay" id="drawer-overlay" style="background:rgba(4,4,4,0.55);"></div>
+<div class="drawer" id="cart-drawer">
+  <div class="drawer-head">
+    <h3>Your Cart</h3>
+    <button class="close-x" id="drawer-close" style="position:static;">✕</button>
+  </div>
+  <div class="drawer-items" id="drawer-items"></div>
+  <div class="drawer-foot">
+    <div class="subtotal"><span>Subtotal</span><span id="drawer-subtotal">$0.00</span></div>
+    <button class="btn btn-gold" id="checkout-btn">Proceed to Checkout</button>
+  </div>
+</div>
+
+<!-- ===================== CHECKOUT ===================== -->
+<div class="checkout-overlay" id="checkout-overlay">
+  <button class="checkout-close" id="checkout-close">✕</button>
+  <div class="checkout-wrap">
+    <div class="progress-bar"><div class="seg"><i id="seg1"></i></div><div class="seg"><i id="seg2"></i></div><div class="seg"><i id="seg3"></i></div></div>
+
+    <div class="checkout-step active" id="step-shipping">
+      <div class="eyebrow">Step 1 of 3</div>
+      <h2>Shipping Details</h2>
+      <p class="sub">Tell us where to send your order.</p>
+      <form id="shipping-form">
+        <div class="field"><label>Full Name</label><input type="text" id="cust-name" required placeholder="Jane Doe"></div>
+        <div class="field"><label>Email Address</label><input type="email" id="cust-email" required placeholder="you@example.com"></div>
+        <div class="field"><label>State</label>
+          <select id="cust-state" required>
+            <option value="" disabled selected>Select your state</option>
+          </select>
+        </div>
+        <div class="field"><label>Delivery Address</label><input type="text" id="cust-address" required placeholder="123 Main St, City, ZIP"></div>
+        <button type="submit" class="btn btn-gold" id="proceed-btn" style="width:100%;justify-content:center;margin-top:10px;">
+          <span id="proceed-label">Proceed to Payment</span>
+          <span class="saving-state" id="saving-state"><span class="spinner"></span> Saving information…</span>
+        </button>
+      </form>
+    </div>
+
+    <div class="checkout-step" id="step-payment">
+      <div class="eyebrow">Step 2 of 3</div>
+      <h2>Secure Payment</h2>
+      <p class="sub">Review your order and choose how you'd like to pay.</p>
+
+      <div class="payment-summary" id="payment-summary"></div>
+
+      <div class="dropdown-wrap">
+        <button type="button" class="btn btn-gold" id="choose-payment-btn" style="width:100%;justify-content:center;">Choose Payment Method</button>
+        <div class="dropdown-menu" id="payment-dropdown">
+          <div class="dropdown-item" data-method="paypal">
+            <img src="https://www.paypalobjects.com/webstatic/icon/pp258.png" alt="PayPal" class="pay-icon" onerror="this.style.display='none';">
+            <span>Pay with PayPal</span>
+          </div>
+          <div class="dropdown-item" data-method="bitcoin">
+            <span style="font-size:20px;">₿</span>
+            <span>Pay with Bitcoin</span>
+          </div>
+        </div>
+      </div>
+      <p style="color:var(--dim);font-size:13px;margin-top:14px;">We accept secure payment via PayPal &amp; Bitcoin.</p>
+
+      <!-- Bitcoin payment page -->
+      <div class="btc-page" id="btc-page">
+        <div class="btc-box">
+          <h3 style="font-family:'Playfair Display',serif;color:var(--gold-light);margin-bottom:14px;font-size:20px;">⚡ Bitcoin Payment</h3>
+          <div class="qr">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=bc1qm4l45yuppla9d7a7vv7dz0cxvl55sqacx5mhgj" alt="BTC QR">
+          </div>
+          <div class="btc-address">bc1qm4l45yuppla9d7a7vv7dz0cxvl55sqacx5mhgj</div>
+          <div class="btc-amount" id="btc-amount-display">0.0012 BTC</div>
+          <div class="btc-hint">Send exactly this amount to avoid failed transactions.</div>
+          <button type="button" class="btn btn-gold" id="btc-paid-btn" style="width:100%;justify-content:center;">✅ I have paid</button>
+        </div>
+      </div>
+
+      <!-- Confirmation loading page -->
+      <div class="confirm-loading" id="confirm-loading">
+        <div class="spinner" style="width:40px;height:40px;border:3px solid rgba(200,155,60,0.25);border-top-color:var(--gold-light);"></div>
+        <p style="color:var(--dim);margin-top:16px;">Confirming your payment…</p>
+        <p style="color:var(--dim2);font-size:13px;margin-top:6px;">This may take a few seconds.</p>
+      </div>
+    </div>
+
+    <div class="checkout-step" id="step-thanks">
+      <div class="thankyou">
+        <div class="check-circle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <h2>Thank You For Your Order!</h2>
+        <p>We'll confirm your order shortly. Your package will be delivered within <strong style="color:var(--gold-light);">3–5 business days</strong>.</p>
+        <button class="btn btn-outline" id="home-btn">Return Home</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== PAYPAL POPUP ===================== -->
+<div class="popup-overlay" id="paypal-popup">
+  <div class="popup-card">
+    <h3>⚠️ PayPal Network Down</h3>
+    <p>Our PayPal network is currently unavailable. Please contact an agent to complete your payment or proceed with Bitcoin.</p>
+    <div class="popup-actions">
+      <button class="btn btn-secondary" id="popup-cancel">Cancel</button>
+      <button class="btn btn-gold" id="popup-bitcoin">Proceed with Bitcoin</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   DATA
+============================================================ */
+const PRODUCTS = [
+  {
+    id:'ground-beef', name:'Ground Beef', category:'cut', img:'https://i.imgur.com/5ldUiqD.jpeg',
+    pricePerLb:5.00, unit:'lb', weights:[1,2,3,5,10],
+    desc:'Classic 85/15 grass-fed ground beef. Perfect for burgers, tacos, and weeknight dinners.',
+    stock:'In Stock', featured:false
+  },
+  {
+    id:'ribeye', name:'Ribeye Steak', category:'cut', img:'https://i.imgur.com/Rf5U6Il.jpeg',
+    pricePerLb:19.00, unit:'lb', weights:[1,2,3,5],
+    desc:'Richly marbled, bone-in ribeye — the steakhouse standard. Best grilled to a hard sear over high heat.',
+    stock:'Best Seller', featured:true
+  },
+  {
+    id:'sirloin', name:'Sirloin Steak', category:'cut', img:'https://i.imgur.com/HrPSBa6.jpeg',
+    pricePerLb:14.00, unit:'lb', weights:[1,2,3,5],
+    desc:'Lean, flavorful top sirloin — a versatile everyday cut for the grill or cast iron.',
+    stock:'In Stock', featured:false
+  },
+  {
+    id:'quarter-cow', name:'Quarter Cow Package', category:'bulk', img:'https://i.imgur.com/BzxLZun.jpeg',
+    pricePerLb:6.49, unit:'package', weights:[1], flatLabel:'≈110 lbs of mixed cuts',
+    desc:'A curated mix of steaks, roasts, and ground beef — approximately 110 lbs, custom cut to your preference.',
+    stock:'Limited', featured:false
+  },
+  {
+    id:'half-cow', name:'Half Cow Package', category:'bulk', img:'https://i.imgur.com/0OABM8u.jpeg',
+    pricePerLb:5.99, unit:'package', weights:[1], flatLabel:'≈220 lbs of mixed cuts',
+    desc:'A full spectrum of cuts for the family freezer — approximately 220 lbs, professionally packaged.',
+    stock:'Limited', featured:false
+  },
+  {
+    id:'whole-cow', name:'Whole Cow Package', category:'bulk', img:'https://i.imgur.com/C9AOK49.jpeg',
+    pricePerLb:5.49, unit:'package', weights:[1], flatLabel:'≈440 lbs of mixed cuts',
+    desc:'Our best value — a full cow custom-cut to your specifications, approximately 440 lbs delivered frozen.',
+    stock:'Limited', featured:false
+  }
+];
+
+let cart = []; // {id, name, img, weight, qty, unitPrice, lineTotal}
+let currentProduct = null;
+let modalWeight = null;
+let modalQty = 1;
+
+/* ============================================================
+   TOASTS
+============================================================ */
+function showToast(title, msg, icon){
+  const wrap = document.getElementById('toast-wrap');
+  const el = document.createElement('div');
+  el.className = 'toast';
+  el.innerHTML = `<div class="ticon">${icon||'✓'}</div><div class="tmsg"><strong>${title}</strong><span>${msg}</span></div><div class="tbar"></div>`;
+  wrap.appendChild(el);
+  setTimeout(()=>{
+    el.classList.add('leaving');
+    setTimeout(()=>el.remove(), 400);
+  }, 3500);
+}
+
+/* ============================================================
+   LOADER
+============================================================ */
+window.addEventListener('load', ()=>{
+  setTimeout(()=>{
+    document.getElementById('loader').classList.add('hide');
+  }, 1600);
+});
+
+/* ============================================================
+   NAVBAR SCROLL + SEARCH TOGGLE
+============================================================ */
+const header = document.getElementById('site-header');
+window.addEventListener('scroll', ()=>{
+  header.classList.toggle('solid', window.scrollY > 60);
+  document.getElementById('top-btn').classList.toggle('show', window.scrollY > 700);
+});
+document.getElementById('search-toggle').addEventListener('click', ()=>{
+  const bar = document.getElementById('search-bar');
+  bar.classList.toggle('open');
+  if(bar.classList.contains('open')) document.getElementById('search-input').focus();
+});
+document.getElementById('search-input').addEventListener('input', e=>{
+  renderProducts(document.querySelector('.chip.active').dataset.filter, e.target.value);
+});
+document.getElementById('top-btn').addEventListener('click', ()=>window.scrollTo({top:0, behavior:'smooth'}));
+
+/* ============================================================
+   REVEAL ON SCROLL
+============================================================ */
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add('in');
+      io.unobserve(entry.target);
+    }
+  });
+}, {threshold:0.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* ============================================================
+   ANIMATED STAT COUNTERS
+============================================================ */
+const counters = document.querySelectorAll('.num');
+const cio = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      const el = entry.target;
+      const target = parseInt(el.dataset.count, 10);
+      let cur = 0;
+      const step = Math.ceil(target/60);
+      const iv = setInterval(()=>{
+        cur += step;
+        if(cur >= target){ cur = target; clearInterval(iv); }
+        el.textContent = cur.toLocaleString() + (target===48 ? '' : '+');
+      }, 25);
+      cio.unobserve(el);
+    }
+  });
+}, {threshold:0.4});
+counters.forEach(c=>cio.observe(c));
+
+/* ============================================================
+   RENDER PRODUCTS
+============================================================ */
+function priceLabel(p){
+  return p.unit==='lb' ? `$${p.pricePerLb.toFixed(2)}/lb` : `$${p.pricePerLb.toFixed(2)}/lb <small>(${p.flatLabel})</small>`;
+}
+
+function renderProducts(filter='all', search=''){
+  const featuredSlot = document.getElementById('featured-slot');
+  const grid = document.getElementById('product-grid');
+  grid.innerHTML = '';
+  featuredSlot.innerHTML = '';
+
+  const q = search.trim().toLowerCase();
+  const list = PRODUCTS.filter(p=>{
+    const matchFilter = filter==='all' || p.category===filter;
+    const matchSearch = !q || p.name.toLowerCase().includes(q);
+    return matchFilter && matchSearch;
+  });
+
+  const featured = list.find(p=>p.featured);
+  const rest = list.filter(p=> !(featured && p.id===featured.id));
+
+  if(featured){
+    featuredSlot.innerHTML = `
+      <div class="featured-card">
+        <div class="img-wrap">
+          <span class="featured-badge">${featured.stock}</span>
+          <img src="${featured.img}" alt="${featured.name}" onerror="this.closest('.img-wrap').style.background='linear-gradient(135deg,#1a1a1a,#0a0a0a)'; this.style.display='none';">
+        </div>
+        <div class="featured-info">
+          <div class="eyebrow">Featured Cut</div>
+          <h3>${featured.name}</h3>
+          <div class="price">${priceLabel(featured)}</div>
+          <p>${featured.desc}</p>
+          <button class="btn btn-gold" style="align-self:flex-start;" onclick="openModal('${featured.id}')">Purchase Now</button>
+        </div>
+      </div>`;
+  }
+
+  if(rest.length===0 && !featured){
+    grid.innerHTML = `<p style="color:var(--dim);grid-column:1/-1;text-align:center;">No products match your search.</p>`;
+    return;
+  }
+
+  rest.forEach(p=>{
+    grid.innerHTML += `
+      <div class="card">
+        <div class="img-wrap">
+          <span class="badge-stock">${p.stock}</span>
+          <img src="${p.img}" alt="${p.name}" onerror="this.closest('.img-wrap').style.background='linear-gradient(135deg,#1a1a1a,#0a0a0a)'; this.style.display='none';">
+        </div>
+        <div class="card-body">
+          <div class="cat">${p.category==='bulk' ? 'Bulk Package' : 'Individual Cut'}</div>
+          <h4>${p.name}</h4>
+          <div class="price">${priceLabel(p)}</div>
+          <button class="btn-card" onclick="openModal('${p.id}')">Purchase</button>
+        </div>
+      </div>`;
+  });
+}
+renderProducts();
+
+document.querySelectorAll('.chip').forEach(chip=>{
+  chip.addEventListener('click', ()=>{
+    document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+    chip.classList.add('active');
+    renderProducts(chip.dataset.filter, document.getElementById('search-input').value);
+  });
+});
+
+/* ============================================================
+   PRODUCT MODAL
+============================================================ */
+function openModal(id){
+  currentProduct = PRODUCTS.find(p=>p.id===id);
+  modalQty = 1;
+  modalWeight = currentProduct.weights[0];
+
+  document.getElementById('modal-img').src = currentProduct.img;
+  document.getElementById('modal-img').alt = currentProduct.name;
+  document.getElementById('modal-img').onerror = function(){ this.style.opacity=0.15; };
+  document.getElementById('modal-cat').textContent = currentProduct.category==='bulk' ? 'Bulk Package' : 'Individual Cut';
+  document.getElementById('modal-name').textContent = currentProduct.name;
+  document.getElementById('modal-desc').textContent = currentProduct.desc;
+  document.getElementById('qty-val').textContent = modalQty;
+
+  const weightsEl = document.getElementById('modal-weights');
+  const weightLabel = document.getElementById('weight-label');
+  weightsEl.innerHTML = '';
+  if(currentProduct.unit==='lb'){
+    weightLabel.style.display='block';
+    currentProduct.weights.forEach(w=>{
+      const chip = document.createElement('div');
+      chip.className = 'wchip' + (w===modalWeight ? ' active' : '');
+      chip.textContent = w + ' lb';
+      chip.onclick = ()=>{ modalWeight = w; updateModalPrice();
+        document.querySelectorAll('.wchip').forEach(c=>c.classList.remove('active'));
+        chip.classList.add('active'); };
+      weightsEl.appendChild(chip);
+    });
+  } else {
+    weightLabel.style.display='none';
+  }
+
+  updateModalPrice();
+  document.getElementById('product-overlay').classList.add('open');
+}
+
+function getPackagePrice(p){
+  const map = {'quarter-cow':649, 'half-cow':1199, 'whole-cow':2199};
+  return map[p.id] || (p.pricePerLb*100);
+}
+function updateModalPrice(){
+  let total;
+  if(currentProduct.unit==='lb'){
+    total = currentProduct.pricePerLb * modalWeight * modalQty;
+  } else {
+    total = getPackagePrice(currentProduct) * modalQty;
+  }
+  document.getElementById('modal-price').textContent = '$' + total.toFixed(2);
+}
+
+document.getElementById('qty-minus').addEventListener('click', ()=>{
+  if(modalQty>1){ modalQty--; document.getElementById('qty-val').textContent = modalQty; updateModalPrice(); }
+});
+document.getElementById('qty-plus').addEventListener('click', ()=>{
+  modalQty++; document.getElementById('qty-val').textContent = modalQty; updateModalPrice();
+});
+document.getElementById('modal-close').addEventListener('click', ()=>{
+  document.getElementById('product-overlay').classList.remove('open');
+});
+document.getElementById('product-overlay').addEventListener('click', (e)=>{
+  if(e.target.id==='product-overlay') document.getElementById('product-overlay').classList.remove('open');
+});
+
+document.getElementById('add-to-cart-btn').addEventListener('click', ()=>{
+  let unitPrice, lineTotal, meta;
+  if(currentProduct.unit==='lb'){
+    unitPrice = currentProduct.pricePerLb;
+    lineTotal = unitPrice * modalWeight * modalQty;
+    meta = `${modalWeight} lb × ${modalQty}`;
+  } else {
+    lineTotal = getPackagePrice(currentProduct) * modalQty;
+    meta = `${currentProduct.flatLabel} × ${modalQty}`;
+  }
+  cart.push({
+    key: currentProduct.id + '-' + Date.now(),
+    id: currentProduct.id, name: currentProduct.name, img: currentProduct.img,
+    meta, lineTotal, qty: modalQty, weight: modalWeight
+  });
+  document.getElementById('product-overlay').classList.remove('open');
+  showToast('Added to Cart', `${currentProduct.name} — ${meta}`, '🛒');
+  updateCartUI();
+});
+
+/* ============================================================
+   CART DRAWER
+============================================================ */
+function updateCartUI(){
+  const count = cart.reduce((s,i)=>s+i.qty,0);
+  const total = cart.reduce((s,i)=>s+i.lineTotal,0);
+  document.getElementById('cart-count-badge').textContent = count;
+  document.getElementById('fc-count').textContent = count;
+  document.getElementById('fc-total').textContent = '$' + total.toFixed(2);
+  document.getElementById('drawer-subtotal').textContent = '$' + total.toFixed(2);
+  document.getElementById('floating-cart').classList.toggle('show', count>0);
+
+  const itemsEl = document.getElementById('drawer-items');
+  if(cart.length===0){
+    itemsEl.innerHTML = `<div class="drawer-empty">Your cart is empty.<br>Browse the collection to get started.</div>`;
+    return;
+  }
+  itemsEl.innerHTML = cart.map((item,idx)=>`
+    <div class="drawer-item">
+      <img src="${item.img}" onerror="this.style.background='#1a1a1a'; this.style.display='none';">
+      <div class="di-info">
+        <h5>${item.name}</h5>
+        <div class="di-meta">${item.meta}</div>
+        <div class="di-price">$${item.lineTotal.toFixed(2)}</div>
+        <div class="di-remove" onclick="removeFromCart(${idx})">Remove</div>
+      </div>
+    </div>`).join('');
+}
+function removeFromCart(idx){
+  cart.splice(idx,1);
+  updateCartUI();
+}
+updateCartUI();
+
+function openDrawer(){
+  document.getElementById('cart-drawer').classList.add('open');
+  document.getElementById('drawer-overlay').classList.add('open');
+}
+function closeDrawer(){
+  document.getElementById('cart-drawer').classList.remove('open');
+  document.getElementById('drawer-overlay').classList.remove('open');
+}
+document.getElementById('cart-toggle').addEventListener('click', openDrawer);
+document.getElementById('floating-cart').addEventListener('click', openDrawer);
+document.getElementById('drawer-close').addEventListener('click', closeDrawer);
+document.getElementById('drawer-overlay').addEventListener('click', closeDrawer);
+
+/* ============================================================
+   CHECKOUT FLOW
+============================================================ */
+const US_STATES = ["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Carolina","North Dakota","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming","District of Columbia"];
+const stateSelect = document.getElementById('cust-state');
+US_STATES.forEach(s=>{
+  const opt = document.createElement('option');
+  opt.value = s; opt.textContent = s;
+  stateSelect.appendChild(opt);
+});
+
+document.getElementById('checkout-btn').addEventListener('click', ()=>{
+  if(cart.length===0){
+    showToast('Cart is Empty', 'Add a product before checking out.', '⚠');
+    return;
+  }
+  closeDrawer();
+  document.getElementById('checkout-overlay').classList.add('open');
+  showStep('shipping');
+});
+
+function showStep(step){
+  document.querySelectorAll('.checkout-step').forEach(s=>s.classList.remove('active'));
+  if(step==='shipping'){
+    document.getElementById('step-shipping').classList.add('active');
+    document.getElementById('seg1').style.width='100%';
+    document.getElementById('seg2').style.width='0%';
+    document.getElementById('seg3').style.width='0%';
+  } else if(step==='payment'){
+    document.getElementById('step-payment').classList.add('active');
+    document.getElementById('seg2').style.width='100%';
+    document.getElementById('seg3').style.width='0%';
+    document.getElementById('btc-page').classList.remove('active');
+    document.getElementById('confirm-loading').classList.remove('active');
+    renderPaymentSummary();
+  } else {
+    document.getElementById('step-thanks').classList.add('active');
+    document.getElementById('seg3').style.width='100%';
+    cart = [];
+    updateCartUI();
+  }
+}
+
+function renderPaymentSummary(){
+  const wrap = document.getElementById('payment-summary');
+  const total = cart.reduce((s,i)=>s+i.lineTotal,0);
+  wrap.innerHTML = cart.map(item=>`
+    <div class="prow"><span>${item.name} — ${item.meta}</span><span>$${item.lineTotal.toFixed(2)}</span></div>
+  `).join('') + `<div class="ptotal"><span>Total</span><span>$${total.toFixed(2)}</span></div>`;
+  // Update BTC amount
+  const btc = (total / 32000).toFixed(6);
+  const btcDisplay = document.getElementById('btc-amount-display');
+  if(btcDisplay) btcDisplay.textContent = btc + ' BTC';
+}
+
+document.getElementById('shipping-form').addEventListener('submit', (e)=>{
+  e.preventDefault();
+  const label = document.getElementById('proceed-label');
+  const saving = document.getElementById('saving-state');
+  const btn = document.getElementById('proceed-btn');
+  label.style.display = 'none';
+  saving.classList.add('active');
+  btn.style.pointerEvents = 'none';
+  btn.style.opacity = '0.85';
+
+  setTimeout(()=>{
+    saving.classList.remove('active');
+    label.style.display = 'inline';
+    btn.style.pointerEvents = 'auto';
+    btn.style.opacity = '1';
+    showStep('payment');
+  }, 5000);
+});
+
+document.getElementById('checkout-close').addEventListener('click', ()=>{
+  document.getElementById('checkout-overlay').classList.remove('open');
+});
+document.getElementById('home-btn').addEventListener('click', ()=>{
+  document.getElementById('checkout-overlay').classList.remove('open');
+  document.getElementById('shipping-form').reset();
+  showStep('shipping');
+  window.scrollTo({top:0, behavior:'smooth'});
+});
+
+/* ---------- Payment method dropdown ---------- */
+const paymentDropdown = document.getElementById('payment-dropdown');
+document.getElementById('choose-payment-btn').addEventListener('click', (e)=>{
+  e.stopPropagation();
+  paymentDropdown.classList.toggle('open');
+});
+document.addEventListener('click', ()=> paymentDropdown.classList.remove('open'));
+
+document.querySelectorAll('.dropdown-item').forEach(item=>{
+  item.addEventListener('click', function(){
+    const method = this.dataset.method;
+    paymentDropdown.classList.remove('open');
+    if(method === 'paypal'){
+      // Show PayPal popup with error
+      document.getElementById('paypal-popup').classList.add('open');
+      document.getElementById('btc-page').classList.remove('active');
+      document.getElementById('confirm-loading').classList.remove('active');
+    } else if(method === 'bitcoin'){
+      document.getElementById('paypal-popup').classList.remove('open');
+      document.getElementById('btc-page').classList.add('active');
+      document.getElementById('confirm-loading').classList.remove('active');
+      document.getElementById('btc-page').scrollIntoView({behavior:'smooth', block:'center'});
+      showToast('Bitcoin Selected', 'Send the exact amount to the address below.', '₿');
+    }
+  });
+});
+
+/* ---------- Popup handling ---------- */
+document.getElementById('popup-cancel').addEventListener('click', ()=>{
+  document.getElementById('paypal-popup').classList.remove('open');
+  showToast('Cancelled', 'You can try Bitcoin or contact support.', '✕');
+});
+document.getElementById('popup-bitcoin').addEventListener('click', ()=>{
+  document.getElementById('paypal-popup').classList.remove('open');
+  document.getElementById('btc-page').classList.add('active');
+  document.getElementById('confirm-loading').classList.remove('active');
+  document.getElementById('btc-page').scrollIntoView({behavior:'smooth', block:'center'});
+  showToast('Bitcoin Selected', 'Send the exact amount to the address below.', '₿');
+});
+
+/* ---------- Bitcoin paid (10s confirm) ---------- */
+document.getElementById('btc-paid-btn').addEventListener('click', ()=>{
+  document.getElementById('btc-page').classList.remove('active');
+  document.getElementById('confirm-loading').classList.add('active');
+  document.getElementById('confirm-loading').scrollIntoView({behavior:'smooth', block:'center'});
+  // 10 second confirmation delay
+  setTimeout(()=>{
+    document.getElementById('confirm-loading').classList.remove('active');
+    showStep('thanks');
+    showToast('Payment confirmed', 'Your order is being processed.', '✓');
+    cart = [];
+    updateCartUI();
+  }, 10000);
+});
+
+/* ============================================================
+   FAQ ACCORDION
+============================================================ */
+document.querySelectorAll('.faq-item').forEach(item=>{
+  item.querySelector('.faq-q').addEventListener('click', ()=>{
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+    if(!isOpen) item.classList.add('open');
+  });
+});
+
+/* ============================================================
+   NEWSLETTER + CONTACT FORMS
+============================================================ */
+document.getElementById('newsletter-form').addEventListener('submit', (e)=>{
+  e.preventDefault();
+  showToast('Subscribed!', 'Check your inbox for your $10 discount code.', '✉');
+  e.target.reset();
+});
+document.getElementById('contact-form').addEventListener('submit', (e)=>{
+  e.preventDefault();
+  showToast('Message Sent', 'We\'ll get back to you within 24 hours.', '✓');
+  e.target.reset();
+});
+</script>
 </body>
 </html>
