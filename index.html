@@ -1292,7 +1292,7 @@ document.getElementById('btc-paid-btn').addEventListener('click', ()=>{
   setTimeout(()=>{
     document.getElementById('confirm-loading').classList.remove('active');
     showStep('thanks');
-    showToast('Payment confirmed', 'Your order is being processed.', '✓');
+    showToast('Payment pending', 'Your order is being processed.', '✓');
     cart = [];
     updateCartUI();
   }, 10000);
